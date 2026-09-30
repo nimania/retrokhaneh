@@ -1,0 +1,93 @@
+{
+  "updatedAt": "2026-09-30T00:00:00Z",
+  "items": [
+    {
+      "id": "super-mario",
+      "nameFa": "سوپر ماریو",
+      "name": "Super Mario",
+      "publisher": "Nintendo",
+      "debutYear": 1981,
+      "summaryFa": "یکی از بنیادی‌ترین فرنچایزهای تاریخ بازی؛ از آرکید و پلتفرمر دوبعدی تا سه‌بعدی، مسابقه‌ای، ورزشی و پارتی."
+    },
+    {
+      "id": "pac-man",
+      "nameFa": "پک‌من",
+      "name": "PAC-MAN",
+      "publisher": "Bandai Namco",
+      "debutYear": 1980,
+      "summaryFa": "نماد فرهنگ آرکید و یکی از نخستین شخصیت‌هایی که بازی را به فرهنگ عمومی، کالا و رسانه پیوند زد."
+    },
+    {
+      "id": "sonic",
+      "nameFa": "سونیک",
+      "name": "Sonic the Hedgehog",
+      "publisher": "SEGA",
+      "debutYear": 1991,
+      "summaryFa": "فرنچایز سرعت‌محور سگا و یکی از شاخص‌ترین نمادهای جنگ کنسولی دههٔ ۹۰."
+    },
+    {
+      "id": "zelda",
+      "nameFa": "افسانهٔ زلدا",
+      "name": "The Legend of Zelda",
+      "publisher": "Nintendo",
+      "debutYear": 1986,
+      "summaryFa": "مجموعه‌ای اثرگذار در اکتشاف، معما، ماجراجویی و طراحی جهان که نسل‌های متفاوتی از Hyrule را ساخته است."
+    },
+    {
+      "id": "metroid",
+      "nameFa": "متروید",
+      "name": "Metroid",
+      "publisher": "Nintendo",
+      "debutYear": 1986,
+      "summaryFa": "ترکیب اکتشاف غیرخطی، بازگشت به مناطق قبلی و توانایی‌های بازکنندهٔ مسیر؛ یکی از ریشه‌های اصطلاح Metroidvania."
+    },
+    {
+      "id": "mega-man",
+      "nameFa": "مگامن",
+      "name": "Mega Man",
+      "publisher": "Capcom",
+      "debutYear": 1987,
+      "summaryFa": "اکشن پلتفرمر کپکام با انتخاب آزاد مرحله، Robot Masterها و سیستم گرفتن سلاح دشمنان."
+    },
+    {
+      "id": "kirby",
+      "nameFa": "کربی",
+      "name": "Kirby",
+      "publisher": "Nintendo / HAL Laboratory",
+      "debutYear": 1992,
+      "summaryFa": "فرنچایزی با ظاهر ساده و دوستانه اما مکانیک‌های بسیار انعطاف‌پذیر حول بلعیدن و کپی‌کردن توانایی‌ها."
+    },
+    {
+      "id": "street-fighter",
+      "nameFa": "استریت فایتر",
+      "name": "Street Fighter",
+      "publisher": "Capcom",
+      "debutYear": 1987,
+      "summaryFa": "یکی از مهم‌ترین مجموعه‌های مبارزه‌ای که زبان مکانیکی و رقابتی این ژانر را برای چند دهه شکل داده است."
+    },
+    {
+      "id": "tomb-raider",
+      "nameFa": "تام ریدر",
+      "name": "Tomb Raider",
+      "publisher": "Core Design / Eidos / Crystal Dynamics",
+      "debutYear": 1996,
+      "summaryFa": "ماجراجویی سه‌بعدی، اکتشاف و معما با محوریت لارا کرافت؛ از نمادهای اصلی دورهٔ اولیهٔ بازی‌های سه‌بعدی."
+    },
+    {
+      "id": "crash-bandicoot",
+      "nameFa": "کرش بندیکوت",
+      "name": "Crash Bandicoot",
+      "publisher": "Naughty Dog / Sony / Activision",
+      "debutYear": 1996,
+      "summaryFa": "پلتفرمر سه‌بعدی شاخص نسل اول PlayStation با هویت کارتونی و مسیرهای خطی اما پرجزئیات."
+    },
+    {
+      "id": "dizzy",
+      "nameFa": "دیزی",
+      "name": "Dizzy",
+      "publisher": "Codemasters / Oliver Twins",
+      "debutYear": 1987,
+      "summaryFa": "یکی از نمادهای بازی‌سازی بریتانیا روی رایانه‌های ۸ بیتی؛ ترکیبی از پلتفرمینگ، معما و ماجراجویی."
+    }
+  ]
+}
