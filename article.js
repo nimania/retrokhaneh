@@ -86,7 +86,7 @@ function injectFooter(){
  footer.className="global-footer";
  footer.innerHTML='<div class="global-footer-inner">'
   +'<div class="footer-brand-block"><a class="footer-logo" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span></a><p>خانهٔ فارسی خبر و فرهنگ رترو؛ از بازی و تکنولوژی قدیمی تا طراحی، مد، داینرها، کلکسیون و ایران رترو.</p></div>'
-  +'<div class="footer-col"><strong>رتروخانه</strong><a href="../../">صفحهٔ اول</a><a href="../../#latest">آخرین خبرها</a><a href="../../#topics">دسته‌بندی‌ها</a></div>'
+  +'<div class="footer-col"><strong>رتروخانه</strong><a href="../../">صفحهٔ اول</a><a href="../../#latest">آخرین خبرها</a><a href="../../#topics">دسته‌بندی‌ها</a><a href="../../play/">اتاق بازی 🕹</a></div>'
   +'<div class="footer-col"><strong>موضوعات محبوب</strong><a href="../../#latest">محصولات رترو</a><a href="../../#latest">داینر و کافه</a><a href="../../#latest">بازی و کنسول</a><a href="../../#latest">ایران رترو</a></div>'
   +'<div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · گذشته هنوز زنده است.</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>'
   +'</div>';
