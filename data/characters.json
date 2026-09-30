@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T00:00:00Z",
+  "updatedAt": "2026-09-30T12:30:59.112Z",
   "items": [
     {
       "id": "mario",
@@ -22,7 +22,71 @@
         "Super Mario Bros.",
         "Super Mario World",
         "Super Mario 64"
-      ]
+      ],
+      "franchise": {
+        "id": "super-mario",
+        "nameFa": "سوپر ماریو",
+        "name": "Super Mario"
+      },
+      "introFa": [
+        "ماریو یکی از معدود شخصیت‌های بازی است که تاریخ خودش تقریباً هم‌زمان با تاریخ بازی کنسولی مدرن پیش رفته است. او در ۱۹۸۱ در Donkey Kong با نام Jumpman ظاهر شد و خیلی زود از یک کاراکتر کاربردی برای یک بازی آرکید، به چهرهٔ اصلی نینتندو تبدیل شد.",
+        "با Super Mario Bros. در ۱۹۸۵، ماریو به مرکز یکی از مهم‌ترین الگوهای طراحی پلتفرمر رسید: حرکت دقیق، پرش قابل‌فهم، مراحل کوتاه اما پرجزئیات و جهانی که بدون توضیح طولانی قواعدش را به بازیکن یاد می‌داد.",
+        "اهمیت ماریو فقط در فروش یا شهرت نیست. او در چند نسل سخت‌افزار، از دو بعدی تا سه‌بعدی و از بازی تک‌نفره تا مسابقه‌ای و ورزشی، دوباره طراحی شده بی‌آنکه هویت اصلی‌اش از بین برود."
+      ],
+      "guideFa": [
+        "اگر می‌خواهی از ریشه شروع کنی، Super Mario Bros. را تجربه کن.",
+        "برای دیدن بلوغ طراحی دوبعدی، Super Mario World انتخاب بهتری است.",
+        "برای فهم انقلاب سه‌بعدی، Super Mario 64 ضروری است.",
+        "برای نسخهٔ مدرن‌تر، سراغ Super Mario Odyssey برو."
+      ],
+      "triviaFa": [
+        "در Donkey Kong ابتدا «Jumpman» نامیده می‌شد.",
+        "ظاهر سبیل و کلاه تا حدی نتیجهٔ محدودیت‌های گرافیکی اولیه بود.",
+        "ماریو فقط قهرمان پلتفرمر نیست؛ در کارتینگ، ورزش و پارتی هم حضور محوری دارد.",
+        "نینتندو برای دهه‌ها او را به‌عنوان چهرهٔ مرکزی برند خود حفظ کرده است."
+      ],
+      "timeline": [
+        {
+          "year": 1981,
+          "labelFa": "اولین حضور در Donkey Kong"
+        },
+        {
+          "year": 1983,
+          "labelFa": "Mario Bros. و شکل‌گیری هویت مستقل‌تر"
+        },
+        {
+          "year": 1985,
+          "labelFa": "Super Mario Bros. و انفجار جهانی محبوبیت"
+        },
+        {
+          "year": 1996,
+          "labelFa": "Super Mario 64 و گذار بزرگ به سه‌بعدی"
+        }
+      ],
+      "relations": [
+        {
+          "id": "luigi",
+          "relationFa": "برادر و همراه"
+        },
+        {
+          "id": "bowser",
+          "relationFa": "رقیب اصلی"
+        },
+        {
+          "id": "princess-peach",
+          "relationFa": "دوست و متحد"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.nintendo.com/us/explore/characters/mario/about/",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "lKn32KPIRSw",
+            "titleFa": "تریلر رسمی Super Mario Bros. Movie از Nintendo España"
+          }
+        ]
+      }
     },
     {
       "id": "luigi",
@@ -43,7 +107,58 @@
         "Mario Bros.",
         "Super Mario Bros.",
         "Luigi's Mansion"
-      ]
+      ],
+      "franchise": {
+        "id": "super-mario",
+        "nameFa": "سوپر ماریو",
+        "name": "Super Mario"
+      },
+      "introFa": [
+        "لوئیجی در ۱۹۸۳ و در Mario Bros. به‌عنوان برادر و هم‌بازی ماریو معرفی شد. در سال‌های اول، تفاوت او بیشتر رنگی بود تا شخصیتی، اما به‌مرور خصوصیات مستقلش شکل گرفت.",
+        "در بسیاری از بازی‌ها لوئیجی قدبلندتر، سبک‌تر و دارای پرش متفاوت از ماریو تصویر شده است. همین تفاوت‌های کوچک باعث شد از «بازیکن دوم» به شخصیتی با سبک بازی جدا تبدیل شود.",
+        "مجموعهٔ Luigi's Mansion نقطهٔ عطف مهمی بود؛ جایی که ترس، طنز و جست‌وجوی محیطی به او هویتی مستقل داد."
+      ],
+      "guideFa": [
+        "برای ریشهٔ شخصیت، Mario Bros. را ببین.",
+        "برای تجربهٔ کلاسیک دونفره، Super Mario Bros. مناسب است.",
+        "برای هویت مستقل لوئیجی، Luigi's Mansion بهترین نقطهٔ ورود است."
+      ],
+      "triviaFa": [
+        "در بسیاری از بازی‌های اولیه صرفاً نسخهٔ رنگی متفاوتی از ماریو بود.",
+        "به‌مرور شخصیت محتاط‌تر و ترسوتر او به ویژگی اصلی‌اش تبدیل شد.",
+        "پرش بلندتر یکی از امضاهای مکانیکی تکرارشوندهٔ اوست."
+      ],
+      "timeline": [
+        {
+          "year": 1983,
+          "labelFa": "اولین حضور در Mario Bros."
+        },
+        {
+          "year": 1985,
+          "labelFa": "حضور در Super Mario Bros."
+        },
+        {
+          "year": 2001,
+          "labelFa": "Luigi's Mansion و آغاز هویت مستقل"
+        }
+      ],
+      "relations": [
+        {
+          "id": "mario",
+          "relationFa": "برادر"
+        },
+        {
+          "id": "princess-peach",
+          "relationFa": "متحد"
+        },
+        {
+          "id": "bowser",
+          "relationFa": "دشمن مشترک"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://mario.nintendo.com/characters/"
+      }
     },
     {
       "id": "pac-man",
@@ -66,7 +181,49 @@
         "Pac-Man",
         "Ms. Pac-Man",
         "Pac-Land"
-      ]
+      ],
+      "franchise": {
+        "id": "pac-man",
+        "nameFa": "پک‌من",
+        "name": "PAC-MAN"
+      },
+      "introFa": [
+        "پک‌من در ۱۹۸۰ با طراحی بسیار ساده اما فوراً قابل‌شناسایی وارد آرکید شد. بازی به‌جای تیراندازی فضایی رایج آن دوره، روی هزارتو، تعقیب و الگوی رفتاری دشمنان تمرکز داشت.",
+        "موفقیت پک‌من خیلی زود از خود بازی فراتر رفت؛ شخصیت زردرنگ به کالا، انیمیشن، تبلیغات و نمادی از فرهنگ آرکید تبدیل شد.",
+        "سادگی فرم بصری و قوانین بازی باعث شده پک‌من یکی از بهترین نمونه‌های طراحی شخصیت برای محدودیت‌های سخت‌افزاری اولیه باشد."
+      ],
+      "guideFa": [
+        "از نسخهٔ آرکید اصلی PAC-MAN شروع کن.",
+        "بعد Ms. Pac-Man را برای طراحی هزارتوهای متنوع‌تر امتحان کن.",
+        "PAC-LAND نشان می‌دهد شخصیت چگونه از هزارتو به پلتفرمر رفت.",
+        "PAC-MAN Museum+ برای مرور چند دورهٔ سری مناسب است."
+      ],
+      "triviaFa": [
+        "چهار روح اصلی هرکدام رفتار متفاوتی دارند.",
+        "پک‌من خیلی زود به یکی از نخستین سلبریتی‌های واقعی بازی تبدیل شد.",
+        "فرم سادهٔ او برای بازتولید در رسانه‌های مختلف بسیار مناسب بود."
+      ],
+      "timeline": [
+        {
+          "year": 1980,
+          "labelFa": "عرضهٔ نسخهٔ آرکید PAC-MAN"
+        },
+        {
+          "year": 1982,
+          "labelFa": "گسترش شدید برند در فرهنگ عمومی"
+        },
+        {
+          "year": 1984,
+          "labelFa": "PAC-LAND و خروج از قالب هزارتو"
+        },
+        {
+          "year": 1999,
+          "labelFa": "PAC-MAN World و ورود جدی به پلتفرمر سه‌بعدی"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.bandainamcoent.com/games/pac-man-museum-plus"
+      }
     },
     {
       "id": "sonic",
@@ -88,7 +245,56 @@
         "Sonic the Hedgehog",
         "Sonic the Hedgehog 2",
         "Sonic CD"
-      ]
+      ],
+      "franchise": {
+        "id": "sonic",
+        "nameFa": "سونیک",
+        "name": "Sonic the Hedgehog"
+      },
+      "introFa": [
+        "سونیک در ۱۹۹۱ در زمانی معرفی شد که سگا به شخصیتی نیاز داشت که سرعت، نگرش جوانانه و تفاوت Genesis/Mega Drive با رقبا را نمایش دهد.",
+        "طراحی مراحل سونیک بر شتاب، حفظ مومنتوم و مسیرهای متعدد تأکید داشت؛ در نتیجه پلتفرمر او از همان ابتدا ریتمی متفاوت با ماریو پیدا کرد.",
+        "سونیک خیلی زود از بازی به انیمیشن، کمیک و بعدتر سینما راه یافت و به یکی از معدود نمادهای بازی تبدیل شد که چند نسل مخاطب را حفظ کرده است."
+      ],
+      "guideFa": [
+        "Sonic the Hedgehog برای شناخت پایه‌ها مناسب است.",
+        "Sonic 2 نقطهٔ ورود بسیار خوب و متعادل است.",
+        "Sonic CD برای طراحی مرحله و موسیقی متفاوت ارزش دیدن دارد.",
+        "برای نسخه‌های جدیدتر، Sonic Mania پلی مستقیم با دورهٔ کلاسیک است."
+      ],
+      "triviaFa": [
+        "شخصیت برای رقابت مستقیم برند سگا با نینتندو طراحی شد.",
+        "سرعت فقط ویژگی داستانی نیست؛ هستهٔ طراحی مرحله هم هست.",
+        "Tails و Knuckles به‌تدریج دنیای شخصیت را گسترش دادند."
+      ],
+      "timeline": [
+        {
+          "year": 1991,
+          "labelFa": "اولین Sonic the Hedgehog"
+        },
+        {
+          "year": 1992,
+          "labelFa": "Sonic 2 و معرفی Tails"
+        },
+        {
+          "year": 1994,
+          "labelFa": "Sonic 3 و Knuckles"
+        },
+        {
+          "year": 1998,
+          "labelFa": "Sonic Adventure و ورود بزرگ به سه‌بعدی"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://asia.sega.com/SonicSuperStars/en/character/",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "ocEv3K_H9o4",
+            "titleFa": "تریلر رسمی Sonic the Hedgehog 3 از SEGA"
+          }
+        ]
+      }
     },
     {
       "id": "link",
@@ -111,7 +317,49 @@
         "A Link to the Past",
         "Link's Awakening",
         "Ocarina of Time"
-      ]
+      ],
+      "franchise": {
+        "id": "zelda",
+        "nameFa": "افسانهٔ زلدا",
+        "name": "The Legend of Zelda"
+      },
+      "introFa": [
+        "لینک نام قهرمانی است که در دوره‌ها و جهان‌های مختلف مجموعهٔ Zelda تکرار می‌شود. او معمولاً قهرمانی جوان است که درگیر نجات Hyrule یا شکستن چرخه‌ای از تهدید و بازگشت شر می‌شود.",
+        "برخلاف بسیاری از شخصیت‌های ثابت، «لینک» بیشتر یک نقش اسطوره‌ای تکرارشونده است؛ ظاهر، سن و پیشینه‌اش میان بازی‌ها تغییر می‌کند.",
+        "اهمیت لینک با خود طراحی Zelda گره خورده است: اکتشاف، ابزارهایی که مسیرهای تازه باز می‌کنند و معماهایی که جهان را به‌جای منوها به بازیکن آموزش می‌دهند."
+      ],
+      "guideFa": [
+        "The Legend of Zelda برای دیدن ریشهٔ اکتشاف آزاد مهم است.",
+        "A Link to the Past فرم کلاسیک دوبعدی را کامل‌تر می‌کند.",
+        "Ocarina of Time گذار تاریخی به سه‌بعدی است.",
+        "Link's Awakening برای تجربه‌ای جمع‌وجورتر و متفاوت مناسب است."
+      ],
+      "triviaFa": [
+        "لینک و زلدا دو شخصیت متفاوت‌اند و نام مجموعه گاهی تازه‌کارها را گیج می‌کند.",
+        "نسخه‌های مختلف Link الزاماً یک فرد واحد نیستند.",
+        "شمشیر Master Sword و سپر Hylian به نمادهای بصری او تبدیل شده‌اند."
+      ],
+      "timeline": [
+        {
+          "year": 1986,
+          "labelFa": "The Legend of Zelda"
+        },
+        {
+          "year": 1991,
+          "labelFa": "A Link to the Past"
+        },
+        {
+          "year": 1998,
+          "labelFa": "Ocarina of Time"
+        },
+        {
+          "year": 2017,
+          "labelFa": "Breath of the Wild و بازتعریف جهان‌باز"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.nintendo.com/jp/character/zelda/en/characters/index.html"
+      }
     },
     {
       "id": "samus-aran",
@@ -135,7 +383,56 @@
         "Metroid",
         "Metroid II",
         "Super Metroid"
-      ]
+      ],
+      "franchise": {
+        "id": "metroid",
+        "nameFa": "متروید",
+        "name": "Metroid"
+      },
+      "introFa": [
+        "ساموس آران شکارچی جایزه‌بگیری است که از نخستین Metroid در ۱۹۸۶ با زره Power Suit شناخته می‌شود. بازی مدت زیادی هویت او را پشت زره پنهان می‌کرد.",
+        "ساختار Metroid بر بازگشت به مناطق قبلی پس از گرفتن توانایی‌های تازه استوار شد و ساموس عملاً مرکز این مدل پیشروی است.",
+        "در کنار اهمیت مکانیکی، ساموس به‌دلیل جایگاهش به‌عنوان یکی از شناخته‌شده‌ترین قهرمانان زن تاریخ بازی نیز اهمیت فرهنگی دارد."
+      ],
+      "guideFa": [
+        "Metroid اصلی برای ریشه‌ها مهم است اما سخت و کم‌راهنماست.",
+        "Super Metroid بهترین نقطهٔ ورود کلاسیک برای بسیاری از بازیکنان است.",
+        "Metroid Fusion تجربه‌ای هدایت‌شده‌تر دارد.",
+        "Metroid Dread نسخهٔ مدرن و بسیار روان این فرمول است."
+      ],
+      "triviaFa": [
+        "هویت ساموس در پایان بازی اول برای بسیاری از بازیکنان غافلگیرکننده بود.",
+        "Power Suit بخشی از روایت و مکانیک اکتشاف است، نه فقط لباس شخصیت.",
+        "اصطلاح Metroidvania بخشی از میراث طراحی این مجموعه است."
+      ],
+      "timeline": [
+        {
+          "year": 1986,
+          "labelFa": "اولین Metroid"
+        },
+        {
+          "year": 1991,
+          "labelFa": "Metroid II"
+        },
+        {
+          "year": 1994,
+          "labelFa": "Super Metroid"
+        },
+        {
+          "year": 2002,
+          "labelFa": "Metroid Prime و Metroid Fusion"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://metroid.nintendo.com/dread/samus/",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "UhOx-FpEAQk",
+            "titleFa": "تریلر رسمی Metroid: Samus Returns از Nintendo"
+          }
+        ]
+      }
     },
     {
       "id": "mega-man",
@@ -159,7 +456,56 @@
         "Mega Man 2",
         "Mega Man 3",
         "Mega Man X"
-      ]
+      ],
+      "franchise": {
+        "id": "mega-man",
+        "nameFa": "مگامن",
+        "name": "Mega Man"
+      },
+      "introFa": [
+        "مگامن در ۱۹۸۷ با ایده‌ای ساده اما مؤثر معرفی شد: بازیکن می‌تواند ترتیب مراحل را انتخاب کند و پس از شکست هر Robot Master، سلاح او را به دست آورد.",
+        "همین ساختار باعث شد انتخاب مرحله، کشف ضعف باس‌ها و مدیریت سلاح‌ها بخشی از استراتژی بازی باشد.",
+        "سری بعداً به شاخه‌هایی مثل Mega Man X، Zero و Battle Network گسترش یافت، اما تصویر «Blue Bomber» همچنان به دورهٔ ۸ بیتی پیوند خورده است."
+      ],
+      "guideFa": [
+        "Mega Man 2 معمولاً بهترین ورودی به دورهٔ NES است.",
+        "Mega Man 3 ساختار کلاسیک را توسعه می‌دهد.",
+        "Mega Man X برای دیدن تکامل سری در ۱۶ بیت ضروری است.",
+        "Legacy Collection راه ساده‌ای برای مرور نسخه‌های اولیه است."
+      ],
+      "triviaFa": [
+        "انتخاب آزاد مرحله یکی از ویژگی‌های هویتی مجموعه شد.",
+        "سلاح باس‌ها در نبرد با باس‌های دیگر مزیت ایجاد می‌کند.",
+        "طراحی Robot Masterها به یکی از شاخص‌ترین بخش‌های طرفداری سری تبدیل شد."
+      ],
+      "timeline": [
+        {
+          "year": 1987,
+          "labelFa": "Mega Man"
+        },
+        {
+          "year": 1988,
+          "labelFa": "Mega Man 2"
+        },
+        {
+          "year": 1993,
+          "labelFa": "Mega Man X"
+        },
+        {
+          "year": 2015,
+          "labelFa": "Legacy Collection و بازگشت آرشیوی"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://megaman.capcom.com/mmlc.html",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "K7LNrTpqk4g",
+            "titleFa": "تریلر رسمی Mega Man 11"
+          }
+        ]
+      }
     },
     {
       "id": "kirby",
@@ -180,7 +526,49 @@
         "Kirby's Dream Land",
         "Kirby's Adventure",
         "Kirby Super Star"
-      ]
+      ],
+      "franchise": {
+        "id": "kirby",
+        "nameFa": "کربی",
+        "name": "Kirby"
+      },
+      "introFa": [
+        "کربی در ۱۹۹۲ با Kirby's Dream Land معرفی شد؛ شخصیتی عمداً ساده و دوستانه که قرار بود برای بازیکنان تازه‌کار هم قابل‌دسترسی باشد.",
+        "قابلیت بلعیدن دشمنان و بعدتر Copy Ability به هستهٔ هویت او تبدیل شد و اجازه داد هر بازی تنوع مکانیکی زیادی ایجاد کند.",
+        "سادگی ظاهر کربی با انعطاف بالای طراحی در تضاد جالبی است؛ او می‌تواند در بازی‌های بسیار ساده تا چالش‌های پیچیده حضور داشته باشد."
+      ],
+      "guideFa": [
+        "Kirby's Dream Land برای دیدن ریشه‌ها کوتاه و مناسب است.",
+        "Kirby's Adventure معرفی مهم Copy Ability است.",
+        "Kirby Super Star مجموعه‌ای متنوع از سبک‌های بازی ارائه می‌دهد.",
+        "Forgotten Land برای ورود مدرن مناسب است."
+      ],
+      "triviaFa": [
+        "ظاهر بسیار سادهٔ کربی بخشی از قدرت ماندگاری برند است.",
+        "توانایی کپی در نخستین بازی Game Boy وجود نداشت و بعداً اضافه شد.",
+        "HAL Laboratory سازندهٔ اصلی مجموعه است."
+      ],
+      "timeline": [
+        {
+          "year": 1992,
+          "labelFa": "Kirby's Dream Land"
+        },
+        {
+          "year": 1993,
+          "labelFa": "Kirby's Adventure"
+        },
+        {
+          "year": 1996,
+          "labelFa": "Kirby Super Star"
+        },
+        {
+          "year": 2022,
+          "labelFa": "Forgotten Land و جهش سه‌بعدی"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.nintendo.com/my/character/kirby/"
+      }
     },
     {
       "id": "ryu",
@@ -202,7 +590,56 @@
         "Street Fighter",
         "Street Fighter II",
         "Street Fighter Alpha"
-      ]
+      ],
+      "franchise": {
+        "id": "street-fighter",
+        "nameFa": "استریت فایتر",
+        "name": "Street Fighter"
+      },
+      "introFa": [
+        "ریو مبارزی است که از نخستین Street Fighter در ۱۹۸۷ حضور دارد و با Street Fighter II به یکی از نمادهای اصلی ژانر مبارزه‌ای تبدیل شد.",
+        "سادگی نسبی حرکات پایهٔ او باعث شده ریو اغلب شخصیت آموزشی و معیار تعادل در بسیاری از نسخه‌های سری باشد.",
+        "Hadoken، Shoryuken و Tatsumaki Senpukyaku نه فقط حرکات بازی، بلکه بخشی از زبان عمومی فرهنگ بازی شده‌اند."
+      ],
+      "guideFa": [
+        "برای تاریخ، Street Fighter II نقطهٔ اصلی است.",
+        "برای یادگیری ریو، روی کنترل فاصله و پرتاب Hadoken تمرکز کن.",
+        "Shoryuken را بیشتر به‌عنوان پاسخ ضدپرش یاد بگیر، نه حرکت تصادفی.",
+        "نسخه‌های مختلف سری جزئیات فنی متفاوت دارند؛ اصول شخصیت ثابت‌تر از فریم‌دیتاست."
+      ],
+      "triviaFa": [
+        "ریو از ابتدا چهرهٔ ثابت و معیار سری بوده است.",
+        "طراحی او عمداً ساده‌تر از بسیاری از مبارزان عجیب‌تر مجموعه است.",
+        "Ken همتای نزدیک اوست اما سبک و شخصیت متفاوتی دارد."
+      ],
+      "timeline": [
+        {
+          "year": 1987,
+          "labelFa": "Street Fighter"
+        },
+        {
+          "year": 1991,
+          "labelFa": "Street Fighter II و تثبیت جهانی"
+        },
+        {
+          "year": 1995,
+          "labelFa": "Street Fighter Alpha"
+        },
+        {
+          "year": 1997,
+          "labelFa": "Street Fighter III"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://game.capcom.com/cfn/sfv/column-130431",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "LZGql2q-G1k",
+            "titleFa": "راهنمای رسمی Ryu در Street Fighter V"
+          }
+        ]
+      }
     },
     {
       "id": "lara-croft",
@@ -224,7 +661,49 @@
         "Tomb Raider",
         "Tomb Raider II",
         "Tomb Raider III"
-      ]
+      ],
+      "franchise": {
+        "id": "tomb-raider",
+        "nameFa": "تام ریدر",
+        "name": "Tomb Raider"
+      },
+      "introFa": [
+        "لارا کرافت در ۱۹۹۶ هم‌زمان با موج نخست بازی‌های سه‌بعدی وارد شد. Tomb Raider ترکیبی از اکتشاف، پلتفرمینگ سه‌بعدی، معما و تیراندازی را حول شخصیتی واحد بنا کرد.",
+        "لارا خیلی زود از مرز بازی عبور کرد و در تبلیغات، مجلات، کالا و سینما به چهره‌ای شناخته‌شده تبدیل شد.",
+        "نسخه‌های مختلف او از مدل کم‌پلیگان اولیه تا بازطراحی‌های واقع‌گرایانه‌تر، خودشان بخشی از تاریخ تحول گرافیک سه‌بعدی‌اند."
+      ],
+      "guideFa": [
+        "Tomb Raider 1996 برای فهم طراحی اولیه ضروری است.",
+        "Tomb Raider II نسخه‌ای بزرگ‌تر و متنوع‌تر از همان فرمول است.",
+        "نسخه‌های Remastered راه راحت‌تری برای تجربهٔ کلاسیک‌ها هستند.",
+        "برای دورهٔ جدیدتر می‌توان سراغ سه‌گانهٔ Survivor رفت."
+      ],
+      "triviaFa": [
+        "مدل اولیهٔ لارا با محدودیت شدید پلی‌گان ساخته شد.",
+        "شخصیت خیلی زود به نماد رسانه‌ای فراتر از بازی تبدیل شد.",
+        "طراحی کنترل و دوربین نسخه‌های قدیمی با استانداردهای امروز متفاوت است."
+      ],
+      "timeline": [
+        {
+          "year": 1996,
+          "labelFa": "Tomb Raider"
+        },
+        {
+          "year": 1997,
+          "labelFa": "Tomb Raider II"
+        },
+        {
+          "year": 2001,
+          "labelFa": "ورود به سینما"
+        },
+        {
+          "year": 2013,
+          "labelFa": "بازراه‌اندازی مدرن سری"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.playtombraider.com/en-us"
+      }
     },
     {
       "id": "crash-bandicoot",
@@ -248,7 +727,49 @@
         "Cortex Strikes Back",
         "Warped",
         "Crash Team Racing"
-      ]
+      ],
+      "franchise": {
+        "id": "crash-bandicoot",
+        "nameFa": "کرش بندیکوت",
+        "name": "Crash Bandicoot"
+      },
+      "introFa": [
+        "کرش بندیکوت در ۱۹۹۶ برای PlayStation معرفی شد؛ پلتفرمری که با دوربین پشت شخصیت و مسیرهای عمدتاً خطی، راه‌حل خاص خودش را برای سه‌بعدی‌کردن ژانر پیدا کرد.",
+        "ظاهر اغراق‌شده، انیمیشن‌های کارتونی و رقابت تبلیغاتی با شخصیت‌های نینتندو و سگا، کرش را به یکی از نمادهای نسل نخست PlayStation تبدیل کرد.",
+        "سه‌گانهٔ اولیه و Crash Team Racing هنوز هستهٔ نوستالژیک اصلی این برند را تشکیل می‌دهند."
+      ],
+      "guideFa": [
+        "Crash Bandicoot اول برای شناخت پایه‌ها مناسب است اما سخت‌تر است.",
+        "Cortex Strikes Back تعادل بهتری در طراحی مرحله دارد.",
+        "Warped تنوع وسیله و زمان را اضافه می‌کند.",
+        "Crash Team Racing برای بخش مسابقه‌ای برند ضروری است."
+      ],
+      "triviaFa": [
+        "طراحی مسیرهای رو به دوربین و دور از دوربین از ویژگی‌های مهم سری بود.",
+        "کرش در تبلیغات دههٔ ۹۰ نقش جدی در هویت PlayStation داشت.",
+        "بازسازی N. Sane Trilogy باعث بازگشت گستردهٔ شخصیت شد."
+      ],
+      "timeline": [
+        {
+          "year": 1996,
+          "labelFa": "Crash Bandicoot"
+        },
+        {
+          "year": 1997,
+          "labelFa": "Cortex Strikes Back"
+        },
+        {
+          "year": 1998,
+          "labelFa": "Warped"
+        },
+        {
+          "year": 1999,
+          "labelFa": "Crash Team Racing"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.activision.com/mx/es/games/crash/crash-bandicoot-n-sane-trilogy"
+      }
     },
     {
       "id": "dizzy",
@@ -270,7 +791,53 @@
         "Dizzy",
         "Treasure Island Dizzy",
         "Fantasy World Dizzy"
-      ]
+      ],
+      "franchise": {
+        "id": "dizzy",
+        "nameFa": "دیزی",
+        "name": "Dizzy"
+      },
+      "introFa": [
+        "دیزی یکی از نمادهای مهم بازی بریتانیایی دههٔ ۸۰ است؛ شخصیتی تخم‌مرغی که در رایانه‌هایی مثل ZX Spectrum و Amstrad CPC محبوب شد.",
+        "بازی‌های Dizzy ترکیبی از پلتفرمینگ، معما و مدیریت اشیا بودند و بیش از سرعت واکنش، به شناخت محیط و حل مسئله تکیه داشتند.",
+        "اهمیت Dizzy امروز فقط نوستالژیک نیست؛ تاریخ او بخشی از روایت صنعت مستقل و خانگی بازی‌سازی بریتانیا پیش از سلطهٔ کامل کنسول‌هاست."
+      ],
+      "guideFa": [
+        "برای شروع، Fantasy World Dizzy نمونهٔ خوبی از فرمول کلاسیک است.",
+        "Treasure Island Dizzy سخت‌تر و مشهور است.",
+        "اگر به تاریخ توسعه علاقه داری، آرشیو Oliver Twins ارزش خواندن دارد.",
+        "Wonderland Dizzy نمونه‌ای جالب از بازی گمشده و بعداً بازیابی‌شده است."
+      ],
+      "triviaFa": [
+        "Oliver Twins هنگام شروع کار حرفه‌ای هنوز بسیار جوان بودند.",
+        "بعضی پروژه‌های Dizzy سال‌ها منتشرنشده باقی ماندند.",
+        "Wonderland Dizzy دهه‌ها پس از ساخت اولیه دوباره پیدا و منتشر شد."
+      ],
+      "timeline": [
+        {
+          "year": 1987,
+          "labelFa": "Dizzy – The Ultimate Cartoon Adventure"
+        },
+        {
+          "year": 1988,
+          "labelFa": "Treasure Island Dizzy"
+        },
+        {
+          "year": 1989,
+          "labelFa": "Fantasy World Dizzy"
+        },
+        {
+          "year": 2015,
+          "labelFa": "کشف دوبارهٔ Wonderland Dizzy"
+        },
+        {
+          "year": 2016,
+          "labelFa": "انتشار Wonderland Dizzy"
+        }
+      ],
+      "media": {
+        "officialUrl": "https://www.olivertwins.com/wonderlanddizzy"
+      }
     }
   ]
 }
