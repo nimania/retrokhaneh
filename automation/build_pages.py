@@ -4,6 +4,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "data" / "news.json").read_text("utf-8"))
+CHARACTERS_FILE = ROOT / "data" / "characters.json"
+CHARACTERS = json.loads(CHARACTERS_FILE.read_text("utf-8")).get("items", []) if CHARACTERS_FILE.exists() else []
 BASE = "https://nimania.github.io/retrokhaneh"
 
 def e(value):
@@ -64,7 +66,11 @@ def article_page(item):
 urls = [
     (BASE + "/", "1.0"),
     (BASE + "/play/", "0.8"),
+    (BASE + "/characters/", "0.9"),
 ]
+for char in CHARACTERS:
+    if char.get("id"):
+        urls.append((f"{BASE}/characters/{char['id']}/", "0.7"))
 for item in DATA.get("items", []):
     if not item.get("id"):
         continue
