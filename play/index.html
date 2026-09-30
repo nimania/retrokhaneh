@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#122f2c">
+  <title>اتاق بازی | رتروخانه</title>
+  <meta name="description" content="اتاق بازی رتروخانه؛ بازی‌های کوچک و قانونی با حال‌وهوای آرکید و رترو، مستقیم در مرورگر.">
+  <link rel="canonical" href="https://nimania.github.io/retrokhaneh/play/">
+  <link rel="stylesheet" href="../style.css?v=20260930portal3">
+  <link rel="stylesheet" href="play.css?v=20260930play1">
+</head>
+<body class="game-room-page">
+<header class="app-header game-header">
+  <a class="brand" href="../" aria-label="رتروخانه، خانه">
+    <span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span>
+    <span class="brand-copy"><small>RETROKHANEH · GAME ROOM</small></span>
+  </a>
+  <div class="header-actions">
+    <a class="icon-button" href="../" aria-label="بازگشت به رتروخانه">⌂</a>
+    <button id="theme-toggle" class="icon-button" type="button" aria-label="روشن یا تیره">◐</button>
+  </div>
+</header>
+
+<main class="game-shell">
+  <section class="game-hero">
+    <div class="game-hero-copy">
+      <span class="arcade-kicker">INSERT COIN · NO COIN REQUIRED</span>
+      <h1>اتاق بازی<br><em>رتروخانه</em></h1>
+      <p>چهار بازی کوچک با حال‌وهوای آرکید؛ مستقیم در مرورگر، بدون نصب و بدون ROM تجاری.</p>
+      <div class="hero-actions">
+        <a href="#arcade" class="arcade-primary">بازی را شروع کن ↓</a>
+        <span>کیبورد · موبایل · فول‌اسکرین</span>
+      </div>
+    </div>
+    <div class="arcade-marquee" aria-hidden="true">
+      <div class="marquee-screen"><span>R</span><b>PLAY</b><i>★</i></div>
+      <div class="marquee-controls"><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <section class="game-library" aria-labelledby="library-title">
+    <div class="game-section-head">
+      <div><span>۴ بازی · نسخهٔ اول</span><h2 id="library-title">یکی را انتخاب کن</h2></div>
+      <p>همهٔ بازی‌ها کد اختصاصی همین صفحه‌اند.</p>
+    </div>
+    <div class="game-cards">
+      <button class="game-card active" data-game="pong" type="button">
+        <span class="game-card-art art-pong"><i></i><i></i><b></b></span>
+        <span class="game-card-copy"><small>ARCADE 01</small><strong>پونگ</strong><em>دوئل کلاسیک راکت و توپ</em></span>
+      </button>
+      <button class="game-card" data-game="snake" type="button">
+        <span class="game-card-art art-snake"><i></i><i></i><i></i><i></i></span>
+        <span class="game-card-copy"><small>ARCADE 02</small><strong>مار</strong><em>بخور، بزرگ شو، به خودت نخور</em></span>
+      </button>
+      <button class="game-card" data-game="breakout" type="button">
+        <span class="game-card-art art-breakout"><i></i><i></i><i></i><i></i><b></b></span>
+        <span class="game-card-copy"><small>ARCADE 03</small><strong>آجرشکن</strong><em>دیوار را با یک توپ خالی کن</em></span>
+      </button>
+      <button class="game-card" data-game="space" type="button">
+        <span class="game-card-art art-space"><b>▲</b><i>✦</i><i>✦</i><i>✦</i></span>
+        <span class="game-card-copy"><small>ARCADE 04</small><strong>نبرد فضایی</strong><em>حرکت، شلیک، دوام بیاور</em></span>
+      </button>
+    </div>
+  </section>
+
+  <section id="arcade" class="arcade-cabinet">
+    <div class="cabinet-top">
+      <div>
+        <span id="game-label">ARCADE 01</span>
+        <h2 id="game-title">پونگ</h2>
+      </div>
+      <div class="score-board">
+        <span>امتیاز <b id="score">۰</b></span>
+        <span>رکورد <b id="best">۰</b></span>
+      </div>
+    </div>
+
+    <div id="screen-wrap" class="screen-wrap">
+      <canvas id="game-canvas" width="960" height="600" aria-label="صفحه بازی"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div id="game-overlay" class="game-overlay">
+        <span>RETROKHANEH ARCADE</span>
+        <h3 id="overlay-title">پونگ</h3>
+        <p id="overlay-copy">با کلیدهای بالا و پایین راکت را حرکت بده.</p>
+        <button id="start-btn" type="button">شروع بازی</button>
+      </div>
+    </div>
+
+    <div class="cabinet-bar">
+      <div id="control-hint" class="control-hint">↑ ↓ حرکت · P توقف</div>
+      <div class="cabinet-actions">
+        <button id="pause-btn" type="button">توقف</button>
+        <button id="restart-btn" type="button">شروع دوباره</button>
+        <button id="fullscreen-btn" type="button">تمام‌صفحه</button>
+      </div>
+    </div>
+
+    <div class="touch-controls" aria-label="کنترل لمسی">
+      <div class="dpad">
+        <button data-key="ArrowUp" type="button">▲</button>
+        <div><button data-key="ArrowLeft" type="button">◀</button><button data-key="ArrowDown" type="button">▼</button><button data-key="ArrowRight" type="button">▶</button></div>
+      </div>
+      <button class="touch-action" data-key="Space" type="button">A</button>
+    </div>
+  </section>
+
+  <section class="arcade-note">
+    <strong>چرا ROM نداریم؟</strong>
+    <p>این نسخه از بازی‌های کوچکِ ساخته‌شده برای خود رتروخانه استفاده می‌کند. بعداً می‌توان بازی‌های homebrew، متن‌باز یا آثاری را که اجازهٔ انتشار مرورگری دارند هم به کتابخانه اضافه کرد.</p>
+  </section>
+</main>
+
+<footer class="global-footer play-footer">
+  <div class="global-footer-inner">
+    <div class="footer-brand-block">
+      <a class="footer-logo" href="../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span></a>
+      <p>خبر، فرهنگ و حالا بازی؛ گذشته‌ای که هنوز زنده است.</p>
+    </div>
+    <div class="footer-col"><strong>برگرد</strong><a href="../">صفحهٔ اول</a><a href="../#latest">آخرین خبرها</a><a href="../#topics">موضوعات</a></div>
+    <div class="footer-col"><strong>اتاق بازی</strong><a href="#arcade">پونگ</a><a href="#arcade">مار</a><a href="#arcade">آجرشکن</a><a href="#arcade">نبرد فضایی</a></div>
+    <div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · Game Room v1</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>
+  </div>
+</footer>
+
+<script src="play.js?v=20260930play1" defer></script>
+</body>
+</html>
