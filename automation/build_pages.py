@@ -35,7 +35,7 @@ def article_page(item):
 <title>{e(title)} | رتروخانه</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{BASE}/news/{e(item['id'])}/">
-<link rel="stylesheet" href="../../style.css?v=20260930article1">
+<link rel="stylesheet" href="../../style.css?v=20260930article2">
 <meta property="og:type" content="article"><meta property="og:site_name" content="رتروخانه">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 {og_image}
