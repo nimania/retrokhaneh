@@ -1,0 +1,51 @@
+name: Update retro news
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/retro-news.yml"
+      - "automation/**"
+      - "article.js"
+  schedule:
+    - cron: "23 */4 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: retro-news
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install collector dependencies
+        run: pip install -r automation/requirements.txt
+      - name: Discover, deduplicate and enrich retro news
+        env:
+          AI_PROVIDER: ${{ secrets.AI_PROVIDER }}
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
+          AI_API_BASE: ${{ secrets.AI_API_BASE }}
+          AI_MODEL: ${{ secrets.AI_MODEL }}
+          AI_MODEL_STRONG: ${{ secrets.AI_MODEL_STRONG }}
+        run: python automation/collect.py
+      - name: Build article pages
+        run: python automation/build_pages.py
+      - name: Commit updates
+        run: |
+          git config user.name "retrokhaneh-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/news.json news/ sitemap.xml robots.txt
+          if git diff --cached --quiet; then
+            echo "No new retro news."
+          else
+            git commit -m "Update retro news [skip ci]"
+            git push
+          fi
