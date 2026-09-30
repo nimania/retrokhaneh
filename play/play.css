@@ -155,3 +155,56 @@ var(--bg)}
 .achievement-toast small{display:block;color:#e8b94e;font:800 7px/1 monospace;letter-spacing:1px}.achievement-toast strong{display:block;margin-top:5px;font-size:12px}
 @media(max-width:820px){.progress-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.progress-summary{grid-template-columns:1fr 1fr}.progress-stat:last-child{grid-column:1/-1}.achievement-grid{grid-template-columns:1fr}.records-panel,.achievements-panel{padding:14px}}
+
+/* Rotating daily + weekly challenge hub */
+.challenge-zone{margin-top:34px}
+.challenge-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}
+.weekly-feature{
+  position:relative;min-height:390px;overflow:hidden;border-radius:22px;border:1px solid #244a45;
+  background:#102c29;color:#fff3d8;box-shadow:0 18px 42px rgba(16,31,29,.18)
+}
+.weekly-feature>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%;transition:transform .5s ease}
+.weekly-feature:hover>img{transform:scale(1.025)}
+.weekly-feature-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,15,14,.94) 0%,rgba(5,15,14,.73) 43%,rgba(5,15,14,.18) 100%),linear-gradient(0deg,rgba(5,15,14,.38),transparent 54%)}
+.weekly-feature-copy{position:relative;z-index:2;width:min(58%,510px);min-height:390px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:34px}
+.weekly-feature-copy>span,.mission-top>span{color:#e8b94e;font:800 8px/1 monospace;letter-spacing:1.5px;direction:ltr}
+.weekly-feature-copy h3{margin:12px 0 7px;font-size:clamp(30px,4vw,49px);line-height:1.25}
+.weekly-feature-copy p{margin:0;color:rgba(255,255,255,.69);font-size:12px;line-height:1.9}
+.weekly-feature-meta{display:flex;align-items:center;gap:9px;margin-top:16px;font-size:9px}
+.weekly-feature-meta b{padding:5px 8px;border-radius:999px;background:rgba(232,185,78,.14);color:#e8b94e}
+.weekly-feature-meta em{font-style:normal;color:rgba(255,255,255,.55);font:800 8px/1 monospace;letter-spacing:.7px;direction:ltr}
+.mission-play{
+  margin-top:18px;border:0;border-radius:11px;padding:11px 15px;background:#e85b35;color:#fff;
+  font-weight:900;font-size:10px;cursor:pointer;transition:transform .18s ease,filter .18s ease
+}
+.mission-play:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.mission-stack{display:grid;grid-template-rows:1fr 1fr;gap:12px}
+.mission-card{
+  display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)
+}
+.mission-card.weekly-mission{background:color-mix(in srgb,var(--surface) 89%,var(--brand-soft))}
+.mission-card.complete{border-color:#648a70;box-shadow:inset 0 0 0 1px rgba(100,138,112,.12),var(--shadow)}
+.mission-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mission-top b{padding:5px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-size:8px}
+.mission-card.complete .mission-top b{background:#e5efe7;color:#386248}
+.mission-card h3{margin:13px 0 6px;font-size:20px}
+.mission-card p{margin:0;color:var(--muted);font-size:10px;line-height:1.8}
+.mission-progress{height:8px;margin-top:auto;border-radius:999px;background:var(--surface-2);overflow:hidden;border:1px solid var(--line)}
+.mission-progress i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#e85b35,#e8b94e);transition:width .35s ease}
+.mission-card.complete .mission-progress i{background:#648a70}
+.mission-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.mission-foot strong{font:900 16px/1 monospace;color:var(--green);direction:ltr}
+.mission-foot .mission-play{margin-top:0}
+@media(max-width:850px){
+ .challenge-grid{grid-template-columns:1fr}
+ .weekly-feature{min-height:350px}
+ .weekly-feature-copy{width:68%;min-height:350px}
+}
+@media(max-width:600px){
+ .weekly-feature{min-height:390px}
+ .weekly-feature-shade{background:linear-gradient(0deg,rgba(5,15,14,.96) 0%,rgba(5,15,14,.72) 58%,rgba(5,15,14,.16) 100%)}
+ .weekly-feature-copy{width:100%;min-height:390px;justify-content:flex-end;padding:24px}
+ .weekly-feature-copy h3{font-size:32px}
+ .mission-stack{grid-template-rows:auto auto}
+ .mission-card{min-height:205px}
+}
