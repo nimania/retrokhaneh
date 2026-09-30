@@ -71,3 +71,38 @@ var(--bg)}
  .game-card-poster{min-height:150px}
  .game-card-poster img{object-position:center 18%}
 }
+
+/* Pre-game identity + 8-bit start transition */
+.pregame-card{
+  display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:22px;align-items:center;
+  width:min(860px,92%);padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:22px;
+  background:rgba(10,18,17,.78);box-shadow:0 24px 60px rgba(0,0,0,.36);backdrop-filter:blur(8px)
+}
+.pregame-poster-wrap{overflow:hidden;border-radius:18px;background:#081111;border:1px solid rgba(255,255,255,.08)}
+.pregame-poster{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.pregame-copy{text-align:right}
+.pregame-copy>span{color:#e8b94e;font:800 10px/1 monospace;letter-spacing:2px;direction:ltr}
+.pregame-copy h3{margin:14px 0 8px;color:#fff3d8;font-size:34px;line-height:1.35}
+.pregame-copy p{margin:0;color:rgba(255,255,255,.74);font-size:13px;line-height:2}
+.pregame-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.pregame-meta div{padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.04)}
+.pregame-meta small{display:block;margin-bottom:6px;color:rgba(255,255,255,.48);font-size:9px}
+.pregame-meta strong{color:#fff3d8;font-size:12px;direction:ltr;display:block;text-align:right}
+#start-btn{margin-top:18px;border:0;border-radius:14px;padding:14px 26px;background:#e85b35;color:#fff;font-weight:900;font-size:14px;cursor:pointer;box-shadow:0 10px 22px rgba(232,91,53,.28)}
+#start-btn:hover{transform:translateY(-1px)}
+.ready-flash{
+  position:absolute;inset:0;z-index:8;display:none;place-items:center;pointer-events:none;
+  background:rgba(4,10,9,.22);color:#fff3d8;text-align:center;
+  font:900 clamp(48px,10vw,110px)/1 monospace;letter-spacing:4px;text-shadow:0 0 22px rgba(232,185,78,.34)
+}
+.ready-flash.show{display:grid;animation:readyPulse .62s ease both}
+.ready-flash.go{color:#e8b94e}
+@keyframes readyPulse{0%{opacity:0;transform:scale(.82)}35%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+#mute-btn.is-muted{opacity:.58}
+@media(max-width:700px){
+ .pregame-card{grid-template-columns:1fr;width:min(94%,520px);padding:14px}
+ .pregame-poster-wrap{max-width:210px;margin:auto}
+ .pregame-copy h3{font-size:24px}
+ .pregame-meta{grid-template-columns:1fr}
+ .pregame-meta div{padding:9px 11px}
+}
