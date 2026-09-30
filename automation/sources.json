@@ -1,0 +1,155 @@
+{
+  "maxNewPerRun": 12,
+  "keepItems": 300,
+  "maxAgeDays": 21,
+  "locales": [
+    {
+      "hl": "en-US",
+      "gl": "US",
+      "ceid": "US:en",
+      "country": "United States",
+      "lang": "en"
+    },
+    {
+      "hl": "en-GB",
+      "gl": "GB",
+      "ceid": "GB:en",
+      "country": "United Kingdom",
+      "lang": "en"
+    },
+    {
+      "hl": "ja",
+      "gl": "JP",
+      "ceid": "JP:ja",
+      "country": "Japan",
+      "lang": "ja"
+    },
+    {
+      "hl": "tr",
+      "gl": "TR",
+      "ceid": "TR:tr",
+      "country": "Turkey",
+      "lang": "tr"
+    },
+    {
+      "hl": "de",
+      "gl": "DE",
+      "ceid": "DE:de",
+      "country": "Germany",
+      "lang": "de"
+    },
+    {
+      "hl": "fr",
+      "gl": "FR",
+      "ceid": "FR:fr",
+      "country": "France",
+      "lang": "fr"
+    },
+    {
+      "hl": "it",
+      "gl": "IT",
+      "ceid": "IT:it",
+      "country": "Italy",
+      "lang": "it"
+    }
+  ],
+  "categories": {
+    "gaming": {
+      "en": "retro gaming classic gaming retro console",
+      "ja": "レトロゲーム 復刻",
+      "tr": "retro oyun klasik konsol",
+      "de": "Retro Gaming klassische Konsole",
+      "fr": "jeu rétro console classique",
+      "it": "retrogaming console classica"
+    },
+    "tech": {
+      "en": "retro technology vintage tech cassette CRT typewriter",
+      "ja": "レトロ家電 レトロ技術 カセット",
+      "tr": "retro teknoloji kaset eski teknoloji",
+      "de": "Retro Technik Kassetten Vintage Technik",
+      "fr": "technologie rétro cassette vintage",
+      "it": "tecnologia retrò cassette vintage"
+    },
+    "music": {
+      "en": "vinyl reissue cassette reissue classic album remaster",
+      "ja": "レコード 復刻 カセット 再発",
+      "tr": "plak yeniden basım kaset retro",
+      "de": "Vinyl Neuauflage Kassette Wiederveröffentlichung",
+      "fr": "réédition vinyle cassette album classique",
+      "it": "ristampa vinile cassetta album classico"
+    },
+    "cinema": {
+      "en": "classic film 4K restoration film restoration rerelease",
+      "ja": "名作映画 4K 修復 復元",
+      "tr": "klasik film restorasyon 4K",
+      "de": "Filmklassiker 4K Restaurierung",
+      "fr": "film classique restauration 4K",
+      "it": "film classico restauro 4K"
+    },
+    "cars": {
+      "en": "classic car vintage car restoration event",
+      "ja": "クラシックカー 旧車 レストア",
+      "tr": "klasik otomobil restorasyon",
+      "de": "Oldtimer Restaurierung Treffen",
+      "fr": "voiture classique restauration",
+      "it": "auto d'epoca restauro"
+    },
+    "design": {
+      "en": "retro design mid-century design vintage furniture archive",
+      "ja": "レトロデザイン ミッドセンチュリー 家具",
+      "tr": "retro tasarım vintage mobilya",
+      "de": "Retro Design Mid Century Möbel",
+      "fr": "design rétro mobilier vintage",
+      "it": "design retrò mobili vintage"
+    },
+    "fashion": {
+      "en": "vintage fashion archive retro fashion heritage",
+      "ja": "ヴィンテージ ファッション アーカイブ",
+      "tr": "vintage moda arşiv retro",
+      "de": "Vintage Mode Archiv Retro",
+      "fr": "mode vintage archives rétro",
+      "it": "moda vintage archivio retrò"
+    },
+    "collecting": {
+      "en": "vintage auction collectible archive memorabilia",
+      "ja": "ヴィンテージ オークション コレクション",
+      "tr": "vintage müzayede koleksiyon",
+      "de": "Vintage Auktion Sammlerstück",
+      "fr": "enchères vintage collection",
+      "it": "asta vintage collezionismo"
+    },
+    "products": {
+      "en": "retro product retro-inspired gadget reissue product",
+      "ja": "レトロ製品 復刻 家電 レトロ風",
+      "tr": "retro ürün nostaljik ürün yeniden üretim",
+      "de": "Retro Produkt Neuauflage Retro Gerät",
+      "fr": "produit rétro réédition gadget vintage",
+      "it": "prodotto retrò riedizione gadget vintage"
+    },
+    "diners": {
+      "en": "retro diner classic diner vintage cafe restaurant opening restoration",
+      "ja": "レトロ喫茶 アメリカンダイナー 開店",
+      "tr": "retro diner nostaljik kafe restoran",
+      "de": "Retro Diner klassisches Café Restaurant",
+      "fr": "diner rétro café vintage restaurant",
+      "it": "diner retrò caffè vintage ristorante"
+    }
+  },
+  "directFeeds": [
+    {
+      "url": "https://www.spritefountain.com/feed/",
+      "category": "gaming",
+      "country": "United Kingdom"
+    },
+    {
+      "url": "https://retronauts.com/feed",
+      "category": "gaming",
+      "country": "United States"
+    },
+    {
+      "url": "https://techcrunch.com/category/hardware/feed/",
+      "category": "products",
+      "country": "United States"
+    }
+  ]
+}
