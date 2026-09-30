@@ -63,6 +63,7 @@ def article_page(item):
 
 urls = [
     (BASE + "/", "1.0"),
+    (BASE + "/play/", "0.8"),
 ]
 for item in DATA.get("items", []):
     if not item.get("id"):
