@@ -82,7 +82,7 @@ function checkMissions(){
  var d=dailyChallenge(),wg=weeklyGame();
  if(getDailyScore(d.id)>=d.target&&!isMissionDone("daily")){markMissionDone("daily");showMissionToast("DAILY MISSION COMPLETE","مأموریت امروز انجام شد")}
  if(getWeeklyPlays(wg)>=5&&!isMissionDone("weekly")){markMissionDone("weekly");setTimeout(function(){showMissionToast("WEEKLY MISSION COMPLETE","مأموریت هفتگی انجام شد")},350)}
- renderChallenges()
+ renderChallenges();renderPlayerProfile()
 }
 function renderChallenges(){
  var d=dailyChallenge(),dm=meta[d.id],wg=weeklyGame(),wm=meta[wg];
@@ -109,6 +109,63 @@ function renderChallenges(){
  document.getElementById("weekly-bar").style.width=pct+"%";
  weekly.classList.toggle("complete",wd);document.getElementById("weekly-state").textContent=wd?"انجام شد":"تا دوشنبه";
  document.getElementById("weekly-mission-play").textContent=wd?"باز هم بازی کن":"ادامهٔ چالش"
+}
+function countCompletedMissions(){
+ var daily=0,weekly=0;
+ try{
+  for(var i=0;i<localStorage.length;i++){
+   var k=localStorage.key(i);
+   if(!k||localStorage.getItem(k)!=="1")continue;
+   if(k.indexOf("retrokhaneh-mission-daily-")===0)daily++;
+   else if(k.indexOf("retrokhaneh-mission-weekly-")===0)weekly++;
+  }
+ }catch(e){}
+ return {daily:daily,weekly:weekly}
+}
+function xpBreakdown(){
+ var missions=countCompletedMissions();
+ return {
+  plays:totalPlays()*15,
+  scores:totalBest(),
+  badges:getUnlocked().length*120,
+  missions:missions.daily*100+missions.weekly*250
+ }
+}
+function totalXP(){var x=xpBreakdown();return x.plays+x.scores+x.badges+x.missions}
+var levelThresholds=[0,100,250,450,700,1000,1400,1900,2500,3200,4000,4900,5900,7000,8200];
+function playerLevel(xp){
+ var lvl=1;for(var i=1;i<levelThresholds.length;i++){if(xp>=levelThresholds[i])lvl=i+1;else break}
+ if(xp>=levelThresholds[levelThresholds.length-1])lvl=levelThresholds.length;
+ return lvl
+}
+function playerRank(level){
+ if(level>=13)return "سلطان آرکید";
+ if(level>=10)return "استاد کابین";
+ if(level>=7)return "رتروباز";
+ if(level>=4)return "آرکیدباز";
+ return "تازه‌وارد"
+}
+function showLevelUp(level){
+ var toast=document.getElementById("achievement-toast"),title=document.getElementById("achievement-toast-title"),label=document.getElementById("achievement-toast-label");
+ if(!toast||!title)return;if(label)label.textContent="LEVEL UP";title.textContent="Level "+fa(level)+" · "+playerRank(level);toast.classList.add("show");
+ beep(440,.09,"square",.035);setTimeout(function(){beep(660,.1,"square",.04)},120);setTimeout(function(){beep(990,.18,"square",.045)},245);
+ clearTimeout(showAchievement._t);showAchievement._t=setTimeout(function(){toast.classList.remove("show")},3200)
+}
+function renderPlayerProfile(){
+ var parts=xpBreakdown(),xp=parts.plays+parts.scores+parts.badges+parts.missions,lvl=playerLevel(xp);
+ var base=levelThresholds[lvl-1]||0,next=lvl<levelThresholds.length?levelThresholds[lvl]:base,pct=lvl>=levelThresholds.length?100:Math.max(0,Math.min(100,Math.round((xp-base)/(next-base)*100)));
+ var el=document.getElementById("player-level");if(!el)return;
+ el.textContent=fa(lvl);document.getElementById("player-level-badge").textContent=fa(lvl);document.getElementById("player-rank").textContent=playerRank(lvl);
+ document.getElementById("player-xp").textContent=fa(xp);document.getElementById("xp-bar").style.width=pct+"%";
+ document.getElementById("xp-next").textContent=lvl>=levelThresholds.length?"بالاترین Level فعلی":"تا Level بعدی "+fa(next-xp)+" XP";
+ document.getElementById("xp-from-plays").textContent=fa(parts.plays);document.getElementById("xp-from-scores").textContent=fa(parts.scores);
+ document.getElementById("xp-from-badges").textContent=fa(parts.badges);document.getElementById("xp-from-missions").textContent=fa(parts.missions);
+ try{
+  var old=Number(localStorage.getItem("retrokhaneh-player-level")||0);
+  if(!old)localStorage.setItem("retrokhaneh-player-level",String(lvl));
+  else if(lvl>old){localStorage.setItem("retrokhaneh-player-level",String(lvl));setTimeout(function(){showLevelUp(lvl)},450)}
+  else if(lvl<old)localStorage.setItem("retrokhaneh-player-level",String(lvl));
+ }catch(e){}
 }
 function getUnlocked(){try{return JSON.parse(localStorage.getItem("retrokhaneh-achievements")||"[]")}catch(e){return []}}
 function saveUnlocked(list){try{localStorage.setItem("retrokhaneh-achievements",JSON.stringify(list))}catch(e){}}
@@ -147,7 +204,7 @@ function renderProgress(){
   return '<div class="record-row"><span class="record-rank">'+(i+1)+'</span><div class="record-copy"><strong>'+g.fa+'</strong><small>'+g.en+'</small></div><div class="record-score"><strong>'+fa(getBest(g.id))+'</strong><small>'+fa(getPlays(g.id))+' دست</small></div></div>';
  }).join("");
  var total=document.getElementById("total-best"),plays=document.getElementById("total-plays"),count=document.getElementById("achievement-count"),grid=document.getElementById("achievement-grid");
- if(total)total.textContent=fa(totalBest());if(plays)plays.textContent=fa(totalPlays());
+ if(total)total.textContent=fa(totalBest());if(plays)plays.textContent=fa(totalPlays());renderPlayerProfile();
  var unlocked=getUnlocked();if(count)count.textContent=fa(unlocked.length);
  if(grid)grid.innerHTML=achievements.map(function(a){
   var on=unlocked.indexOf(a.id)>=0;
@@ -225,6 +282,7 @@ document.getElementById("fullscreen-btn").addEventListener("click",function(){va
 document.getElementById("mute-btn").addEventListener("click",function(){muted=!muted;try{localStorage.setItem("retrokhaneh-muted",muted?"1":"0")}catch(e){}updateMuteButton();if(!muted)beep(520,.06,"square",.025)});
 updateMuteButton();
 renderProgress();
+renderPlayerProfile();
 renderChallenges();
 checkAchievements();
 checkMissions();
