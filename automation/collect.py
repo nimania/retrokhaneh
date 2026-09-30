@@ -500,6 +500,15 @@ def main():
             query_text = terms.get(loc["lang"]) or terms.get("en")
             jobs.append((category, loc, query_text))
 
+    # Dedicated discovery for Retropedia characters. Chunk names so Google News
+    # queries stay compact while still finding current stories about classic icons.
+    character_names = [c.get("name") for c in CHARACTERS if c.get("name")]
+    for loc in CFG["locales"]:
+        for start in range(0, len(character_names), 4):
+            chunk = character_names[start:start + 4]
+            quoted = " OR ".join(f'"{name}"' for name in chunk)
+            jobs.append(("gaming", loc, f"({quoted}) (game OR gaming OR retro OR classic OR anniversary OR remake OR remaster)"))
+
     discovered = []
     # GDELT is supplemental and frequently rate-limits unauthenticated clients.
     # Keep it opt-in; Google News + direct feeds remain the primary discovery path.
