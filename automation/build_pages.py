@@ -42,7 +42,7 @@ def article_page(item):
 <script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/")}</script>
 </head><body>
 <header class="app-header">
-<a class="brand" href="../../"><span class="brand-mark">R</span><span class="brand-copy"><strong>رتروخانه</strong><small>RETROKHANEH · خبر و فرهنگ رترو</small></span></a>
+<a class="brand" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span><span class="brand-copy"><small>RETROKHANEH · خبر و فرهنگ رترو</small></span></a>
 <div class="header-actions"><button id="theme-toggle" class="icon-button" type="button" aria-label="روشن یا تیره">◐</button></div>
 </header>
 <main class="article-shell">
