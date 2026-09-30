@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.utils import parsedate_to_datetime
 
 import requests
-import feedparser
+import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,11 +44,50 @@ def make_id(title, url):
     base = re.sub(r"[^a-z0-9]+", "-", title.lower())[:55].strip("-") or "story"
     return base + "-" + hashlib.sha1(url.encode("utf-8")).hexdigest()[:7]
 
+def _child_text(node, names):
+    for name in names:
+        child = node.find(name)
+        if child is not None and child.text:
+            return child.text.strip()
+    return ""
+
 def fetch_feed(url):
     try:
         r = SESSION.get(url, timeout=18)
         r.raise_for_status()
-        return feedparser.loads(r.content)
+        root = ET.fromstring(r.content)
+        channel = root.find("channel")
+        if channel is not None:
+            feed_title = _child_text(channel, ["title"])
+            entries = []
+            for node in channel.findall("item"):
+                source_node = node.find("source")
+                entries.append({
+                    "title": _child_text(node, ["title"]),
+                    "link": _child_text(node, ["link"]),
+                    "published": _child_text(node, ["pubDate", "published", "date"]),
+                    "summary": _child_text(node, ["description", "summary"]),
+                    "source": (source_node.text or "").strip() if source_node is not None else "",
+                })
+            return {"title": feed_title, "entries": entries}
+
+        # Atom fallback.
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        feed_title = _child_text(root, ["{http://www.w3.org/2005/Atom}title", "title"])
+        entries = []
+        for node in root.findall("a:entry", ns) + root.findall("entry"):
+            link = ""
+            link_node = node.find("a:link", ns) or node.find("link")
+            if link_node is not None:
+                link = link_node.get("href") or (link_node.text or "")
+            entries.append({
+                "title": _child_text(node, ["{http://www.w3.org/2005/Atom}title", "title"]),
+                "link": link.strip(),
+                "published": _child_text(node, ["{http://www.w3.org/2005/Atom}published", "{http://www.w3.org/2005/Atom}updated", "published", "updated"]),
+                "summary": _child_text(node, ["{http://www.w3.org/2005/Atom}summary", "{http://www.w3.org/2005/Atom}content", "summary", "content"]),
+                "source": "",
+            })
+        return {"title": feed_title, "entries": entries}
     except Exception as exc:
         print("feed-fail", url, exc)
         return None
@@ -63,17 +102,13 @@ def discover_google(job):
     if not feed:
         return []
     out = []
-    for entry in feed.entries[:7]:
-        source = ""
-        src = getattr(entry, "source", None)
-        if isinstance(src, dict):
-            source = src.get("title", "")
+    for entry in feed["entries"][:7]:
         out.append({
-            "title": clean(getattr(entry, "title", "")),
-            "url": getattr(entry, "link", ""),
-            "published": iso_date(getattr(entry, "published", "")),
-            "excerpt": clean(getattr(entry, "summary", ""))[:700],
-            "source": source or "Google News",
+            "title": clean(entry.get("title", "")),
+            "url": entry.get("link", ""),
+            "published": iso_date(entry.get("published", "")),
+            "excerpt": clean(entry.get("summary", ""))[:700],
+            "source": entry.get("source") or "Google News",
             "category": category,
             "country": loc["country"],
             "lang": loc["lang"],
@@ -146,14 +181,14 @@ def discover_direct(feed_cfg):
     feed = fetch_feed(feed_cfg["url"])
     if not feed:
         return []
-    title = getattr(feed.feed, "title", "") or urlparse(feed_cfg["url"]).netloc
+    title = feed.get("title") or urlparse(feed_cfg["url"]).netloc
     out = []
-    for entry in feed.entries[:12]:
+    for entry in feed["entries"][:12]:
         out.append({
-            "title": clean(getattr(entry, "title", "")),
-            "url": getattr(entry, "link", ""),
-            "published": iso_date(getattr(entry, "published", "")),
-            "excerpt": clean(getattr(entry, "summary", ""))[:700],
+            "title": clean(entry.get("title", "")),
+            "url": entry.get("link", ""),
+            "published": iso_date(entry.get("published", "")),
+            "excerpt": clean(entry.get("summary", ""))[:700],
             "source": title,
             "category": feed_cfg["category"],
             "country": feed_cfg.get("country", ""),
@@ -358,11 +393,12 @@ Extracted source text:
 {source_text[:9000]}
 """.strip()
 
-    if provider == "gemini":
+    if provider in ("", "gemini", "google", "google-gemini"):
         return _gemini_generate(prompt, key, model or "gemini-2.5-flash")
-    if not model:
-        return None
-    return _openai_compatible_generate(prompt, key, model)
+    if provider in ("openai", "openai-compatible", "compatible") and model:
+        return _openai_compatible_generate(prompt, key, model)
+    print("unknown-ai-provider", provider or "(empty)", "— trying Gemini")
+    return _gemini_generate(prompt, key, model or "gemini-2.5-flash")
 
 def main():
     data = json.loads(DATA.read_text("utf-8"))
@@ -377,11 +413,12 @@ def main():
             jobs.append((category, loc, query_text))
 
     discovered = []
-    # GDELT supplies direct publisher URLs and social images. Keep requests
-    # sequential to respect its stricter API rate limit.
-    for category in CFG["categories"]:
-        discovered.extend(discover_gdelt(category))
-        time.sleep(5.2)
+    # GDELT is supplemental and frequently rate-limits unauthenticated clients.
+    # Keep it opt-in; Google News + direct feeds remain the primary discovery path.
+    if CFG.get("gdeltEnabled", False):
+        for category in CFG["categories"]:
+            discovered.extend(discover_gdelt(category))
+            time.sleep(6.0)
 
     with ThreadPoolExecutor(max_workers=12) as pool:
         futures = [pool.submit(discover_google, job) for job in jobs]
@@ -394,7 +431,7 @@ def main():
 
     existing_urls = {item.get("url") for item in items}
     candidates = []
-    for item in sorted(discovered, key=lambda x: (x.get("published", ""), bool(x.get("direct"))), reverse=True):
+    for item in sorted(discovered, key=lambda x: (x.get("published") or "", bool(x.get("direct"))), reverse=True):
         if not item.get("title") or not item.get("url") or item["url"] in existing_urls:
             continue
         try:
@@ -447,7 +484,7 @@ def main():
         item.pop("direct", None)
         items.insert(0, item)
 
-    items = sorted(items, key=lambda x: x.get("published", ""), reverse=True)[: CFG.get("keepItems", 300)]
+    items = sorted(items, key=lambda x: x.get("published") or "", reverse=True)[: CFG.get("keepItems", 300)]
     for item in items:
         item.pop("direct", None)
     after_items = json.dumps(items, ensure_ascii=False, sort_keys=True)
