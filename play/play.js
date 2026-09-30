@@ -3,10 +3,10 @@
 var canvas=document.getElementById("game-canvas"),ctx=canvas.getContext("2d");
 var W=canvas.width,H=canvas.height,keys={},raf=null,last=0,running=false,paused=false,current="pong",game=null,score=0;
 var meta={
- pong:{title:"رالی رترو · RETRO RALLY",label:"ARCADE 01",hint:"↑ ↓ یا W/S حرکت · P توقف",copy:"دوئل نئونی راکت و توپ؛ زودتر از حریف به ۵ امتیاز برس.",genre:"Arcade Duel",controls:"↑ ↓ / W S",poster:"assets/retro-rally.webp",button:"شروع دوئل"},
- snake:{title:"مار نئونی · NEON SNAKE",label:"ARCADE 02",hint:"کلیدهای جهت حرکت · P توقف",copy:"در هزارتوی نئونی حرکت کن، غذا را بگیر و به دیوار یا خودت نخور.",genre:"Maze Survival",controls:"↑ ↓ ← →",poster:"assets/neon-snake.webp",button:"ورود به هزارتو"},
- breakout:{title:"نوارشکن · CASSETTE BREAKER",label:"ARCADE 03",hint:"← → یا A/D حرکت · P توقف",copy:"راکت را حرکت بده و دیوار کاست‌ها را با توپ خالی کن.",genre:"Brick Breaker",controls:"← → / A D",poster:"assets/cassette-breaker.webp",button:"شکستن دیوار"},
- space:{title:"فضا ۷۶ · SPACE 76",label:"ARCADE 04",hint:"← → حرکت · Space شلیک · P توقف",copy:"کشتی را حرکت بده و مهاجم‌ها را پیش از رسیدن به پایین از بین ببر.",genre:"Space Shooter",controls:"← → / SPACE",poster:"assets/space-76.webp",button:"شروع مأموریت"}
+ pong:{fa:"رالی رترو",en:"RETRO RALLY",title:"رالی رترو · RETRO RALLY",label:"ARCADE 01",hint:"↑ ↓ یا W/S حرکت · P توقف",copy:"دوئل نئونی راکت و توپ؛ زودتر از حریف به ۵ امتیاز برس.",genre:"Arcade Duel",controls:"↑ ↓ / W S",poster:"assets/retro-rally.webp",button:"شروع دوئل"},
+ snake:{fa:"مار نئونی",en:"NEON SNAKE",title:"مار نئونی · NEON SNAKE",label:"ARCADE 02",hint:"کلیدهای جهت حرکت · P توقف",copy:"در هزارتوی نئونی حرکت کن، غذا را بگیر و به دیوار یا خودت نخور.",genre:"Maze Survival",controls:"↑ ↓ ← →",poster:"assets/neon-snake.webp",button:"ورود به هزارتو"},
+ breakout:{fa:"نوارشکن",en:"CASSETTE BREAKER",title:"نوارشکن · CASSETTE BREAKER",label:"ARCADE 03",hint:"← → یا A/D حرکت · P توقف",copy:"راکت را حرکت بده و دیوار کاست‌ها را با توپ خالی کن.",genre:"Brick Breaker",controls:"← → / A D",poster:"assets/cassette-breaker.webp",button:"شکستن دیوار"},
+ space:{fa:"فضا ۷۶",en:"SPACE 76",title:"فضا ۷۶ · SPACE 76",label:"ARCADE 04",hint:"← → حرکت · Space شلیک · P توقف",copy:"کشتی را حرکت بده و مهاجم‌ها را پیش از رسیدن به پایین از بین ببر.",genre:"Space Shooter",controls:"← → / SPACE",poster:"assets/space-76.webp",button:"شروع مأموریت"}
 };
 function fa(n){try{return new Intl.NumberFormat("fa-IR").format(n)}catch(e){return n}}
 var audioCtx=null,muted=false;
@@ -49,7 +49,67 @@ function bestKey(id){return "retrokhaneh-best-"+(id||current)}
 function getBest(id){try{return Number(localStorage.getItem(bestKey(id))||0)}catch(e){return 0}}
 function playsKey(id){return "retrokhaneh-plays-"+id}
 function getPlays(id){try{return Number(localStorage.getItem(playsKey(id))||0)}catch(e){return 0}}
-function addPlay(id){try{localStorage.setItem(playsKey(id),String(getPlays(id)+1))}catch(e){}renderProgress();checkAchievements()}
+function dayStamp(d){d=d||new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function weekStamp(d){d=d||new Date();var m=new Date(d.getFullYear(),d.getMonth(),d.getDate()),shift=(m.getDay()+6)%7;m.setDate(m.getDate()-shift);return dayStamp(m)}
+function dayNumber(){var d=new Date();return Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/86400000)}
+function weekNumber(){var w=new Date(weekStamp()+"T00:00:00");return Math.floor(w.getTime()/604800000)}
+function weeklyGame(){var ids=Object.keys(meta);return ids[Math.abs(weekNumber())%ids.length]}
+function dailyChallenge(){
+ var ids=Object.keys(meta),id=ids[Math.abs(dayNumber())%ids.length],targets={pong:3,snake:40,breakout:150,space:120};
+ return {id:id,target:targets[id]}
+}
+function dailyScoreKey(id){return "retrokhaneh-daily-"+dayStamp()+"-"+id}
+function getDailyScore(id){try{return Number(localStorage.getItem(dailyScoreKey(id))||0)}catch(e){return 0}}
+function weeklyPlayKey(id){return "retrokhaneh-weekly-"+weekStamp()+"-"+id}
+function getWeeklyPlays(id){try{return Number(localStorage.getItem(weeklyPlayKey(id))||0)}catch(e){return 0}}
+function addPlay(id){
+ try{
+  localStorage.setItem(playsKey(id),String(getPlays(id)+1));
+  localStorage.setItem(weeklyPlayKey(id),String(getWeeklyPlays(id)+1));
+ }catch(e){}
+ renderProgress();renderChallenges();checkAchievements();checkMissions()
+}
+function missionDoneKey(type){return "retrokhaneh-mission-"+type+"-"+(type==="daily"?dayStamp():weekStamp())}
+function isMissionDone(type){try{return localStorage.getItem(missionDoneKey(type))==="1"}catch(e){return false}}
+function markMissionDone(type){try{localStorage.setItem(missionDoneKey(type),"1")}catch(e){}}
+function showMissionToast(label,title){
+ var toast=document.getElementById("achievement-toast"),t=document.getElementById("achievement-toast-title"),l=document.getElementById("achievement-toast-label");
+ if(!toast||!t)return;if(l)l.textContent=label;t.textContent=title;toast.classList.add("show");
+ beep(520,.08,"square",.035);setTimeout(function(){beep(780,.08,"square",.04)},100);setTimeout(function(){beep(1040,.15,"square",.04)},210);
+ clearTimeout(showAchievement._t);showAchievement._t=setTimeout(function(){toast.classList.remove("show")},3000)
+}
+function checkMissions(){
+ var d=dailyChallenge(),wg=weeklyGame();
+ if(getDailyScore(d.id)>=d.target&&!isMissionDone("daily")){markMissionDone("daily");showMissionToast("DAILY MISSION COMPLETE","مأموریت امروز انجام شد")}
+ if(getWeeklyPlays(wg)>=5&&!isMissionDone("weekly")){markMissionDone("weekly");setTimeout(function(){showMissionToast("WEEKLY MISSION COMPLETE","مأموریت هفتگی انجام شد")},350)}
+ renderChallenges()
+}
+function renderChallenges(){
+ var d=dailyChallenge(),dm=meta[d.id],wg=weeklyGame(),wm=meta[wg];
+ var wp=document.getElementById("weekly-poster");if(!wp)return;
+ wp.src=wm.poster;wp.alt="پوستر "+wm.fa;
+ document.getElementById("weekly-game-title").textContent=wm.fa;
+ document.getElementById("weekly-game-en").textContent=wm.en;
+ document.getElementById("weekly-game-copy").textContent="بازی منتخب این هفته؛ برای مأموریت هفتگی پنج دست از "+wm.fa+" بازی کن.";
+ document.getElementById("weekly-reset").textContent="تا دوشنبهٔ بعد";
+ document.getElementById("weekly-play").dataset.game=wg;
+ document.getElementById("weekly-mission-play").dataset.game=wg;
+ var ds=getDailyScore(d.id),dp=Math.min(100,Math.round(ds/d.target*100)),daily=document.getElementById("daily-mission");
+ document.getElementById("daily-title").textContent=dm.fa+"؛ امتیاز "+fa(d.target);
+ document.getElementById("daily-copy").textContent="امروز فقط امتیازی که در "+dm.fa+" می‌گیری حساب می‌شود.";
+ document.getElementById("daily-progress").textContent=fa(Math.min(ds,d.target))+" / "+fa(d.target);
+ document.getElementById("daily-bar").style.width=dp+"%";
+ document.getElementById("daily-play").dataset.game=d.id;
+ var dd=isMissionDone("daily");daily.classList.toggle("complete",dd);document.getElementById("daily-state").textContent=dd?"انجام شد":"تا نیمه‌شب";
+ document.getElementById("daily-play").textContent=dd?"دوباره بازی کن":"شروع مأموریت";
+ var wpv=getWeeklyPlays(wg),weekly=document.getElementById("weekly-mission"),pct=Math.min(100,Math.round(wpv/5*100)),wd=isMissionDone("weekly");
+ document.getElementById("weekly-mission-title").textContent="۵ دست "+wm.fa;
+ document.getElementById("weekly-mission-copy").textContent="این هفته "+wm.fa+" را پنج بار شروع کن.";
+ document.getElementById("weekly-progress").textContent=fa(Math.min(wpv,5))+" / ۵";
+ document.getElementById("weekly-bar").style.width=pct+"%";
+ weekly.classList.toggle("complete",wd);document.getElementById("weekly-state").textContent=wd?"انجام شد":"تا دوشنبه";
+ document.getElementById("weekly-mission-play").textContent=wd?"باز هم بازی کن":"ادامهٔ چالش"
+}
 function getUnlocked(){try{return JSON.parse(localStorage.getItem("retrokhaneh-achievements")||"[]")}catch(e){return []}}
 function saveUnlocked(list){try{localStorage.setItem("retrokhaneh-achievements",JSON.stringify(list))}catch(e){}}
 function totalBest(){return Object.keys(meta).reduce(function(n,id){return n+getBest(id)},0)}
@@ -66,7 +126,7 @@ var achievements=[
 ];
 function showAchievement(a){
  var toast=document.getElementById("achievement-toast"),title=document.getElementById("achievement-toast-title");
- if(!toast||!title)return;title.textContent=a.title;toast.classList.add("show");beep(660,.08,"square",.035);setTimeout(function(){beep(880,.13,"square",.04)},110);
+ if(!toast||!title)return;var label=document.getElementById("achievement-toast-label");if(label)label.textContent="ACHIEVEMENT UNLOCKED";title.textContent=a.title;toast.classList.add("show");beep(660,.08,"square",.035);setTimeout(function(){beep(880,.13,"square",.04)},110);
  clearTimeout(showAchievement._t);showAchievement._t=setTimeout(function(){toast.classList.remove("show")},2800);
 }
 function checkAchievements(){
@@ -96,7 +156,11 @@ function renderProgress(){
 }
 function setScore(v){
  score=Math.max(0,Math.floor(v));document.getElementById("score").textContent=fa(score);
- if(score>getBest()){try{localStorage.setItem(bestKey(),score)}catch(e){}document.getElementById("best").textContent=fa(score);renderProgress();checkAchievements()}
+ var changed=false;
+ if(score>getBest()){try{localStorage.setItem(bestKey(),score)}catch(e){}document.getElementById("best").textContent=fa(score);changed=true}
+ var d=dailyChallenge();
+ if(current===d.id&&score>getDailyScore(current)){try{localStorage.setItem(dailyScoreKey(current),String(score))}catch(e){}changed=true}
+ if(changed){renderProgress();renderChallenges();checkAchievements();checkMissions()}
 }
 function showBest(){document.getElementById("best").textContent=fa(getBest())}
 function overlay(title,copy,button){
@@ -153,6 +217,7 @@ function start(){game=createGame();setScore(0);addPlay(current);running=false;pa
 function loop(t){raf=requestAnimationFrame(loop);var dt=Math.min(.035,(t-last)/1000||0);last=t;if(!running||paused)return;game.update(dt);game.draw()}
 function togglePause(){if(!running)return;paused=!paused;if(paused)overlay("توقف","برای ادامه دوباره دکمهٔ توقف یا P را بزن.","ادامه");else hideOverlay()}
 document.querySelectorAll(".game-card").forEach(function(b){b.addEventListener("click",function(){setup(b.dataset.game);document.getElementById("arcade").scrollIntoView({behavior:"smooth",block:"start"})})});
+document.getElementById("challenges").addEventListener("click",function(e){var b=e.target.closest(".mission-play");if(!b||!b.dataset.game)return;setup(b.dataset.game);document.getElementById("arcade").scrollIntoView({behavior:"smooth",block:"start"})});
 document.getElementById("start-btn").addEventListener("click",function(){if(paused){paused=false;hideOverlay()}else start()});
 document.getElementById("restart-btn").addEventListener("click",start);
 document.getElementById("pause-btn").addEventListener("click",togglePause);
@@ -160,7 +225,9 @@ document.getElementById("fullscreen-btn").addEventListener("click",function(){va
 document.getElementById("mute-btn").addEventListener("click",function(){muted=!muted;try{localStorage.setItem("retrokhaneh-muted",muted?"1":"0")}catch(e){}updateMuteButton();if(!muted)beep(520,.06,"square",.025)});
 updateMuteButton();
 renderProgress();
+renderChallenges();
 checkAchievements();
+checkMissions();
 window.addEventListener("keydown",function(e){if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space"].includes(e.code))e.preventDefault();keys[e.code]=true;if(e.code==="KeyP")togglePause()},{passive:false});
 window.addEventListener("keyup",function(e){keys[e.code]=false});
 document.querySelectorAll("[data-key]").forEach(function(b){function on(e){e.preventDefault();keys[b.dataset.key]=true}function off(e){e.preventDefault();keys[b.dataset.key]=false}b.addEventListener("pointerdown",on);b.addEventListener("pointerup",off);b.addEventListener("pointercancel",off);b.addEventListener("pointerleave",off)});
