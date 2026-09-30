@@ -161,13 +161,96 @@ def extract_media_and_text(url):
         print("page-fail", url, exc)
         return {}, "", url
 
+def _parse_ai_json(raw):
+    raw = (raw or "").strip()
+    fence = chr(96) * 3
+    if raw.startswith(fence):
+        raw = re.sub(r"^" + re.escape(fence) + r"(?:json)?\s*|\s*" + re.escape(fence) + r"$", "", raw, flags=re.I | re.S).strip()
+    match = re.search(r"\{.*\}", raw, re.S)
+    if not match:
+        return None
+    try:
+        data = json.loads(match.group(0))
+        return data if isinstance(data.get("bodyFa"), list) else None
+    except Exception:
+        return None
+
+def _gemini_generate(prompt, key, model):
+    base = "https://generativelanguage.googleapis.com/v1beta"
+    keys = [x.strip() for x in re.split(r"[,\s]+", key) if x.strip()]
+    if not keys:
+        return None
+    preferred = (model or "gemini-2.5-flash").rsplit("/", 1)[-1]
+
+    def call(api_key, chosen):
+        payload = {
+            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+            "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2},
+        }
+        return requests.post(
+            f"{base}/models/{chosen}:generateContent",
+            headers={"x-goog-api-key": api_key, "content-type": "application/json"},
+            json=payload,
+            timeout=90,
+        )
+
+    for api_key in keys:
+        chosen = preferred
+        response = call(api_key, chosen)
+        if response.status_code == 404:
+            try:
+                listing = requests.get(base + "/models", headers={"x-goog-api-key": api_key}, timeout=25)
+                listing.raise_for_status()
+                available = []
+                for row in listing.json().get("models", []):
+                    methods = row.get("supportedGenerationMethods", [])
+                    name = row.get("name", "").rsplit("/", 1)[-1]
+                    if "generateContent" in methods and name and not any(x in name.lower() for x in ("image", "vision", "embedding", "tts")):
+                        available.append(name)
+                available.sort(key=lambda n: (("flash" in n.lower()), ("preview" not in n.lower()), n), reverse=True)
+                if available:
+                    chosen = available[0]
+                    response = call(api_key, chosen)
+            except Exception as exc:
+                print("gemini-list-fail", exc)
+        if response.status_code == 429:
+            continue
+        try:
+            response.raise_for_status()
+            parts = response.json()["candidates"][0]["content"]["parts"]
+            raw = "".join(p.get("text", "") for p in parts)
+            return _parse_ai_json(raw)
+        except Exception as exc:
+            print("gemini-fail", exc)
+    return None
+
+def _openai_compatible_generate(prompt, key, model):
+    base = (os.getenv("AI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
+    try:
+        response = requests.post(
+            base + "/chat/completions",
+            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
+            json={
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.2,
+                "response_format": {"type": "json_object"},
+            },
+            timeout=90,
+        )
+        response.raise_for_status()
+        return _parse_ai_json(response.json()["choices"][0]["message"]["content"])
+    except Exception as exc:
+        print("openai-compatible-fail", exc)
+        return None
+
 def ai_enrich(item, source_text):
     key = os.getenv("AI_API_KEY", "").strip()
     model = (os.getenv("AI_MODEL_STRONG") or os.getenv("AI_MODEL") or "").strip()
-    if not key or not model:
+    provider = (os.getenv("AI_PROVIDER") or "").strip().lower()
+    if not key:
         return None
 
-    base = os.getenv("AI_API_BASE", "https://api.openai.com/v1").rstrip("/")
     prompt = f"""
 You are the Persian-language editor of Retrokhaneh, a factual news portal about retro culture.
 Return ONLY a valid JSON object with exactly these keys:
@@ -193,27 +276,11 @@ Extracted source text:
 {source_text[:9000]}
 """.strip()
 
-    try:
-        response = requests.post(
-            base + "/chat/completions",
-            headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
-            json={
-                "model": model,
-                "messages": [{"role": "user", "content": prompt}],
-                "temperature": 0.2,
-                "response_format": {"type": "json_object"},
-            },
-            timeout=90,
-        )
-        response.raise_for_status()
-        raw = response.json()["choices"][0]["message"]["content"]
-        parsed = json.loads(raw)
-        if not isinstance(parsed.get("bodyFa"), list):
-            return None
-        return parsed
-    except Exception as exc:
-        print("ai-fail", exc)
+    if provider == "gemini":
+        return _gemini_generate(prompt, key, model or "gemini-2.5-flash")
+    if not model:
         return None
+    return _openai_compatible_generate(prompt, key, model)
 
 def main():
     data = json.loads(DATA.read_text("utf-8"))
