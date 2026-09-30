@@ -3,10 +3,10 @@
 var canvas=document.getElementById("game-canvas"),ctx=canvas.getContext("2d");
 var W=canvas.width,H=canvas.height,keys={},raf=null,last=0,running=false,paused=false,current="pong",game=null,score=0;
 var meta={
- pong:{title:"پونگ",label:"ARCADE 01",hint:"↑ ↓ یا W/S حرکت · P توقف",copy:"با کلیدهای بالا و پایین راکت را حرکت بده."},
- snake:{title:"مار",label:"ARCADE 02",hint:"کلیدهای جهت حرکت · P توقف",copy:"جهت را عوض کن، غذا را بگیر و به دیوار یا خودت نخور."},
- breakout:{title:"آجرشکن",label:"ARCADE 03",hint:"← → یا A/D حرکت · P توقف",copy:"راکت را حرکت بده و همهٔ آجرها را بشکن."},
- space:{title:"نبرد فضایی",label:"ARCADE 04",hint:"← → حرکت · Space شلیک · P توقف",copy:"کشتی را حرکت بده و مهاجم‌ها را پیش از رسیدن به پایین بزن."}
+ pong:{title:"رالی رترو · RETRO RALLY",label:"ARCADE 01",hint:"↑ ↓ یا W/S حرکت · P توقف",copy:"دوئل نئونی راکت و توپ؛ زودتر از حریف به ۵ امتیاز برس."},
+ snake:{title:"مار نئونی · NEON SNAKE",label:"ARCADE 02",hint:"کلیدهای جهت حرکت · P توقف",copy:"در هزارتوی نئونی حرکت کن، غذا را بگیر و به دیوار یا خودت نخور."},
+ breakout:{title:"نوارشکن · CASSETTE BREAKER",label:"ARCADE 03",hint:"← → یا A/D حرکت · P توقف",copy:"راکت را حرکت بده و دیوار کاست‌ها را با توپ خالی کن."},
+ space:{title:"فضا ۷۶ · SPACE 76",label:"ARCADE 04",hint:"← → حرکت · Space شلیک · P توقف",copy:"کشتی را حرکت بده و مهاجم‌ها را پیش از رسیدن به پایین از بین ببر."}
 };
 function fa(n){try{return new Intl.NumberFormat("fa-IR").format(n)}catch(e){return n}}
 function bestKey(){return "retrokhaneh-best-"+current}
