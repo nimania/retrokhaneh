@@ -8,7 +8,7 @@
   <meta name="description" content="اتاق بازی رتروخانه؛ بازی‌های کوچک و قانونی با حال‌وهوای آرکید و رترو، مستقیم در مرورگر.">
   <link rel="canonical" href="https://nimania.github.io/retrokhaneh/play/">
   <link rel="stylesheet" href="../style.css?v=20260930portal3">
-  <link rel="stylesheet" href="play.css?v=20260930play2">
+  <link rel="stylesheet" href="play.css?v=20260930play3">
 </head>
 <body class="game-room-page">
 <header class="app-header game-header">
@@ -80,11 +80,22 @@
       <canvas id="game-canvas" width="960" height="600" aria-label="صفحه بازی"></canvas>
       <div class="scanlines" aria-hidden="true"></div>
       <div id="game-overlay" class="game-overlay">
-        <span>RETROKHANEH ARCADE</span>
-        <h3 id="overlay-title">رالی رترو · RETRO RALLY</h3>
-        <p id="overlay-copy">با کلیدهای بالا و پایین راکت را حرکت بده.</p>
-        <button id="start-btn" type="button">شروع بازی</button>
+        <div class="pregame-card">
+          <div class="pregame-poster-wrap"><img id="overlay-poster" class="pregame-poster" src="assets/retro-rally.webp" alt="پوستر بازی"></div>
+          <div class="pregame-copy">
+            <span>RETROKHANEH ARCADE</span>
+            <h3 id="overlay-title">رالی رترو · RETRO RALLY</h3>
+            <p id="overlay-copy">دوئل نئونی راکت و توپ؛ زودتر از حریف به ۵ امتیاز برس.</p>
+            <div class="pregame-meta">
+              <div><small>ژانر</small><strong id="overlay-genre">Arcade Duel</strong></div>
+              <div><small>کنترل</small><strong id="overlay-controls">↑ ↓ / W S</strong></div>
+              <div><small>رکورد</small><strong id="overlay-best">۰</strong></div>
+            </div>
+            <button id="start-btn" type="button">شروع دوئل</button>
+          </div>
+        </div>
       </div>
+      <div id="ready-flash" class="ready-flash" aria-live="polite"></div>
     </div>
 
     <div class="cabinet-bar">
@@ -92,6 +103,7 @@
       <div class="cabinet-actions">
         <button id="pause-btn" type="button">توقف</button>
         <button id="restart-btn" type="button">شروع دوباره</button>
+        <button id="mute-btn" type="button" aria-pressed="false">🔊 صدا</button>
         <button id="fullscreen-btn" type="button">تمام‌صفحه</button>
       </div>
     </div>
@@ -123,6 +135,6 @@
   </div>
 </footer>
 
-<script src="play.js?v=20260930play2" defer></script>
+<script src="play.js?v=20260930play3" defer></script>
 </body>
 </html>
