@@ -27,6 +27,44 @@ function renderVideos(i){
  }).join("");
  return '<div class="video-buttons">'+buttons+'</div><div class="article-video"></div>';
 }
+function renderGallery(images){
+ var section=$("#gallery-section"),box=$("#article-gallery");
+ if(!images||!images.length){section.hidden=true;return}
+ section.hidden=false;
+ var current=0;
+ box.innerHTML='<div class="gallery-carousel" tabindex="0" aria-label="گالری تصاویر">'
+  +'<button class="gallery-nav gallery-prev" type="button" aria-label="عکس قبلی">‹</button>'
+  +'<a class="gallery-stage" target="_blank" rel="noopener"><img alt="" loading="lazy" referrerpolicy="no-referrer"></a>'
+  +'<button class="gallery-nav gallery-next" type="button" aria-label="عکس بعدی">›</button>'
+  +'<div class="gallery-toolbar"><span class="gallery-counter"></span><div class="gallery-dots" aria-label="انتخاب عکس"></div></div>'
+  +'</div>';
+ var stage=box.querySelector(".gallery-stage"),img=stage.querySelector("img"),counter=box.querySelector(".gallery-counter"),dots=box.querySelector(".gallery-dots");
+ dots.innerHTML=images.map(function(_,n){return '<button type="button" aria-label="عکس '+(n+1)+'" data-gallery-index="'+n+'"></button>'}).join("");
+ function show(n){
+  current=(n+images.length)%images.length;
+  img.classList.add("is-changing");
+  window.setTimeout(function(){img.src=images[current];stage.href=images[current];img.classList.remove("is-changing")},70);
+  counter.textContent=(current+1)+" / "+images.length;
+  dots.querySelectorAll("button").forEach(function(d,k){d.classList.toggle("active",k===current)});
+ }
+ box.querySelector(".gallery-prev").addEventListener("click",function(){show(current-1)});
+ box.querySelector(".gallery-next").addEventListener("click",function(){show(current+1)});
+ dots.addEventListener("click",function(e){var b=e.target.closest("[data-gallery-index]");if(b)show(Number(b.dataset.galleryIndex))});
+ box.querySelector(".gallery-carousel").addEventListener("keydown",function(e){
+  if(e.key==="ArrowLeft"){e.preventDefault();show(current+1)}
+  if(e.key==="ArrowRight"){e.preventDefault();show(current-1)}
+ });
+ var touchX=null;
+ box.querySelector(".gallery-stage").addEventListener("touchstart",function(e){touchX=e.changedTouches[0].clientX},{passive:true});
+ box.querySelector(".gallery-stage").addEventListener("touchend",function(e){
+  if(touchX===null)return;
+  var dx=e.changedTouches[0].clientX-touchX;touchX=null;
+  if(Math.abs(dx)<45)return;
+  if(dx<0)show(current+1);else show(current-1);
+ },{passive:true});
+ img.addEventListener("error",function(){if(images.length>1)show(current+1)});
+ show(0);
+}
 function draw(i,all){
  var m=C[i.category]||C.collecting;
  var imgs=(i.images&&i.images.length?i.images:(i.image?[i.image]:[])).filter(Boolean);
@@ -43,10 +81,8 @@ function draw(i,all){
  var body=(i.bodyFa&&i.bodyFa.length)?i.bodyFa:[i.excerptFa||i.excerpt];
  $("#article-body").innerHTML=body.filter(Boolean).map(function(p){return "<p>"+esc(p)+"</p>"}).join("");
  $("#article-videos").innerHTML=renderVideos(i);
- if(imgs.length>1){
-  $("#gallery-section").hidden=false;
-  $("#article-gallery").innerHTML=imgs.slice(1).map(function(u){return '<a href="'+esc(u)+'" target="_blank" rel="noopener"><img src="'+esc(u)+'" alt="" loading="lazy" referrerpolicy="no-referrer"></a>'}).join("");
- }
+ if(imgs.length>1) renderGallery(imgs.slice(1));
+ else $("#gallery-section").hidden=true;
  $("#source-name").textContent=i.source||"منبع اصلی";
  $("#source-url").textContent=i.url||"";
  $("#source-link").href=i.url||"#";
