@@ -375,3 +375,37 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
  .gallery-nav{width:38px;height:38px;font-size:24px}
  .gallery-prev{right:8px}.gallery-next{left:8px}
 }
+
+/* Retrokhaneh mid-century sign logo */
+.brand{gap:10px}
+.retro-sign{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  min-width:112px;height:46px;padding:0 18px 1px 14px;
+  border:3px solid #f1e5c8;border-radius:12px 17px 12px 16px;
+  background:#174f4a;color:#fff3d8;
+  box-shadow:
+    0 0 0 3px #e85b35,
+    4px 5px 0 #123b38;
+  transform:rotate(-1.2deg);
+  isolation:isolate;
+}
+.retro-sign:after{
+  content:"";position:absolute;inset:3px;border:1px solid rgba(255,243,216,.28);
+  border-radius:8px 12px 8px 11px;pointer-events:none
+}
+.retro-sign-word{
+  position:relative;z-index:1;font-size:22px;font-weight:900;letter-spacing:-1px;
+  line-height:1;text-shadow:2px 2px 0 #123b38
+}
+.retro-sign-star{
+  position:absolute;z-index:2;left:-8px;top:-11px;
+  font-size:27px;line-height:1;color:#fff3d8;
+  text-shadow:0 0 0 #fff3d8;
+}
+.brand-copy{display:block}
+.brand-copy small{font-size:7.5px;letter-spacing:.9px}
+@media(max-width:600px){
+  .retro-sign{min-width:98px;height:42px;padding-inline:13px}
+  .retro-sign-word{font-size:19px}
+  .brand-copy{display:none}
+}
