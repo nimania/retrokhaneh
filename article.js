@@ -86,13 +86,27 @@ function injectFooter(){
  footer.className="global-footer";
  footer.innerHTML='<div class="global-footer-inner">'
   +'<div class="footer-brand-block"><a class="footer-logo" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span></a><p>خانهٔ فارسی خبر و فرهنگ رترو؛ از بازی و تکنولوژی قدیمی تا طراحی، مد، داینرها، کلکسیون و ایران رترو.</p></div>'
-  +'<div class="footer-col"><strong>رتروخانه</strong><a href="../../">صفحهٔ اول</a><a href="../../#latest">آخرین خبرها</a><a href="../../#topics">دسته‌بندی‌ها</a><a href="../../play/">اتاق بازی 🕹</a></div>'
+  +'<div class="footer-col"><strong>رتروخانه</strong><a href="../../">صفحهٔ اول</a><a href="../../#latest">آخرین خبرها</a><a href="../../#topics">دسته‌بندی‌ها</a><a href="../../characters/">شخصیت‌ها · رتروپدیا</a><a href="../../play/">اتاق بازی 🕹</a></div>'
   +'<div class="footer-col"><strong>موضوعات محبوب</strong><a href="../../#latest">محصولات رترو</a><a href="../../#latest">داینر و کافه</a><a href="../../#latest">بازی و کنسول</a><a href="../../#latest">ایران رترو</a></div>'
   +'<div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · گذشته هنوز زنده است.</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>'
   +'</div>';
  document.body.appendChild(footer);
 }
-function draw(i,all){
+function renderCharacters(i,chars){
+ var ids=i.characters||[];
+ if(!ids.length)return;
+ var matches=(chars||[]).filter(function(c){return ids.indexOf(c.id)>-1});
+ if(!matches.length)return;
+ var section=document.createElement("section");
+ section.className="article-section article-characters";
+ section.innerHTML='<div class="character-link-head"><div><small>RETROPEDIA</small><h2>شخصیت‌های این خبر</h2></div><a href="../../characters/">همهٔ شخصیت‌ها ←</a></div>'
+  +'<div class="character-chips">'+matches.map(function(c){return '<a class="character-chip accent-'+esc(c.accent||"")+'" href="../../characters/'+encodeURIComponent(c.id)+'/"><b>'+esc((c.name||"?").charAt(0))+'</b><span><strong>'+esc(c.nameFa)+'</strong><small>'+esc(c.name)+'</small></span><i>←</i></a>'}).join("")+'</div>';
+ var source=document.querySelector(".article-source");
+ var sourceSection=source&&source.closest(".article-section");
+ if(sourceSection) sourceSection.parentNode.insertBefore(section,sourceSection);
+ else document.querySelector(".article-shell").appendChild(section);
+}
+function draw(i,all,chars){
  var m=C[i.category]||C.collecting;
  var imgs=(i.images&&i.images.length?i.images:(i.image?[i.image]:[])).filter(Boolean);
  document.title=(i.titleFa||i.title)+" | رتروخانه";
@@ -110,6 +124,7 @@ function draw(i,all){
  $("#article-videos").innerHTML=renderVideos(i);
  if(imgs.length>1) renderGallery(imgs.slice(1));
  else $("#gallery-section").hidden=true;
+ renderCharacters(i,chars);
  $("#source-name").textContent=i.source||"منبع اصلی";
  $("#source-url").textContent=i.url||"";
  $("#source-link").href=i.url||"#";
@@ -150,8 +165,10 @@ $("#theme-toggle").addEventListener("click",function(){
  document.documentElement.dataset.theme=n;
  try{localStorage.setItem("retrokhaneh-theme",n)}catch(e){}
 });
-fetch("../../data/news.json?v="+Date.now(),{cache:"no-store"})
- .then(function(r){if(!r.ok)throw Error("data");return r.json()})
- .then(function(d){var i=(d.items||[]).find(function(x){return x.id===id});if(!i)throw Error("not found");draw(i,d.items||[])})
+Promise.all([
+ fetch("../../data/news.json?v="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw Error("data");return r.json()}),
+ fetch("../../data/characters.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{items:[]}})
+])
+ .then(function(all){var d=all[0],chars=all[1].items||[];var i=(d.items||[]).find(function(x){return x.id===id});if(!i)throw Error("not found");draw(i,d.items||[],chars)})
  .catch(function(){$("#article-title").textContent="خبر پیدا نشد";$("#article-lead").textContent="این صفحه هنوز در داده‌های رتروخانه وجود ندارد.";$("#article-body").innerHTML=""});
 })();
