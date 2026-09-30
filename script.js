@@ -11,6 +11,8 @@
     design:{label:"طراحی و تبلیغات",icon:"✳",code:"DESIGN"},
     fashion:{label:"مد و سبک",icon:"👕",code:"STYLE"},
     collecting:{label:"کلکسیون و بازار",icon:"📦",code:"COLLECT"},
+    products:{label:"محصولات رترو",icon:"📼",code:"PRODUCT"},
+    diners:{label:"داینر و کافه",icon:"🍔",code:"DINER"},
     iran:{label:"ایران رترو",icon:"📻",code:"IRAN"}
   };
 
@@ -45,7 +47,7 @@
   }
 
   function externalLink(item,label){
-    return '<a class="read-link" href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">'+esc(label||"خواندن از منبع")+' <span>↗</span></a>';
+    var href="news/"+encodeURIComponent(item.id)+"/"; return '<a class="read-link" href="'+href+'">'+esc(label||"خواندن خبر")+' <span>←</span></a>';
   }
 
   function renderLead(){
@@ -55,10 +57,10 @@
     if(!main) return;
     var el=$("#featured");
     el.classList.remove("is-loading");
-    el.innerHTML='<div class="lead-copy">'+metaLine(main)+'<h2>'+esc(main.title)+'</h2><p>'+esc(main.excerpt)+'</p>'+externalLink(main,"ادامهٔ خبر")+'</div>'+visual(main);
+    el.innerHTML='<div class="lead-copy">'+metaLine(main)+'<h2>'+esc(main.titleFa||main.title)+'</h2><p>'+esc(main.excerptFa||main.excerpt)+'</p>'+externalLink(main,"ادامهٔ خبر")+'</div>'+visual(main);
 
     $("#top-stories").innerHTML=featured.slice(1,3).map(function(item){
-      return '<article class="mini-story">'+visual(item)+'<div class="mini-copy">'+metaLine(item)+'<h3>'+esc(item.title)+'</h3><p>'+esc(item.excerpt)+'</p>'+externalLink(item,"منبع")+'</div></article>';
+      return '<article class="mini-story">'+visual(item)+'<div class="mini-copy">'+metaLine(item)+'<h3>'+esc(item.titleFa||item.title)+'</h3><p>'+esc(item.excerptFa||item.excerpt)+'</p>'+externalLink(item,"منبع")+'</div></article>';
     }).join("");
   }
 
@@ -76,7 +78,7 @@
     $("#result-count").textContent=faNumber(items.length)+" خبر";
     $("#empty-state").hidden=items.length!==0;
     $("#news-feed").innerHTML=items.map(function(item){
-      return '<article class="feed-card">'+visual(item)+'<div class="feed-copy">'+metaLine(item)+'<h3>'+esc(item.title)+'</h3><p>'+esc(item.excerpt)+'</p><div class="feed-foot"><span>'+esc(item.source)+'</span><a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">اصل خبر ↗</a></div></div></article>';
+      return '<article class="feed-card">'+visual(item)+'<div class="feed-copy">'+metaLine(item)+'<h3><a href="news/'+encodeURIComponent(item.id)+'/">'+esc(item.titleFa||item.title)+'</a></h3><p>'+esc(item.excerptFa||item.excerpt)+'</p><div class="feed-foot"><span>'+esc(item.source)+'</span><span><a href="news/'+encodeURIComponent(item.id)+'/">خواندن خبر</a> · <a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">منبع ↗</a></span></div></div></article>';
     }).join("");
   }
 
@@ -89,7 +91,7 @@
 
   function renderFilters(){
     var counts=categoryCounts();
-    var order=["all","gaming","tech","music","cinema","cars","design","fashion","collecting","iran"];
+    var order=["all","gaming","tech","music","cinema","cars","design","fashion","collecting","products","diners","iran"];
     $("#category-chips").innerHTML=order.map(function(key){
       var label=key==="all"?"همه":categoryMeta[key].label;
       return '<button class="category-chip '+(state.category===key?"active":"")+'" type="button" data-category="'+key+'">'+esc(label)+' <b>'+faNumber(counts[key]||0)+'</b></button>';
