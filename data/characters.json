@@ -1,0 +1,276 @@
+{
+  "updatedAt": "2026-09-30T00:00:00Z",
+  "items": [
+    {
+      "id": "mario",
+      "nameFa": "ماریو",
+      "name": "Mario",
+      "debutYear": 1981,
+      "firstGame": "Donkey Kong",
+      "publisher": "Nintendo",
+      "origin": "ژاپن",
+      "accent": "red",
+      "aliases": [
+        "Mario",
+        "Super Mario",
+        "ماریو"
+      ],
+      "summaryFa": "چهره‌ای که از «Jumpman» در Donkey Kong شروع کرد و به نماد اصلی نینتندو و یکی از شناخته‌شده‌ترین شخصیت‌های تاریخ بازی تبدیل شد.",
+      "whyFa": "ماریو پلی میان عصر آرکید، کنسول خانگی و بازی مدرن است؛ طراحی ساده و قابل‌تشخیص او دهه‌ها دوام آورده است.",
+      "games": [
+        "Donkey Kong",
+        "Super Mario Bros.",
+        "Super Mario World",
+        "Super Mario 64"
+      ]
+    },
+    {
+      "id": "luigi",
+      "nameFa": "لوئیجی",
+      "name": "Luigi",
+      "debutYear": 1983,
+      "firstGame": "Mario Bros.",
+      "publisher": "Nintendo",
+      "origin": "ژاپن",
+      "accent": "green",
+      "aliases": [
+        "Luigi",
+        "لوئیجی"
+      ],
+      "summaryFa": "برادر قدبلندتر ماریو که از Mario Bros. وارد شد و از شخصیت دوم به قهرمانی مستقل با هویت و طرفداران خودش رسید.",
+      "whyFa": "لوئیجی نمونهٔ جالبی از رشد یک شخصیت فرعی به برند مستقل در فرهنگ بازی است.",
+      "games": [
+        "Mario Bros.",
+        "Super Mario Bros.",
+        "Luigi's Mansion"
+      ]
+    },
+    {
+      "id": "pac-man",
+      "nameFa": "پک‌من",
+      "name": "Pac-Man",
+      "debutYear": 1980,
+      "firstGame": "Pac-Man",
+      "publisher": "Namco",
+      "origin": "ژاپن",
+      "accent": "yellow",
+      "aliases": [
+        "Pac-Man",
+        "Pacman",
+        "پک‌من",
+        "پک من"
+      ],
+      "summaryFa": "دایرهٔ زردی که هزارتو، نقطه‌ها و ارواح را به یکی از ماندگارترین زبان‌های بصری آرکید تبدیل کرد.",
+      "whyFa": "پک‌من از نخستین شخصیت‌های بازی بود که فراتر از دستگاه آرکید به فرهنگ عمومی، کالا و رسانه راه پیدا کرد.",
+      "games": [
+        "Pac-Man",
+        "Ms. Pac-Man",
+        "Pac-Land"
+      ]
+    },
+    {
+      "id": "sonic",
+      "nameFa": "سونیک",
+      "name": "Sonic the Hedgehog",
+      "debutYear": 1991,
+      "firstGame": "Sonic the Hedgehog",
+      "publisher": "Sega",
+      "origin": "ژاپن",
+      "accent": "blue",
+      "aliases": [
+        "Sonic",
+        "Sonic the Hedgehog",
+        "سونیک"
+      ],
+      "summaryFa": "جوجه‌تیغی آبی و سریع سگا که در اوایل دههٔ ۹۰ به رقیب مستقیم ماریو و نماد Mega Drive/Genesis تبدیل شد.",
+      "whyFa": "سونیک تجسم جنگ کنسولی دههٔ ۹۰ و طراحی شخصیت متناسب با فرهنگ سرعت و نگرش جوانانه آن دوره است.",
+      "games": [
+        "Sonic the Hedgehog",
+        "Sonic the Hedgehog 2",
+        "Sonic CD"
+      ]
+    },
+    {
+      "id": "link",
+      "nameFa": "لینک",
+      "name": "Link",
+      "debutYear": 1986,
+      "firstGame": "The Legend of Zelda",
+      "publisher": "Nintendo",
+      "origin": "ژاپن",
+      "accent": "green",
+      "aliases": [
+        "Link",
+        "The Legend of Zelda",
+        "لینک"
+      ],
+      "summaryFa": "قهرمان مجموعهٔ Zelda؛ ماجراجویی که نسل‌های مختلف او با شمشیر، سپر و جهان Hyrule شناخته می‌شوند.",
+      "whyFa": "لینک یکی از ستون‌های شکل‌گیری بازی ماجراجویی کنسولی و طراحی جهان اکتشافی است.",
+      "games": [
+        "The Legend of Zelda",
+        "A Link to the Past",
+        "Link's Awakening",
+        "Ocarina of Time"
+      ]
+    },
+    {
+      "id": "samus-aran",
+      "nameFa": "ساموس آران",
+      "name": "Samus Aran",
+      "debutYear": 1986,
+      "firstGame": "Metroid",
+      "publisher": "Nintendo",
+      "origin": "ژاپن",
+      "accent": "orange",
+      "aliases": [
+        "Samus",
+        "Samus Aran",
+        "Metroid",
+        "ساموس",
+        "ساموس آران"
+      ],
+      "summaryFa": "شکارچی جایزه‌بگیر زره‌پوش مجموعهٔ Metroid که یکی از مهم‌ترین قهرمانان زن تاریخ بازی محسوب می‌شود.",
+      "whyFa": "ساموس با طراحی اکتشاف غیرخطی Metroid و افشای هویت قهرمان در پایان بازی اول، اثر فرهنگی مهمی گذاشت.",
+      "games": [
+        "Metroid",
+        "Metroid II",
+        "Super Metroid"
+      ]
+    },
+    {
+      "id": "mega-man",
+      "nameFa": "مگامن",
+      "name": "Mega Man",
+      "debutYear": 1987,
+      "firstGame": "Mega Man",
+      "publisher": "Capcom",
+      "origin": "ژاپن",
+      "accent": "cyan",
+      "aliases": [
+        "Mega Man",
+        "Megaman",
+        "Rockman",
+        "مگامن"
+      ],
+      "summaryFa": "ربات آبی کپکام که با انتخاب آزاد مراحل و به‌دست‌آوردن قدرت دشمنان، هویت مشخصی در اکشن پلتفرمر ساخت.",
+      "whyFa": "ساختار مرحله‌ای و باس‌های نمادین Mega Man الگوی مهمی در طراحی بازی‌های ۸ و ۱۶ بیتی شد.",
+      "games": [
+        "Mega Man",
+        "Mega Man 2",
+        "Mega Man 3",
+        "Mega Man X"
+      ]
+    },
+    {
+      "id": "kirby",
+      "nameFa": "کربی",
+      "name": "Kirby",
+      "debutYear": 1992,
+      "firstGame": "Kirby's Dream Land",
+      "publisher": "Nintendo / HAL Laboratory",
+      "origin": "ژاپن",
+      "accent": "pink",
+      "aliases": [
+        "Kirby",
+        "کربی"
+      ],
+      "summaryFa": "قهرمان گرد و صورتی HAL که با بلعیدن دشمنان و سپس کپی‌کردن توانایی‌ها به یکی از شخصیت‌های دوست‌داشتنی نینتندو بدل شد.",
+      "whyFa": "کربی نمونهٔ طراحی ساده و منعطفی است که هم برای تازه‌کارها قابل‌دسترسی است و هم در بازی‌های عمیق‌تر دوام آورده.",
+      "games": [
+        "Kirby's Dream Land",
+        "Kirby's Adventure",
+        "Kirby Super Star"
+      ]
+    },
+    {
+      "id": "ryu",
+      "nameFa": "ریو",
+      "name": "Ryu",
+      "debutYear": 1987,
+      "firstGame": "Street Fighter",
+      "publisher": "Capcom",
+      "origin": "ژاپن",
+      "accent": "red",
+      "aliases": [
+        "Ryu",
+        "Street Fighter",
+        "ریو"
+      ],
+      "summaryFa": "رزمی‌کار ژاپنی Street Fighter که هدبند، لباس سفید و Hadoken او به شمایل بازی مبارزه‌ای تبدیل شده است.",
+      "whyFa": "ریو در شکل‌گیری زبان بصری و مکانیکی بازی‌های مبارزه‌ای دههٔ ۹۰ نقش مرکزی داشت.",
+      "games": [
+        "Street Fighter",
+        "Street Fighter II",
+        "Street Fighter Alpha"
+      ]
+    },
+    {
+      "id": "lara-croft",
+      "nameFa": "لارا کرافت",
+      "name": "Lara Croft",
+      "debutYear": 1996,
+      "firstGame": "Tomb Raider",
+      "publisher": "Core Design / Eidos",
+      "origin": "بریتانیا",
+      "accent": "teal",
+      "aliases": [
+        "Lara Croft",
+        "Tomb Raider",
+        "لارا کرافت"
+      ],
+      "summaryFa": "باستان‌شناس ماجراجوی Tomb Raider که در دورهٔ نخست سه‌بعدی PlayStation و PC به یک نماد رسانه‌ای جهانی بدل شد.",
+      "whyFa": "لارا از نخستین شخصیت‌های بازی بود که شهرتش به شکل جدی از بازی فراتر رفت و وارد تبلیغات، مجلات و سینما شد.",
+      "games": [
+        "Tomb Raider",
+        "Tomb Raider II",
+        "Tomb Raider III"
+      ]
+    },
+    {
+      "id": "crash-bandicoot",
+      "nameFa": "کرش بندیکوت",
+      "name": "Crash Bandicoot",
+      "debutYear": 1996,
+      "firstGame": "Crash Bandicoot",
+      "publisher": "Naughty Dog / Sony",
+      "origin": "ایالات متحده",
+      "accent": "orange",
+      "aliases": [
+        "Crash Bandicoot",
+        "Crash",
+        "کرش",
+        "کرش بندیکوت"
+      ],
+      "summaryFa": "بندیکوت نارنجی ناتی‌داگ که در نسل نخست PlayStation به یکی از چهره‌های شاخص پلتفرمر سه‌بعدی تبدیل شد.",
+      "whyFa": "کرش نمایندهٔ دوره‌ای است که کنسول‌ها برای داشتن شخصیت نمادین خود با یکدیگر رقابت می‌کردند.",
+      "games": [
+        "Crash Bandicoot",
+        "Cortex Strikes Back",
+        "Warped",
+        "Crash Team Racing"
+      ]
+    },
+    {
+      "id": "dizzy",
+      "nameFa": "دیزی",
+      "name": "Dizzy",
+      "debutYear": 1987,
+      "firstGame": "Dizzy – The Ultimate Cartoon Adventure",
+      "publisher": "Codemasters",
+      "origin": "بریتانیا",
+      "accent": "cream",
+      "aliases": [
+        "Dizzy",
+        "Oliver Twins",
+        "دیزی"
+      ],
+      "summaryFa": "تخم‌مرغ کارتونی بازی‌های Oliver Twins که روی رایانه‌های خانگی بریتانیایی مثل ZX Spectrum و Commodore 64 محبوب شد.",
+      "whyFa": "دیزی یکی از نمونه‌های مهم فرهنگ بازی بریتانیا پیش از سلطهٔ کنسول‌های ژاپنی و آمریکایی است.",
+      "games": [
+        "Dizzy",
+        "Treasure Island Dizzy",
+        "Fantasy World Dizzy"
+      ]
+    }
+  ]
+}
