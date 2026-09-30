@@ -47,5 +47,6 @@ jobs:
             echo "No new retro news."
           else
             git commit -m "Update retro news [skip ci]"
+            git pull --rebase origin main
             git push
           fi
