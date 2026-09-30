@@ -58,7 +58,7 @@ def article_page(item):
 <section class="article-section"><h2>منبع خبر</h2><div class="article-source"><div><strong id="source-name">{e(item.get('source'))}</strong><small id="source-url">{e(item.get('url'))}</small></div><a id="source-link" href="{e(item.get('url'))}" target="_blank" rel="noopener noreferrer nofollow">باز کردن منبع ↗</a></div></section>
 <section id="related-section" class="article-section" hidden><h2>خبرهای مرتبط</h2><div id="related-grid" class="related-grid"></div></section>
 </main>
-<script src="../../article.js?v=20260930article1" defer></script>
+<script src="../../article.js?v=20260930article2" defer></script>
 </body></html>"""
 
 urls = [
