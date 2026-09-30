@@ -37,7 +37,7 @@ def article_page(item):
 <title>{e(title)} | رتروخانه</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{BASE}/news/{e(item['id'])}/">
-<link rel="stylesheet" href="../../style.css?v=20260930article3">
+<link rel="stylesheet" href="../../style.css?v=20260930article4">
 <meta property="og:type" content="article"><meta property="og:site_name" content="رتروخانه">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
 {og_image}
@@ -60,7 +60,7 @@ def article_page(item):
 <section class="article-section"><h2>منبع خبر</h2><div class="article-source"><div><strong id="source-name">{e(item.get('source'))}</strong><small id="source-url">{e(item.get('url'))}</small></div><a id="source-link" href="{e(item.get('url'))}" target="_blank" rel="noopener noreferrer nofollow">باز کردن منبع ↗</a></div></section>
 <section id="related-section" class="article-section" hidden><h2>خبرهای مرتبط</h2><div id="related-grid" class="related-grid"></div></section>
 </main>
-<script src="../../article.js?v=20260930article3" defer></script>
+<script src="../../article.js?v=20260930article4" defer></script>
 </body></html>"""
 
 urls = [
