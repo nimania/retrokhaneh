@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, re, json, html, hashlib
+import os, re, json, html, hashlib, time
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from urllib.parse import quote, urlparse
@@ -77,8 +77,70 @@ def discover_google(job):
             "category": category,
             "country": loc["country"],
             "lang": loc["lang"],
+            "direct": False,
         })
     return out
+
+GDELT_QUERIES = {
+    "gaming": '("retro gaming" OR "classic gaming" OR "retro console")',
+    "tech": '("retro technology" OR "vintage technology" OR "cassette player")',
+    "music": '("vinyl reissue" OR "cassette reissue" OR "classic album remaster")',
+    "cinema": '("4K restoration" OR "film restoration" OR "classic film rerelease")',
+    "cars": '("classic car" OR "vintage car" OR "car restoration")',
+    "design": '("retro design" OR "mid-century design" OR "vintage furniture")',
+    "fashion": '("vintage fashion" OR "fashion archive" OR "retro fashion")',
+    "collecting": '("vintage auction" OR "collectible archive" OR memorabilia)',
+    "products": '("retro product" OR "retro-inspired" OR "vintage-inspired gadget")',
+    "diners": '("retro diner" OR "classic diner" OR "vintage cafe")',
+    "iran": '("vintage Iran" OR "Iran nostalgia" OR "Iran archive")',
+}
+
+def discover_gdelt(category):
+    query_text = GDELT_QUERIES.get(category)
+    if not query_text:
+        return []
+    params = {
+        "query": query_text,
+        "mode": "artlist",
+        "maxrecords": 12,
+        "timespan": "2d",
+        "sort": "datedesc",
+        "format": "json",
+    }
+    try:
+        # GDELT DOC API is rate-limited. This function is called sequentially.
+        r = SESSION.get("https://api.gdeltproject.org/api/v2/doc/doc", params=params, timeout=30)
+        if r.status_code == 429:
+            time.sleep(6)
+            r = SESSION.get("https://api.gdeltproject.org/api/v2/doc/doc", params=params, timeout=30)
+        r.raise_for_status()
+        payload = r.json()
+        out = []
+        for row in payload.get("articles", []):
+            title = clean(row.get("title", ""))
+            url = row.get("url", "")
+            if not title or not url:
+                continue
+            image = row.get("socialimage", "")
+            item = {
+                "title": title,
+                "url": url,
+                "published": iso_date(row.get("seendate", "")),
+                "excerpt": "",
+                "source": row.get("domain") or urlparse(url).netloc,
+                "category": category,
+                "country": row.get("sourcecountry") or "",
+                "lang": row.get("language") or "",
+                "direct": True,
+            }
+            if image and image.startswith("http"):
+                item["image"] = image
+                item["images"] = [image]
+            out.append(item)
+        return out
+    except Exception as exc:
+        print("gdelt-fail", category, exc)
+        return []
 
 def discover_direct(feed_cfg):
     feed = fetch_feed(feed_cfg["url"])
@@ -96,6 +158,7 @@ def discover_direct(feed_cfg):
             "category": feed_cfg["category"],
             "country": feed_cfg.get("country", ""),
             "lang": feed_cfg.get("lang", "en"),
+            "direct": True,
         })
     return out
 
@@ -285,6 +348,7 @@ Extracted source text:
 def main():
     data = json.loads(DATA.read_text("utf-8"))
     items = data.get("items", [])
+    before_items = json.dumps(items, ensure_ascii=False, sort_keys=True)
     cutoff = datetime.now(timezone.utc).date() - timedelta(days=CFG.get("maxAgeDays", 21))
 
     jobs = []
@@ -294,6 +358,12 @@ def main():
             jobs.append((category, loc, query_text))
 
     discovered = []
+    # GDELT supplies direct publisher URLs and social images. Keep requests
+    # sequential to respect its stricter API rate limit.
+    for category in CFG["categories"]:
+        discovered.extend(discover_gdelt(category))
+        time.sleep(5.2)
+
     with ThreadPoolExecutor(max_workers=12) as pool:
         futures = [pool.submit(discover_google, job) for job in jobs]
         futures += [pool.submit(discover_direct, feed) for feed in CFG.get("directFeeds", [])]
@@ -305,7 +375,7 @@ def main():
 
     existing_urls = {item.get("url") for item in items}
     candidates = []
-    for item in sorted(discovered, key=lambda x: x.get("published", ""), reverse=True):
+    for item in sorted(discovered, key=lambda x: (x.get("published", ""), bool(x.get("direct"))), reverse=True):
         if not item.get("title") or not item.get("url") or item["url"] in existing_urls:
             continue
         try:
@@ -341,23 +411,35 @@ def main():
             item["url"] = final_url
 
         enriched = ai_enrich(item, source_text)
-        if enriched:
-            item["titleFa"] = enriched.get("titleFa") or item["title"]
-            item["excerptFa"] = enriched.get("excerptFa") or item["excerpt"]
-            item["bodyFa"] = enriched.get("bodyFa") or []
-            item["ai"] = True
-        else:
-            item["titleFa"] = item["title"] if PERSIAN.search(item["title"]) else ""
-            item["excerptFa"] = item["excerpt"] if PERSIAN.search(item["excerpt"]) else ""
-            item["bodyFa"] = [item["excerptFa"]] if item["excerptFa"] else []
+        if not enriched:
+            # Do not publish thin foreign-language stubs. Discovery still runs,
+            # but Retrokhaneh only publishes when it can create a substantial
+            # Persian article.
+            print("skip-without-persian-enrichment", item["title"])
+            continue
 
+        item["titleFa"] = enriched.get("titleFa") or item["title"]
+        item["excerptFa"] = enriched.get("excerptFa") or item["excerpt"]
+        item["bodyFa"] = enriched.get("bodyFa") or []
+        if len(item["bodyFa"]) < 3:
+            print("skip-thin-enrichment", item["title"])
+            continue
+        item["ai"] = True
+        item.pop("direct", None)
         items.insert(0, item)
 
     items = sorted(items, key=lambda x: x.get("published", ""), reverse=True)[: CFG.get("keepItems", 300)]
-    data["items"] = items
-    data["updatedAt"] = datetime.now(timezone.utc).isoformat()
-    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", "utf-8")
-    print("discovered=", len(discovered), "new=", len(candidates), "total=", len(items))
+    for item in items:
+        item.pop("direct", None)
+    after_items = json.dumps(items, ensure_ascii=False, sort_keys=True)
+    if after_items != before_items:
+        data["items"] = items
+        data["updatedAt"] = datetime.now(timezone.utc).isoformat()
+        DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", "utf-8")
+        print("updated data/news.json")
+    else:
+        print("no data changes")
+    print("discovered=", len(discovered), "candidates=", len(candidates), "total=", len(items))
 
 if __name__ == "__main__":
     main()
