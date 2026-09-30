@@ -8,7 +8,7 @@
   <meta name="description" content="اتاق بازی رتروخانه؛ بازی‌های کوچک و قانونی با حال‌وهوای آرکید و رترو، مستقیم در مرورگر.">
   <link rel="canonical" href="https://nimania.github.io/retrokhaneh/play/">
   <link rel="stylesheet" href="../style.css?v=20260930portal3">
-  <link rel="stylesheet" href="play.css?v=20260930play5">
+  <link rel="stylesheet" href="play.css?v=20260930play6">
 </head>
 <body class="game-room-page">
 <header class="app-header game-header">
@@ -162,6 +162,22 @@
       <p>رکوردها و نشان‌ها روی همین مرورگر ذخیره می‌شوند.</p>
     </div>
 
+    <div class="player-card">
+      <div class="player-emblem" aria-hidden="true"><span id="player-level-badge">۱</span><small>LVL</small></div>
+      <div class="player-main">
+        <div class="player-kicker"><span>RETROKHANEH PLAYER</span><b id="player-rank">تازه‌وارد</b></div>
+        <div class="player-title-row"><h3>پروفایل آرکید</h3><strong>Level <b id="player-level">۱</b></strong></div>
+        <div class="xp-track"><i id="xp-bar"></i></div>
+        <div class="xp-meta"><span><b id="player-xp">۰</b> XP</span><span id="xp-next">۱۰۰ XP تا Level بعدی</span></div>
+        <div class="xp-sources">
+          <span>بازی <b id="xp-from-plays">۰</b></span>
+          <span>رکورد <b id="xp-from-scores">۰</b></span>
+          <span>نشان <b id="xp-from-badges">۰</b></span>
+          <span>مأموریت <b id="xp-from-missions">۰</b></span>
+        </div>
+      </div>
+    </div>
+
     <div class="progress-summary">
       <div class="progress-stat"><small>مجموع رکوردها</small><strong id="total-best">۰</strong><span>TOTAL SCORE</span></div>
       <div class="progress-stat"><small>دست‌های بازی‌شده</small><strong id="total-plays">۰</strong><span>PLAYS</span></div>
@@ -203,6 +219,6 @@
   </div>
 </footer>
 
-<script src="play.js?v=20260930play5" defer></script>
+<script src="play.js?v=20260930play6" defer></script>
 </body>
 </html>
