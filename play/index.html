@@ -8,7 +8,7 @@
   <meta name="description" content="اتاق بازی رتروخانه؛ بازی‌های کوچک و قانونی با حال‌وهوای آرکید و رترو، مستقیم در مرورگر.">
   <link rel="canonical" href="https://nimania.github.io/retrokhaneh/play/">
   <link rel="stylesheet" href="../style.css?v=20260930portal3">
-  <link rel="stylesheet" href="play.css?v=20260930play4">
+  <link rel="stylesheet" href="play.css?v=20260930play5">
 </head>
 <body class="game-room-page">
 <header class="app-header game-header">
@@ -61,6 +61,45 @@
         <span class="game-card-poster"><img src="assets/space-76.webp" alt="پوستر فضا ۷۶"><span class="game-card-badge">ARCADE 04</span></span>
         <span class="game-card-copy"><strong>فضا ۷۶</strong><b>SPACE 76</b><em>شوتر کهکشانی آرکید</em></span>
       </button>
+    </div>
+  </section>
+
+  <section id="challenges" class="challenge-zone" aria-labelledby="challenge-title">
+    <div class="game-section-head challenge-head">
+      <div><span>NEW CHALLENGES · ROTATING</span><h2 id="challenge-title">چالش‌های آرکید</h2></div>
+      <p>هر روز یک مأموریت تازه؛ هر هفته یک بازی ویژه.</p>
+    </div>
+
+    <div class="challenge-grid">
+      <article id="weekly-feature" class="weekly-feature">
+        <img id="weekly-poster" src="assets/retro-rally.webp" alt="">
+        <div class="weekly-feature-shade"></div>
+        <div class="weekly-feature-copy">
+          <span>GAME OF THE WEEK</span>
+          <h3 id="weekly-game-title">رالی رترو</h3>
+          <p id="weekly-game-copy">بازی منتخب این هفتهٔ اتاق بازی رتروخانه.</p>
+          <div class="weekly-feature-meta"><b id="weekly-reset">تا هفتهٔ بعد</b><em id="weekly-game-en">RETRO RALLY</em></div>
+          <button class="mission-play" id="weekly-play" type="button">بازی هفته را شروع کن</button>
+        </div>
+      </article>
+
+      <div class="mission-stack">
+        <article id="daily-mission" class="mission-card">
+          <div class="mission-top"><span>DAILY MISSION</span><b id="daily-state">امروز</b></div>
+          <h3 id="daily-title">مأموریت امروز</h3>
+          <p id="daily-copy">در بازی امروز به امتیاز هدف برس.</p>
+          <div class="mission-progress"><i id="daily-bar"></i></div>
+          <div class="mission-foot"><strong id="daily-progress">۰ / ۰</strong><button class="mission-play" id="daily-play" type="button">شروع مأموریت</button></div>
+        </article>
+
+        <article id="weekly-mission" class="mission-card weekly-mission">
+          <div class="mission-top"><span>WEEKLY MISSION</span><b id="weekly-state">این هفته</b></div>
+          <h3 id="weekly-mission-title">۵ دست بازی هفته</h3>
+          <p id="weekly-mission-copy">پنج بار بازی منتخب این هفته را شروع کن.</p>
+          <div class="mission-progress"><i id="weekly-bar"></i></div>
+          <div class="mission-foot"><strong id="weekly-progress">۰ / ۵</strong><button class="mission-play" id="weekly-mission-play" type="button">ادامهٔ چالش</button></div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -143,7 +182,7 @@
 
   <div id="achievement-toast" class="achievement-toast" role="status" aria-live="polite">
     <span class="achievement-toast-icon">★</span>
-    <div><small>ACHIEVEMENT UNLOCKED</small><strong id="achievement-toast-title">نشان تازه</strong></div>
+    <div><small id="achievement-toast-label">ACHIEVEMENT UNLOCKED</small><strong id="achievement-toast-title">نشان تازه</strong></div>
   </div>
 
   <section class="arcade-note">
@@ -159,11 +198,11 @@
       <p>خبر، فرهنگ و حالا بازی؛ گذشته‌ای که هنوز زنده است.</p>
     </div>
     <div class="footer-col"><strong>برگرد</strong><a href="../">صفحهٔ اول</a><a href="../#latest">آخرین خبرها</a><a href="../#topics">موضوعات</a></div>
-    <div class="footer-col"><strong>اتاق بازی</strong><a href="#arcade">بازی کن</a><a href="#records">تالار رکوردها</a><a href="#records">Achievementها</a><a href="#library-title">بازی‌ها</a></div>
+    <div class="footer-col"><strong>اتاق بازی</strong><a href="#challenges">چالش امروز</a><a href="#arcade">بازی کن</a><a href="#records">تالار رکوردها</a><a href="#records">Achievementها</a></div>
     <div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · Game Room v1</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>
   </div>
 </footer>
 
-<script src="play.js?v=20260930play4" defer></script>
+<script src="play.js?v=20260930play5" defer></script>
 </body>
 </html>
