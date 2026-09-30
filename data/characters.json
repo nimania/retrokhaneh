@@ -85,7 +85,19 @@
             "id": "lKn32KPIRSw",
             "titleFa": "تریلر رسمی Super Mario Bros. Movie از Nintendo España"
           }
-        ]
+        ],
+        "images": [
+          "http://assets.nintendo.com/image/upload/f_auto/q_auto/v1789421305/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/mario-share.jpg",
+          "https://assets.nintendo.com/image/upload/c_scale,w_24,q_auto/ncom/global/flags-change-region/FlagUsaIconRegionSelect.png",
+          "https://assets.nintendo.com/image/upload/f_auto,q_auto,c_scale,w_520/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/global/logo-super-mario-horizontal",
+          "https://assets.nintendo.com/image/upload/f_auto,q_auto/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/global/mario-lineart-jump",
+          "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/about-mario/mario-logo",
+          "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/about-mario/mario-thumbs-up",
+          "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp//about-mario/mario-jumping",
+          "https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_1.5/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp//about-mario/green-pipe"
+        ],
+        "image": "http://assets.nintendo.com/image/upload/f_auto/q_auto/v1789421305/Marketing/mIgD42QBmpzD4gE5jvZ209LSevumbPiS8VyXfbGH9907X4EoUyE7QAx5ROGsaQrp/mario-share.jpg",
+        "mediaSource": "https://www.nintendo.com/us/explore/characters/mario/about/"
       }
     },
     {
@@ -222,7 +234,16 @@
         }
       ],
       "media": {
-        "officialUrl": "https://www.bandainamcoent.com/games/pac-man-museum-plus"
+        "officialUrl": "https://www.bandainamcoent.com/games/pac-man-museum-plus",
+        "images": [
+          "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/ELjzwMvSM2EoMYxxPveA",
+          "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/JesLx9aHSEGzaD9chJQR",
+          "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/VmVFnUTTaa4EMoQjHBj8",
+          "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/Stfyhgy4QWqBo1KMMwkP",
+          "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/A2BGAHMYSS2RfOXo49G4"
+        ],
+        "image": "https://us-east-1-bandai.graphassets.com/AXzioIclSWilEjFtsMJPwz/ELjzwMvSM2EoMYxxPveA",
+        "mediaSource": "https://www.bandainamcoent.com/games/pac-man-museum-plus"
       }
     },
     {
@@ -293,7 +314,19 @@
             "id": "ocEv3K_H9o4",
             "titleFa": "تریلر رسمی Sonic the Hedgehog 3 از SEGA"
           }
-        ]
+        ],
+        "images": [
+          "https://asia.sega.com/SonicSuperStars/assets/images/ogp/en/facebook02.jpg",
+          "https://asia.sega.com/SonicSuperStars/assets/images/sp/chara/charaPage-bg01-sp.jpg",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara04.png",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara03.png",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara02.png",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara01.png",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara05.png",
+          "https://asia.sega.com/SonicSuperStars/assets/images/common/chara/charaPage-header-chara06.png"
+        ],
+        "image": "https://asia.sega.com/SonicSuperStars/assets/images/ogp/en/facebook02.jpg",
+        "mediaSource": "https://asia.sega.com/SonicSuperStars/en/character/"
       }
     },
     {
@@ -358,7 +391,19 @@
         }
       ],
       "media": {
-        "officialUrl": "https://www.nintendo.com/jp/character/zelda/en/characters/index.html"
+        "officialUrl": "https://www.nintendo.com/jp/character/zelda/en/characters/index.html",
+        "images": [
+          "https://www.nintendo.com/jp/character/zelda/img/common/zelda_OGimg_en.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/18/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/17/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/16/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/15/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/14/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/13/pc/gamelogo.png",
+          "https://www.nintendo.com/jp/character/zelda/characters/img/link/12/pc/gamelogo.png"
+        ],
+        "image": "https://www.nintendo.com/jp/character/zelda/img/common/zelda_OGimg_en.png",
+        "mediaSource": "https://www.nintendo.com/jp/character/zelda/en/characters/index.html"
       }
     },
     {
@@ -504,7 +549,19 @@
             "id": "K7LNrTpqk4g",
             "titleFa": "تریلر رسمی Mega Man 11"
           }
-        ]
+        ],
+        "images": [
+          "https://megaman.capcom.com/logo.png",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM1_BombMan.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM1_Yellow.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM2_Dragon.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM2_Database.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM3_GeminiMan.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM3_MuseumList.jpg",
+          "https://static.capcom.com/unity/mmimg/screens/MMLC_MM4_PharaohMan.jpg"
+        ],
+        "image": "https://megaman.capcom.com/logo.png",
+        "mediaSource": "https://megaman.capcom.com/mmlc.html"
       }
     },
     {
@@ -567,7 +624,19 @@
         }
       ],
       "media": {
-        "officialUrl": "https://www.nintendo.com/my/character/kirby/"
+        "officialUrl": "https://www.nintendo.com/my/character/kirby/",
+        "images": [
+          "https://www.nintendo.com/my/character/kirby/images/ogp.jpg",
+          "https://www.nintendo.com/my/character/kirby/images/yokologo.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-entrance_pc.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-img01.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-img02.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-img03.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-img04.png",
+          "https://www.nintendo.com/my/character/kirby/images/character/kirby-slide-img05.png"
+        ],
+        "image": "https://www.nintendo.com/my/character/kirby/images/ogp.jpg",
+        "mediaSource": "https://www.nintendo.com/my/character/kirby/index.html"
       }
     },
     {
@@ -638,7 +707,19 @@
             "id": "LZGql2q-G1k",
             "titleFa": "راهنمای رسمی Ryu در Street Fighter V"
           }
-        ]
+        ],
+        "images": [
+          "https://game.capcom.com/cfn/sfv/column/ryu_wall.jpg?h=b1f1342833da14e5f887c0540b3983d8",
+          "https://game.capcom.com/cfn/sfv/news/fukuokawall2.jpg?h=ef9d2d2c0c27f40749f3cb6a30139820",
+          "https://game.capcom.com/cfn/sfv/news/fukuokawall.JPG?h=1df784bb1e0b44b86150c048363e7644",
+          "https://game.capcom.com/cfn/sfv/column/initial_wall.jpg?h=84ca6c01864011f9c96c0a61a8f8edfe",
+          "https://game.capcom.com/cfn/sfv/as/img/icon/initial_icon.jpg?h=481a2678966fd595b8a2a568e746e13e",
+          "https://game.capcom.com/cfn/sfv/column/kensaku_wall.jpg?h=6b7e955a3330064f64f6bd2f548620d0",
+          "https://game.capcom.com/cfn/sfv/as/img/icon/esportseast_icon.jpg?h=c2563f4873ee92b74f8d9a3355b5a8a1",
+          "https://game.capcom.com/cfn/sfv/as/img/common/nav/character/banner_charadata.jpg?h=31ac804ccdb725b990991658326a5714"
+        ],
+        "image": "https://game.capcom.com/cfn/sfv/column/ryu_wall.jpg?h=b1f1342833da14e5f887c0540b3983d8",
+        "mediaSource": "https://game.capcom.com/cfn/sfv/column-130431"
       }
     },
     {
@@ -702,7 +783,19 @@
         }
       ],
       "media": {
-        "officialUrl": "https://www.playtombraider.com/en-us"
+        "officialUrl": "https://www.playtombraider.com/en-us",
+        "images": [
+          "https://images.ctfassets.net/er9ta1axz3q5/2KmtHf4hwREf6u59Tb7ZS4/3afa3d97019bd72ee6b3f87bfc072d2f/TR_ATLANTIS_OPENGRAPH_1200x630_CT-000021785.jpg",
+          "https://images.ctfassets.net/er9ta1axz3q5/39EFE6W0XIHuVu1O1iR5bo/5a146dcb480b05236daadc9d09a6b01c/TR_ATLANTIS_OPENGRAPH_600x300_CT-000021785.jpg",
+          "https://www.playtombraider.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fheader-logo.0i1uco-kwq5y_.webp&w=256&q=75",
+          "https://images.ctfassets.net/er9ta1axz3q5/5OLtdfyF2i7rmdT9JncApN/ee70895784995c36c5c627d718c00c57/df69ff4a4a6600676bf9198282716329087c99df.png?w=2048&q=75&fm=webp",
+          "https://images.ctfassets.net/er9ta1axz3q5/7uB1s40izvAybK0iM0mW06/c19c1749665f93bf8f5d164be365897d/atlantis_key_art-740.jpg?w=2048&q=75&fm=webp",
+          "https://images.ctfassets.net/er9ta1axz3q5/7zDyf8ieiRVni4TPmbG77J/15b746ba8bc64f43a16347a69df1542c/PS5-black.svg?w=2048&q=75",
+          "https://images.ctfassets.net/er9ta1axz3q5/6IK9GmKmawM8vJa4MnwpGv/bd685be5f437c92219f66d7da0dfcfb9/xboxSX-black.svg?w=2048&q=75",
+          "https://images.ctfassets.net/er9ta1axz3q5/1eXxPUfePubCQaUL0zwA77/325800af172c113d4dcc7aca4e2d749d/Steam__1_.svg?w=2048&q=75"
+        ],
+        "image": "https://images.ctfassets.net/er9ta1axz3q5/2KmtHf4hwREf6u59Tb7ZS4/3afa3d97019bd72ee6b3f87bfc072d2f/TR_ATLANTIS_OPENGRAPH_1200x630_CT-000021785.jpg",
+        "mediaSource": "https://www.playtombraider.com/en-us"
       }
     },
     {
@@ -836,7 +929,31 @@
         }
       ],
       "media": {
-        "officialUrl": "https://www.olivertwins.com/wonderlanddizzy"
+        "officialUrl": "https://www.olivertwins.com/wonderlanddizzy",
+        "images": [
+          "https://static.wixstatic.com/media/079b3a_88bdabb016e84d13a94f99b26f0e6012~mv2.png/v1/fill/w_580,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OT.png",
+          "https://static.wixstatic.com/media/9f668b_440d804c777546498e49ba9bfcd66391~mv2.png/v1/fill/w_110,h_110,al_c,q_85,enc_avif,quality_auto/9f668b_440d804c777546498e49ba9bfcd66391~mv2.png",
+          "https://static.wixstatic.com/media/6af20e_c033f76fb1794fab895f282ff18dfa55~mv2.png/v1/fill/w_397,h_195,al_c,lg_1,q_85,enc_avif,quality_auto/wonderlanddizzylogo.png",
+          "https://static.wixstatic.com/media/6af20e_5b4cd7f8ce8342c782c68d6b3f8cf2e1~mv2.png/v1/fill/w_164,h_51,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NES.png",
+          "https://static.wixstatic.com/media/6af20e_5972e546926e430499d9135c334b27ab~mv2.png/v1/fit/w_693,h_625,q_90,enc_avif,quality_auto/6af20e_5972e546926e430499d9135c334b27ab~mv2.png",
+          "https://static.wixstatic.com/media/6af20e_993a8395dc134a8b841f2fd3b95a9eb6~mv2.png/v1/fit/w_592,h_428,q_90,enc_avif,quality_auto/6af20e_993a8395dc134a8b841f2fd3b95a9eb6~mv2.png",
+          "https://static.wixstatic.com/media/6af20e_117ca02bce0842feb16124bc4ea56a7d~mv2.jpg/v1/fit/w_980,h_688,q_90,enc_avif,quality_auto/6af20e_117ca02bce0842feb16124bc4ea56a7d~mv2.jpg",
+          "https://static.wixstatic.com/media/6af20e_da6501cde40b49719b92d5606ece7b1e~mv2.jpg/v1/fill/w_452,h_490,al_c,lg_1,q_80,enc_avif,quality_auto/WonderlandDesignMap2Final_JPG.jpg"
+        ],
+        "image": "https://static.wixstatic.com/media/079b3a_88bdabb016e84d13a94f99b26f0e6012~mv2.png/v1/fill/w_580,h_132,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OT.png",
+        "videos": [
+          {
+            "provider": "youtube",
+            "id": "ds3oM4YbPGk",
+            "url": "https://www.youtube.com/watch?v=ds3oM4YbPGk"
+          },
+          {
+            "provider": "youtube",
+            "id": "-AAkgpQO9ig",
+            "url": "https://www.youtube.com/watch?v=-AAkgpQO9ig"
+          }
+        ],
+        "mediaSource": "https://www.olivertwins.com/wonderlanddizzy"
       }
     }
   ]
