@@ -11,6 +11,29 @@ BASE = "https://nimania.github.io/retrokhaneh"
 def e(value):
     return html.escape(str(value or ""), quote=True)
 
+def character_page(char):
+    title = char.get("nameFa") or char.get("name") or "شخصیت رترو"
+    desc = (char.get("summaryFa") or "")[:180]
+    cid = char.get("id") or ""
+    return f"""<!doctype html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{e(title)} | رتروپدیا | رتروخانه</title>
+<meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{BASE}/characters/{e(cid)}/">
+<link rel="stylesheet" href="../../style.css?v=20260930portal4">
+<link rel="stylesheet" href="../characters.css?v=20260930chars1">
+<meta property="og:type" content="profile"><meta property="og:site_name" content="رتروخانه">
+<meta property="og:title" content="{e(title)} | رتروپدیا"><meta property="og:description" content="{e(desc)}">
+</head><body>
+<header class="app-header">
+<a class="brand" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span><span class="brand-copy"><small>RETROPEDIA · CHARACTER</small></span></a>
+<div class="header-actions"><a class="icon-button" href="../">◫</a><a class="icon-button" href="../../">⌂</a></div>
+</header>
+<main id="character-page" class="character-page"><div class="character-loading">در حال بارگذاری شخصیت…</div></main>
+<script src="../../character.js?v=20260930chars1" defer></script>
+</body></html>"""
+
 def article_page(item):
     title = item.get("titleFa") or item.get("title") or "خبر"
     desc = (item.get("excerptFa") or item.get("excerpt") or "")[:180]
@@ -71,6 +94,13 @@ urls = [
 for char in CHARACTERS:
     if char.get("id"):
         urls.append((f"{BASE}/characters/{char['id']}/", "0.7"))
+for char in CHARACTERS:
+    if not char.get("id"):
+        continue
+    target = ROOT / "characters" / char["id"]
+    target.mkdir(parents=True, exist_ok=True)
+    (target / "index.html").write_text(character_page(char), "utf-8")
+
 for item in DATA.get("items", []):
     if not item.get("id"):
         continue
