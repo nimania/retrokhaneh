@@ -65,6 +65,33 @@ function renderGallery(images){
  img.addEventListener("error",function(){if(images.length>1)show(current+1)});
  show(0);
 }
+function relatedCard(x){
+ var m=C[x.category]||C.collecting;
+ var img=x.image||((x.images&&x.images.length)?x.images[0]:"");
+ var media=img
+  ?'<div class="related-media"><img src="'+esc(img)+'" alt="" loading="lazy" referrerpolicy="no-referrer"><span>'+esc(m[0])+'</span></div>'
+  :'<div class="related-media related-media-fallback cat-'+esc(x.category)+'"><b>'+m[1]+'</b><span>'+esc(m[0])+'</span></div>';
+ return '<a class="related-card" href="../'+encodeURIComponent(x.id)+'/">'
+  +media
+  +'<div class="related-copy">'
+  +'<div class="related-meta"><span>'+esc(x.source||"رتروخانه")+'</span><time>'+esc(faDate(x.published))+'</time></div>'
+  +'<strong>'+esc(x.titleFa||x.title)+'</strong>'
+  +'<p>'+esc(x.excerptFa||x.excerpt||"")+'</p>'
+  +'<div class="related-cta"><span>ادامهٔ خبر</span><b>←</b></div>'
+  +'</div></a>';
+}
+function injectFooter(){
+ if(document.querySelector(".global-footer"))return;
+ var footer=document.createElement("footer");
+ footer.className="global-footer";
+ footer.innerHTML='<div class="global-footer-inner">'
+  +'<div class="footer-brand-block"><a class="footer-logo" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span></a><p>خانهٔ فارسی خبر و فرهنگ رترو؛ از بازی و تکنولوژی قدیمی تا طراحی، مد، داینرها، کلکسیون و ایران رترو.</p></div>'
+  +'<div class="footer-col"><strong>رتروخانه</strong><a href="../../">صفحهٔ اول</a><a href="../../#latest">آخرین خبرها</a><a href="../../#topics">دسته‌بندی‌ها</a></div>'
+  +'<div class="footer-col"><strong>موضوعات محبوب</strong><a href="../../#latest">محصولات رترو</a><a href="../../#latest">داینر و کافه</a><a href="../../#latest">بازی و کنسول</a><a href="../../#latest">ایران رترو</a></div>'
+  +'<div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · گذشته هنوز زنده است.</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>'
+  +'</div>';
+ document.body.appendChild(footer);
+}
 function draw(i,all){
  var m=C[i.category]||C.collecting;
  var imgs=(i.images&&i.images.length?i.images:(i.image?[i.image]:[])).filter(Boolean);
@@ -89,9 +116,17 @@ function draw(i,all){
  var rel=all.filter(function(x){return x.id!==i.id&&x.category===i.category}).slice(0,4);
  if(rel.length){
   $("#related-section").hidden=false;
-  $("#related-grid").innerHTML=rel.map(function(x){
-   return '<a class="related-card" href="../'+encodeURIComponent(x.id)+'/"><small>'+esc((C[x.category]||C.collecting)[0])+'</small><strong>'+esc(x.titleFa||x.title)+'</strong></a>';
-  }).join("");
+  $("#related-grid").innerHTML=rel.map(relatedCard).join("");
+  $("#related-grid").querySelectorAll(".related-media img").forEach(function(img){
+   img.addEventListener("error",function(){
+    var card=img.closest(".related-card"),fallback=document.createElement("div"),story=all.find(function(x){return card.getAttribute("href")==="../"+encodeURIComponent(x.id)+"/"});
+    if(!story)return;
+    var cm=C[story.category]||C.collecting;
+    fallback.className="related-media related-media-fallback cat-"+story.category;
+    fallback.innerHTML="<b>"+cm[1]+"</b><span>"+esc(cm[0])+"</span>";
+    img.parentNode.replaceWith(fallback);
+   },{once:true});
+  });
  }
  document.querySelectorAll(".video-buttons button").forEach(function(b){
   b.addEventListener("click",function(){
@@ -109,6 +144,7 @@ try{
  if(t)document.documentElement.dataset.theme=t;
  else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.dataset.theme="dark";
 }catch(e){}
+injectFooter();
 $("#theme-toggle").addEventListener("click",function(){
  var n=document.documentElement.dataset.theme==="dark"?"light":"dark";
  document.documentElement.dataset.theme=n;
