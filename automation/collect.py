@@ -186,27 +186,46 @@ def extract_media_and_text(url):
                 images.append(val)
 
         videos = []
+        video_urls = []
         for iframe in soup.select("iframe[src]"):
-            src = iframe.get("src", "")
-            m = re.search(r"(?:youtube(?:-nocookie)?\.com/embed/|youtu\.be/)([\w-]{11})", src)
-            if m:
-                videos.append({
-                    "provider": "youtube",
-                    "id": m.group(1),
-                    "url": "https://www.youtube.com/watch?v=" + m.group(1),
-                })
+            if iframe.get("src"):
+                video_urls.append(iframe.get("src"))
+        for node in soup.select('a[href*="youtube.com/watch"], a[href*="youtu.be/"], a[href*="vimeo.com/"], a[href*="dailymotion.com/video/"]'):
+            if node.get("href"):
+                video_urls.append(node.get("href"))
+        for selector in ('meta[property="og:video"]', 'meta[property="og:video:url"]', 'meta[name="twitter:player"]'):
+            node = soup.select_one(selector)
+            if node and node.get("content"):
+                video_urls.append(node.get("content"))
+        for script in soup.select('script[type="application/ld+json"]'):
+            raw = script.string or script.get_text()
+            if not raw or "VideoObject" not in raw:
                 continue
-            m = re.search(r"player\.vimeo\.com/video/(\d+)", src)
+            for match in re.findall(r'https?://[^"\\s]+', raw):
+                if any(host in match for host in ("youtube.com", "youtu.be", "vimeo.com", "dailymotion.com")):
+                    video_urls.append(match.replace("\\/", "/"))
+
+        seen_video = set()
+        for src in video_urls:
+            provider = vid = url = ""
+            m = re.search(r"(?:youtube(?:-nocookie)?\.com/(?:embed/|watch\?v=)|youtu\.be/)([\w-]{11})", src)
             if m:
-                videos.append({"provider": "vimeo", "id": m.group(1), "url": "https://vimeo.com/" + m.group(1)})
-                continue
-            m = re.search(r"dailymotion\.com/embed/video/([\w-]+)", src)
-            if m:
-                videos.append({
-                    "provider": "dailymotion",
-                    "id": m.group(1),
-                    "url": "https://www.dailymotion.com/video/" + m.group(1),
-                })
+                provider, vid = "youtube", m.group(1)
+                url = "https://www.youtube.com/watch?v=" + vid
+            if not provider:
+                m = re.search(r"(?:player\.)?vimeo\.com/(?:video/)?(\d+)", src)
+                if m:
+                    provider, vid = "vimeo", m.group(1)
+                    url = "https://vimeo.com/" + vid
+            if not provider:
+                m = re.search(r"dailymotion\.com/(?:embed/)?video/([\w-]+)", src)
+                if m:
+                    provider, vid = "dailymotion", m.group(1)
+                    url = "https://www.dailymotion.com/video/" + vid
+            key = (provider, vid)
+            if provider and key not in seen_video:
+                seen_video.add(key)
+                videos.append({"provider": provider, "id": vid, "url": url})
 
         paragraphs = [clean(p.get_text(" ", strip=True)) for p in soup.select("article p")]
         if len(" ".join(paragraphs)) < 500:
