@@ -51,6 +51,27 @@
       "ceid": "IT:it",
       "country": "Italy",
       "lang": "it"
+    },
+    {
+      "hl": "fa",
+      "gl": "IR",
+      "ceid": "IR:fa",
+      "country": "Iran",
+      "lang": "fa"
+    },
+    {
+      "hl": "en-CA",
+      "gl": "CA",
+      "ceid": "CA:en",
+      "country": "Canada",
+      "lang": "en"
+    },
+    {
+      "hl": "en-AU",
+      "gl": "AU",
+      "ceid": "AU:en",
+      "country": "Australia",
+      "lang": "en"
     }
   ],
   "categories": {
@@ -95,7 +116,7 @@
       "it": "auto d'epoca restauro"
     },
     "design": {
-      "en": "retro design mid-century design vintage furniture archive",
+      "en": "retro design mid-century design vintage furniture archive vintage advertising packaging analog photography",
       "ja": "レトロデザイン ミッドセンチュリー 家具",
       "tr": "retro tasarım vintage mobilya",
       "de": "Retro Design Mid Century Möbel",
@@ -111,7 +132,7 @@
       "it": "moda vintage archivio retrò"
     },
     "collecting": {
-      "en": "vintage auction collectible archive memorabilia",
+      "en": "vintage auction collectible archive memorabilia vintage toys analog camera retro memorabilia",
       "ja": "ヴィンテージ オークション コレクション",
       "tr": "vintage müzayede koleksiyon",
       "de": "Vintage Auktion Sammlerstück",
@@ -119,7 +140,7 @@
       "it": "asta vintage collezionismo"
     },
     "products": {
-      "en": "retro product retro-inspired gadget reissue product",
+      "en": "retro product retro-inspired gadget reissue product retro appliance analog camera vintage-inspired product",
       "ja": "レトロ製品 復刻 家電 レトロ風",
       "tr": "retro ürün nostaljik ürün yeniden üretim",
       "de": "Retro Produkt Neuauflage Retro Gerät",
@@ -127,12 +148,16 @@
       "it": "prodotto retrò riedizione gadget vintage"
     },
     "diners": {
-      "en": "retro diner classic diner vintage cafe restaurant opening restoration",
+      "en": "retro diner classic diner vintage cafe restaurant opening restoration retro restaurant vintage restaurant 1950s diner roadside diner",
       "ja": "レトロ喫茶 アメリカンダイナー 開店",
       "tr": "retro diner nostaljik kafe restoran",
       "de": "Retro Diner klassisches Café Restaurant",
       "fr": "diner rétro café vintage restaurant",
       "it": "diner retrò caffè vintage ristorante"
+    },
+    "iran": {
+      "fa": "نوستالژی ایران آرشیو قدیمی تبلیغات قدیمی ایران رادیو قدیمی خودرو کلاسیک ایران",
+      "en": "Iran retro vintage Iran nostalgia archive classic car Iran old advertising"
     }
   },
   "directFeeds": [
