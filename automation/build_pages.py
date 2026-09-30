@@ -6,6 +6,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "data" / "news.json").read_text("utf-8"))
 CHARACTERS_FILE = ROOT / "data" / "characters.json"
 CHARACTERS = json.loads(CHARACTERS_FILE.read_text("utf-8")).get("items", []) if CHARACTERS_FILE.exists() else []
+FRANCHISES_FILE = ROOT / "data" / "franchises.json"
+FRANCHISES = json.loads(FRANCHISES_FILE.read_text("utf-8")).get("items", []) if FRANCHISES_FILE.exists() else []
 BASE = "https://nimania.github.io/retrokhaneh"
 
 def e(value):
@@ -22,7 +24,7 @@ def character_page(char):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{BASE}/characters/{e(cid)}/">
 <link rel="stylesheet" href="../../style.css?v=20260930portal4">
-<link rel="stylesheet" href="../characters.css?v=20260930chars1">
+<link rel="stylesheet" href="../characters.css?v=20260930chars2">
 <meta property="og:type" content="profile"><meta property="og:site_name" content="رتروخانه">
 <meta property="og:title" content="{e(title)} | رتروپدیا"><meta property="og:description" content="{e(desc)}">
 </head><body>
@@ -31,7 +33,28 @@ def character_page(char):
 <div class="header-actions"><a class="icon-button" href="../">◫</a><a class="icon-button" href="../../">⌂</a></div>
 </header>
 <main id="character-page" class="character-page"><div class="character-loading">در حال بارگذاری شخصیت…</div></main>
-<script src="../../character.js?v=20260930chars1" defer></script>
+<script src="../../character.js?v=20260930chars2" defer></script>
+</body></html>"""
+
+def franchise_page(franchise):
+    title = franchise.get("nameFa") or franchise.get("name") or "فرنچایز رترو"
+    desc = (franchise.get("summaryFa") or "")[:180]
+    fid = franchise.get("id") or ""
+    return f"""<!doctype html>
+<html lang="fa" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{e(title)} | فرنچایزها | رتروخانه</title>
+<meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{BASE}/franchises/{e(fid)}/">
+<link rel="stylesheet" href="../../style.css?v=20260930portal4">
+<link rel="stylesheet" href="../../characters/characters.css?v=20260930chars2">
+</head><body>
+<header class="app-header">
+<a class="brand" href="../../"><span class="retro-sign"><span class="retro-sign-word">رتروخانه</span><span class="retro-sign-star">✦</span></span><span class="brand-copy"><small>RETROPEDIA · FRANCHISE</small></span></a>
+<div class="header-actions"><a class="icon-button" href="../">◫</a><a class="icon-button" href="../../">⌂</a></div>
+</header>
+<main id="franchise-page" class="character-page"><div class="character-loading">در حال بارگذاری فرنچایز…</div></main>
+<script src="../../franchise.js?v=20260930fr1" defer></script>
 </body></html>"""
 
 def article_page(item):
@@ -90,10 +113,18 @@ urls = [
     (BASE + "/", "1.0"),
     (BASE + "/play/", "0.8"),
     (BASE + "/characters/", "0.9"),
+    (BASE + "/franchises/", "0.85"),
 ]
 for char in CHARACTERS:
     if char.get("id"):
         urls.append((f"{BASE}/characters/{char['id']}/", "0.7"))
+for franchise in FRANCHISES:
+    if franchise.get("id"):
+        urls.append((f"{BASE}/franchises/{franchise['id']}/", "0.7"))
+        target = ROOT / "franchises" / franchise["id"]
+        target.mkdir(parents=True, exist_ok=True)
+        (target / "index.html").write_text(franchise_page(franchise), "utf-8")
+
 for char in CHARACTERS:
     if not char.get("id"):
         continue
