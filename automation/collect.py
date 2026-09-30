@@ -2,7 +2,7 @@
 import os, re, json, html, hashlib, time
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
-from urllib.parse import quote, urlparse
+from urllib.parse import quote, urlparse, urljoin
 from difflib import SequenceMatcher
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.utils import parsedate_to_datetime
@@ -105,7 +105,7 @@ def discover_google(job):
     for entry in feed["entries"][:7]:
         out.append({
             "title": clean(entry.get("title", "")),
-            "url": entry.get("link", ""),
+            "url": urljoin(feed_cfg["url"], entry.get("link", "")),
             "published": iso_date(entry.get("published", "")),
             "excerpt": clean(entry.get("summary", ""))[:700],
             "source": entry.get("source") or "Google News",
@@ -299,10 +299,46 @@ def _gemini_generate(prompt, key, model):
         return None
     preferred = (model or "gemini-2.5-flash").rsplit("/", 1)[-1]
 
+    def score_model(name):
+        n = name.lower()
+        score = 0
+        if "flash" in n:
+            score += 100
+        if "2.5" in n:
+            score += 30
+        elif "2.0" in n:
+            score += 20
+        if "lite" in n:
+            score += 5
+        if "preview" in n or "exp" in n:
+            score -= 40
+        if any(x in n for x in ("vision", "image", "tts", "embedding", "aqa", "gemma")):
+            score -= 200
+        return score
+
+    def list_models(api_key):
+        response = requests.get(
+            base + "/models",
+            headers={"x-goog-api-key": api_key},
+            timeout=25,
+        )
+        response.raise_for_status()
+        out = []
+        for row in response.json().get("models", []):
+            if "generateContent" not in row.get("supportedGenerationMethods", []):
+                continue
+            name = row.get("name", "").rsplit("/", 1)[-1]
+            if name:
+                out.append(name)
+        return sorted(out, key=score_model, reverse=True)
+
     def call(api_key, chosen):
         payload = {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2},
+            "generationConfig": {
+                "responseMimeType": "application/json",
+                "temperature": 0.2,
+            },
         }
         return requests.post(
             f"{base}/models/{chosen}:generateContent",
@@ -311,34 +347,59 @@ def _gemini_generate(prompt, key, model):
             timeout=90,
         )
 
-    for api_key in keys:
-        chosen = preferred
-        response = call(api_key, chosen)
-        if response.status_code == 404:
-            try:
-                listing = requests.get(base + "/models", headers={"x-goog-api-key": api_key}, timeout=25)
-                listing.raise_for_status()
-                available = []
-                for row in listing.json().get("models", []):
-                    methods = row.get("supportedGenerationMethods", [])
-                    name = row.get("name", "").rsplit("/", 1)[-1]
-                    if "generateContent" in methods and name and not any(x in name.lower() for x in ("image", "vision", "embedding", "tts")):
-                        available.append(name)
-                available.sort(key=lambda n: (("flash" in n.lower()), ("preview" not in n.lower()), n), reverse=True)
-                if available:
-                    chosen = available[0]
-                    response = call(api_key, chosen)
-            except Exception as exc:
-                print("gemini-list-fail", exc)
-        if response.status_code == 429:
-            continue
+    for key_index, api_key in enumerate(keys):
         try:
-            response.raise_for_status()
-            parts = response.json()["candidates"][0]["content"]["parts"]
-            raw = "".join(p.get("text", "") for p in parts)
-            return _parse_ai_json(raw)
+            available = list_models(api_key)
         except Exception as exc:
-            print("gemini-fail", exc)
+            print("gemini-model-list-fail", type(exc).__name__)
+            available = []
+
+        models = []
+        if preferred:
+            models.append(preferred)
+        for name in available:
+            if name not in models:
+                models.append(name)
+        if not models:
+            models = ["gemini-2.5-flash", "gemini-2.5-flash-lite"]
+
+        # Limit the fallback chain to sensible text models.
+        models = models[:5]
+        last_status = None
+
+        for chosen in models:
+            for attempt in range(4):
+                try:
+                    response = call(api_key, chosen)
+                    last_status = response.status_code
+                    if response.status_code == 200:
+                        parts = response.json().get("candidates", [{}])[0].get("content", {}).get("parts", [])
+                        raw = "".join(p.get("text", "") for p in parts)
+                        parsed = _parse_ai_json(raw)
+                        if parsed:
+                            print("gemini-ok", chosen)
+                            return parsed
+                        print("gemini-empty-json", chosen)
+                        break
+
+                    if response.status_code == 404:
+                        print("gemini-model-unavailable", chosen)
+                        break
+
+                    if response.status_code == 429:
+                        wait = min(2 * (attempt + 1), 8)
+                        print("gemini-rate-limited", chosen, "retry-in", wait, "s")
+                        time.sleep(wait)
+                        continue
+
+                    print("gemini-http-error", response.status_code, chosen)
+                    break
+                except Exception as exc:
+                    print("gemini-request-fail", chosen, type(exc).__name__)
+                    break
+
+        print("gemini-key-exhausted", key_index + 1, "last-status", last_status)
+
     return None
 
 def _openai_compatible_generate(prompt, key, model):
