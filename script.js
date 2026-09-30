@@ -38,7 +38,19 @@
 
   function visual(item){
     var meta=categoryMeta[item.category]||categoryMeta.collecting;
-    return '<div class="story-visual cat-'+esc(item.category)+'" data-code="'+esc(meta.code)+'"><span class="story-icon" aria-hidden="true">'+meta.icon+'</span><small>'+esc(meta.label)+'</small></div>';
+    var img=item.image||((item.images&&item.images.length)?item.images[0]:"");
+    var photo=img?'<img class="story-photo-img" src="'+esc(img)+'" alt="" loading="lazy" referrerpolicy="no-referrer">':"";
+    return '<div class="story-visual '+(img?"story-photo ":"")+'cat-'+esc(item.category)+'" data-code="'+esc(meta.code)+'"><span class="story-icon story-fallback-icon" aria-hidden="true">'+meta.icon+'</span>'+photo+'<small>'+esc(meta.label)+'</small></div>';
+  }
+
+  function activateStoryImages(root){
+    (root||document).querySelectorAll(".story-photo-img").forEach(function(img){
+      img.addEventListener("error",function(){
+        img.style.display="none";
+        var box=img.closest(".story-visual");
+        if(box) box.classList.remove("story-photo");
+      },{once:true});
+    });
   }
 
   function metaLine(item){
@@ -62,6 +74,8 @@
     $("#top-stories").innerHTML=featured.slice(1,3).map(function(item){
       return '<article class="mini-story">'+visual(item)+'<div class="mini-copy">'+metaLine(item)+'<h3>'+esc(item.titleFa||item.title)+'</h3><p>'+esc(item.excerptFa||item.excerpt)+'</p>'+externalLink(item,"منبع")+'</div></article>';
     }).join("");
+    activateStoryImages(el);
+    activateStoryImages($("#top-stories"));
   }
 
   function filtered(){
@@ -80,6 +94,7 @@
     $("#news-feed").innerHTML=items.map(function(item){
       return '<article class="feed-card">'+visual(item)+'<div class="feed-copy">'+metaLine(item)+'<h3><a href="news/'+encodeURIComponent(item.id)+'/">'+esc(item.titleFa||item.title)+'</a></h3><p>'+esc(item.excerptFa||item.excerpt)+'</p><div class="feed-foot"><span>'+esc(item.source)+'</span><span><a href="news/'+encodeURIComponent(item.id)+'/">خواندن خبر</a> · <a href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">منبع ↗</a></span></div></div></article>';
     }).join("");
+    activateStoryImages($("#news-feed"));
   }
 
   function categoryCounts(){
