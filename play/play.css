@@ -106,3 +106,52 @@ var(--bg)}
  .pregame-meta{grid-template-columns:1fr}
  .pregame-meta div{padding:9px 11px}
 }
+
+/* Player progress: records + achievements */
+.progress-zone{margin-top:34px}
+.progress-head{margin-bottom:16px}
+.progress-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.progress-stat{
+  position:relative;overflow:hidden;padding:20px;border:1px solid var(--line);border-radius:18px;
+  background:var(--surface);box-shadow:var(--shadow)
+}
+.progress-stat:after{content:"";position:absolute;width:90px;height:90px;left:-25px;bottom:-35px;border-radius:50%;background:var(--brand-soft);opacity:.7}
+.progress-stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:9px}
+.progress-stat strong{display:block;font:900 34px/1 monospace;color:var(--green);direction:ltr;text-align:right}
+.progress-stat strong b{font:inherit}
+.progress-stat>span{display:block;margin-top:8px;color:var(--brand);font:800 8px/1 monospace;letter-spacing:1px;direction:ltr;text-align:right}
+.progress-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:12px}
+.records-panel,.achievements-panel{padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+.panel-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}
+.panel-title span{color:var(--brand);font:800 8px/1 monospace;letter-spacing:1px}
+.panel-title h3{margin:0;font-size:20px}
+.records-list{display:grid;gap:7px}
+.record-row{
+  display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:11px;padding:11px 12px;
+  border:1px solid var(--line);border-radius:13px;background:var(--surface-2)
+}
+.record-rank{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:var(--green);color:#fff;font:900 10px/1 monospace}
+.record-copy{min-width:0}.record-copy strong,.record-copy small{display:block}.record-copy strong{font-size:12px}.record-copy small{margin-top:3px;color:var(--muted);font-size:8px;direction:ltr;text-align:right}
+.record-score{text-align:left}.record-score strong{display:block;color:var(--brand);font:900 19px/1 monospace}.record-score small{display:block;margin-top:4px;color:var(--muted);font-size:8px}
+.achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.achievement-card{
+  position:relative;display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center;min-height:82px;padding:12px;
+  border:1px solid var(--line);border-radius:14px;background:var(--surface-2);overflow:hidden
+}
+.achievement-card.locked{opacity:.48;filter:saturate(.45)}
+.achievement-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#173d39;color:#e8b94e;font-size:23px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.achievement-card.unlocked .achievement-icon{background:#e85b35;color:#fff3d8;box-shadow:0 7px 16px rgba(232,91,53,.2)}
+.achievement-copy strong,.achievement-copy small{display:block}.achievement-copy strong{font-size:11px}.achievement-copy small{margin-top:5px;color:var(--muted);font-size:9px;line-height:1.6}
+.achievement-state{position:absolute;left:9px;top:8px;color:var(--muted);font:800 7px/1 monospace;letter-spacing:.5px}
+.achievement-card.unlocked .achievement-state{color:var(--brand)}
+.achievement-toast{
+  position:fixed;z-index:120;left:50%;bottom:22px;transform:translate(-50%,130%);opacity:0;
+  display:flex;align-items:center;gap:12px;min-width:min(380px,calc(100% - 28px));padding:13px 16px;
+  border:1px solid rgba(255,255,255,.16);border-radius:16px;background:#173d39;color:#fff3d8;
+  box-shadow:0 18px 50px rgba(0,0,0,.3);transition:transform .34s cubic-bezier(.2,.9,.2,1),opacity .34s ease
+}
+.achievement-toast.show{transform:translate(-50%,0);opacity:1}
+.achievement-toast-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#e85b35;color:#fff;font-size:20px}
+.achievement-toast small{display:block;color:#e8b94e;font:800 7px/1 monospace;letter-spacing:1px}.achievement-toast strong{display:block;margin-top:5px;font-size:12px}
+@media(max-width:820px){.progress-grid{grid-template-columns:1fr}.achievement-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.progress-summary{grid-template-columns:1fr 1fr}.progress-stat:last-child{grid-column:1/-1}.achievement-grid{grid-template-columns:1fr}.records-panel,.achievements-panel{padding:14px}}
