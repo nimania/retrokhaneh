@@ -45,9 +45,59 @@ function readySequence(done){
  setTimeout(function(){f.textContent="GO!";f.className="ready-flash show go";sfx("start")},650);
  setTimeout(function(){f.className="ready-flash";f.textContent="";done()},1250);
 }
-function bestKey(){return "retrokhaneh-best-"+current}
-function getBest(){return Number(localStorage.getItem(bestKey())||0)}
-function setScore(v){score=Math.max(0,Math.floor(v));document.getElementById("score").textContent=fa(score);if(score>getBest()){localStorage.setItem(bestKey(),score);document.getElementById("best").textContent=fa(score)}}
+function bestKey(id){return "retrokhaneh-best-"+(id||current)}
+function getBest(id){try{return Number(localStorage.getItem(bestKey(id))||0)}catch(e){return 0}}
+function playsKey(id){return "retrokhaneh-plays-"+id}
+function getPlays(id){try{return Number(localStorage.getItem(playsKey(id))||0)}catch(e){return 0}}
+function addPlay(id){try{localStorage.setItem(playsKey(id),String(getPlays(id)+1))}catch(e){}renderProgress();checkAchievements()}
+function getUnlocked(){try{return JSON.parse(localStorage.getItem("retrokhaneh-achievements")||"[]")}catch(e){return []}}
+function saveUnlocked(list){try{localStorage.setItem("retrokhaneh-achievements",JSON.stringify(list))}catch(e){}}
+function totalBest(){return Object.keys(meta).reduce(function(n,id){return n+getBest(id)},0)}
+function totalPlays(){return Object.keys(meta).reduce(function(n,id){return n+getPlays(id)},0)}
+var achievements=[
+ {id:"first-credit",icon:"●",title:"اولین سکه",copy:"اولین دست را در اتاق بازی شروع کن.",test:function(){return totalPlays()>=1}},
+ {id:"tour",icon:"✦",title:"گردشگر آرکید",copy:"هر چهار بازی را حداقل یک‌بار امتحان کن.",test:function(){return Object.keys(meta).every(function(id){return getPlays(id)>0})}},
+ {id:"rally-five",icon:"↔",title:"دوئل‌باز",copy:"در رالی رترو به ۵ امتیاز برس.",test:function(){return getBest("pong")>=5}},
+ {id:"snake-fifty",icon:"≈",title:"مار نئونی",copy:"در Neon Snake رکورد ۵۰ بزن.",test:function(){return getBest("snake")>=50}},
+ {id:"tape-250",icon:"▦",title:"نوارشکن حرفه‌ای",copy:"در Cassette Breaker رکورد ۲۵۰ بزن.",test:function(){return getBest("breakout")>=250}},
+ {id:"space-200",icon:"▲",title:"خلبان ۷۶",copy:"در Space 76 رکورد ۲۰۰ بزن.",test:function(){return getBest("space")>=200}},
+ {id:"ten-plays",icon:"10",title:"مشتری ثابت",copy:"۱۰ دست بازی در رتروخانه انجام بده.",test:function(){return totalPlays()>=10}},
+ {id:"score-500",icon:"★",title:"سلطان آرکید",copy:"مجموع رکوردهایت را به ۵۰۰ برسان.",test:function(){return totalBest()>=500}}
+];
+function showAchievement(a){
+ var toast=document.getElementById("achievement-toast"),title=document.getElementById("achievement-toast-title");
+ if(!toast||!title)return;title.textContent=a.title;toast.classList.add("show");beep(660,.08,"square",.035);setTimeout(function(){beep(880,.13,"square",.04)},110);
+ clearTimeout(showAchievement._t);showAchievement._t=setTimeout(function(){toast.classList.remove("show")},2800);
+}
+function checkAchievements(){
+ var unlocked=getUnlocked(),fresh=[];
+ achievements.forEach(function(a){if(unlocked.indexOf(a.id)<0&&a.test()){unlocked.push(a.id);fresh.push(a)}});
+ if(fresh.length){saveUnlocked(unlocked);fresh.forEach(function(a,i){setTimeout(function(){showAchievement(a)},i*3000)})}
+ renderProgress();
+}
+function renderProgress(){
+ var games=[
+  {id:"pong",fa:"رالی رترو",en:"RETRO RALLY"},
+  {id:"snake",fa:"مار نئونی",en:"NEON SNAKE"},
+  {id:"breakout",fa:"نوارشکن",en:"CASSETTE BREAKER"},
+  {id:"space",fa:"فضا ۷۶",en:"SPACE 76"}
+ ].sort(function(a,b){return getBest(b.id)-getBest(a.id)});
+ var list=document.getElementById("records-list");
+ if(list)list.innerHTML=games.map(function(g,i){
+  return '<div class="record-row"><span class="record-rank">'+(i+1)+'</span><div class="record-copy"><strong>'+g.fa+'</strong><small>'+g.en+'</small></div><div class="record-score"><strong>'+fa(getBest(g.id))+'</strong><small>'+fa(getPlays(g.id))+' دست</small></div></div>';
+ }).join("");
+ var total=document.getElementById("total-best"),plays=document.getElementById("total-plays"),count=document.getElementById("achievement-count"),grid=document.getElementById("achievement-grid");
+ if(total)total.textContent=fa(totalBest());if(plays)plays.textContent=fa(totalPlays());
+ var unlocked=getUnlocked();if(count)count.textContent=fa(unlocked.length);
+ if(grid)grid.innerHTML=achievements.map(function(a){
+  var on=unlocked.indexOf(a.id)>=0;
+  return '<div class="achievement-card '+(on?"unlocked":"locked")+'"><span class="achievement-icon">'+a.icon+'</span><div class="achievement-copy"><strong>'+a.title+'</strong><small>'+a.copy+'</small></div><span class="achievement-state">'+(on?"UNLOCKED":"LOCKED")+'</span></div>';
+ }).join("");
+}
+function setScore(v){
+ score=Math.max(0,Math.floor(v));document.getElementById("score").textContent=fa(score);
+ if(score>getBest()){try{localStorage.setItem(bestKey(),score)}catch(e){}document.getElementById("best").textContent=fa(score);renderProgress();checkAchievements()}
+}
 function showBest(){document.getElementById("best").textContent=fa(getBest())}
 function overlay(title,copy,button){
  var m=meta[current];
@@ -99,7 +149,7 @@ function Space(){
 }
 function createGame(){if(current==="pong")return new Pong();if(current==="snake")return new Snake();if(current==="breakout")return new Breakout();return new Space()}
 function setup(id){current=id;running=false;paused=false;game=createGame();setScore(0);showBest();var m=meta[id];document.getElementById("game-label").textContent=m.label;document.getElementById("game-title").textContent=m.title;document.getElementById("control-hint").textContent=m.hint;overlay(m.title,m.copy,m.button);document.querySelectorAll(".game-card").forEach(function(b){b.classList.toggle("active",b.dataset.game===id)});game.draw()}
-function start(){game=createGame();setScore(0);running=false;paused=false;hideOverlay();readySequence(function(){running=true;last=performance.now();if(!raf)raf=requestAnimationFrame(loop)})}
+function start(){game=createGame();setScore(0);addPlay(current);running=false;paused=false;hideOverlay();readySequence(function(){running=true;last=performance.now();if(!raf)raf=requestAnimationFrame(loop)})}
 function loop(t){raf=requestAnimationFrame(loop);var dt=Math.min(.035,(t-last)/1000||0);last=t;if(!running||paused)return;game.update(dt);game.draw()}
 function togglePause(){if(!running)return;paused=!paused;if(paused)overlay("توقف","برای ادامه دوباره دکمهٔ توقف یا P را بزن.","ادامه");else hideOverlay()}
 document.querySelectorAll(".game-card").forEach(function(b){b.addEventListener("click",function(){setup(b.dataset.game);document.getElementById("arcade").scrollIntoView({behavior:"smooth",block:"start"})})});
@@ -109,6 +159,8 @@ document.getElementById("pause-btn").addEventListener("click",togglePause);
 document.getElementById("fullscreen-btn").addEventListener("click",function(){var el=document.getElementById("screen-wrap");if(document.fullscreenElement)document.exitFullscreen();else if(el.requestFullscreen)el.requestFullscreen()});
 document.getElementById("mute-btn").addEventListener("click",function(){muted=!muted;try{localStorage.setItem("retrokhaneh-muted",muted?"1":"0")}catch(e){}updateMuteButton();if(!muted)beep(520,.06,"square",.025)});
 updateMuteButton();
+renderProgress();
+checkAchievements();
 window.addEventListener("keydown",function(e){if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","Space"].includes(e.code))e.preventDefault();keys[e.code]=true;if(e.code==="KeyP")togglePause()},{passive:false});
 window.addEventListener("keyup",function(e){keys[e.code]=false});
 document.querySelectorAll("[data-key]").forEach(function(b){function on(e){e.preventDefault();keys[b.dataset.key]=true}function off(e){e.preventDefault();keys[b.dataset.key]=false}b.addEventListener("pointerdown",on);b.addEventListener("pointerup",off);b.addEventListener("pointercancel",off);b.addEventListener("pointerleave",off)});
