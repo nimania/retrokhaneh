@@ -2,12 +2,6 @@ name: Update retro news
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/retro-news.yml"
-      - "automation/**"
-      - "article.js"
   schedule:
     - cron: "23 */4 * * *"
 
