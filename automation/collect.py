@@ -13,7 +13,9 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "news.json"
+CHARACTERS_PATH = ROOT / "data" / "characters.json"
 CFG = json.loads((ROOT / "automation" / "sources.json").read_text("utf-8"))
+CHARACTERS = json.loads(CHARACTERS_PATH.read_text("utf-8")).get("items", []) if CHARACTERS_PATH.exists() else []
 UA = "Mozilla/5.0 (compatible; RetrokhanehBot/1.0; +https://nimania.github.io/retrokhaneh/)"
 SESSION = requests.Session()
 SESSION.headers.update({"User-Agent": UA, "Accept-Language": "en-US,en;q=0.7"})
@@ -43,6 +45,31 @@ def iso_date(value):
 def make_id(title, url):
     base = re.sub(r"[^a-z0-9]+", "-", title.lower())[:55].strip("-") or "story"
     return base + "-" + hashlib.sha1(url.encode("utf-8")).hexdigest()[:7]
+
+def detect_characters(item):
+    if item.get("category") not in ("gaming", "cinema"):
+        return []
+    hay = " ".join([
+        item.get("title") or "",
+        item.get("titleFa") or "",
+        item.get("excerpt") or "",
+        item.get("excerptFa") or "",
+        " ".join(item.get("bodyFa") or []),
+    ]).lower()
+    found = []
+    for char in CHARACTERS:
+        aliases = char.get("aliases") or []
+        for alias in aliases:
+            a = str(alias or "").strip().lower()
+            if len(a) < 3:
+                continue
+            # Avoid the generic English word "link" unless Zelda is also present.
+            if a == "link" and "zelda" not in hay:
+                continue
+            if a in hay:
+                found.append(char.get("id"))
+                break
+    return [x for x in found if x]
 
 def _child_text(node, names):
     for name in names:
@@ -542,12 +569,18 @@ def main():
             print("skip-thin-enrichment", item["title"])
             continue
         item["ai"] = True
+        item["characters"] = detect_characters(item)
+        if not item["characters"]:
+            item.pop("characters", None)
         item.pop("direct", None)
         items.insert(0, item)
 
     items = sorted(items, key=lambda x: x.get("published") or "", reverse=True)[: CFG.get("keepItems", 300)]
     for item in items:
         item.pop("direct", None)
+        detected = detect_characters(item)
+        if detected:
+            item["characters"] = detected
     after_items = json.dumps(items, ensure_ascii=False, sort_keys=True)
     if after_items != before_items:
         data["items"] = items
