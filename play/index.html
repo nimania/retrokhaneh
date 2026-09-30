@@ -8,7 +8,7 @@
   <meta name="description" content="اتاق بازی رتروخانه؛ بازی‌های کوچک و قانونی با حال‌وهوای آرکید و رترو، مستقیم در مرورگر.">
   <link rel="canonical" href="https://nimania.github.io/retrokhaneh/play/">
   <link rel="stylesheet" href="../style.css?v=20260930portal3">
-  <link rel="stylesheet" href="play.css?v=20260930play3">
+  <link rel="stylesheet" href="play.css?v=20260930play4">
 </head>
 <body class="game-room-page">
 <header class="app-header game-header">
@@ -117,6 +117,35 @@
     </div>
   </section>
 
+  <section id="records" class="progress-zone" aria-labelledby="records-title">
+    <div class="game-section-head progress-head">
+      <div><span>PLAYER PROFILE · LOCAL</span><h2 id="records-title">تالار رکوردها</h2></div>
+      <p>رکوردها و نشان‌ها روی همین مرورگر ذخیره می‌شوند.</p>
+    </div>
+
+    <div class="progress-summary">
+      <div class="progress-stat"><small>مجموع رکوردها</small><strong id="total-best">۰</strong><span>TOTAL SCORE</span></div>
+      <div class="progress-stat"><small>دست‌های بازی‌شده</small><strong id="total-plays">۰</strong><span>PLAYS</span></div>
+      <div class="progress-stat"><small>نشان‌های بازشده</small><strong><b id="achievement-count">۰</b> / <b id="achievement-total">۸</b></strong><span>ACHIEVEMENTS</span></div>
+    </div>
+
+    <div class="progress-grid">
+      <div class="records-panel">
+        <div class="panel-title"><span>HIGH SCORES</span><h3>رکوردهای من</h3></div>
+        <div id="records-list" class="records-list"></div>
+      </div>
+      <div class="achievements-panel">
+        <div class="panel-title"><span>BADGES</span><h3>نشان‌ها</h3></div>
+        <div id="achievement-grid" class="achievement-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="achievement-toast" class="achievement-toast" role="status" aria-live="polite">
+    <span class="achievement-toast-icon">★</span>
+    <div><small>ACHIEVEMENT UNLOCKED</small><strong id="achievement-toast-title">نشان تازه</strong></div>
+  </div>
+
   <section class="arcade-note">
     <strong>چرا ROM نداریم؟</strong>
     <p>این نسخه از بازی‌های کوچکِ ساخته‌شده برای خود رتروخانه استفاده می‌کند. بعداً می‌توان بازی‌های homebrew، متن‌باز یا آثاری را که اجازهٔ انتشار مرورگری دارند هم به کتابخانه اضافه کرد.</p>
@@ -130,11 +159,11 @@
       <p>خبر، فرهنگ و حالا بازی؛ گذشته‌ای که هنوز زنده است.</p>
     </div>
     <div class="footer-col"><strong>برگرد</strong><a href="../">صفحهٔ اول</a><a href="../#latest">آخرین خبرها</a><a href="../#topics">موضوعات</a></div>
-    <div class="footer-col"><strong>اتاق بازی</strong><a href="#arcade">پونگ</a><a href="#arcade">مار</a><a href="#arcade">آجرشکن</a><a href="#arcade">نبرد فضایی</a></div>
+    <div class="footer-col"><strong>اتاق بازی</strong><a href="#arcade">بازی کن</a><a href="#records">تالار رکوردها</a><a href="#records">Achievementها</a><a href="#library-title">بازی‌ها</a></div>
     <div class="footer-bottom"><span>© ۱۴۰۵ رتروخانه · Game Room v1</span><a href="https://github.com/nimania/retrokhaneh" target="_blank" rel="noopener">GitHub ↗</a></div>
   </div>
 </footer>
 
-<script src="play.js?v=20260930play3" defer></script>
+<script src="play.js?v=20260930play4" defer></script>
 </body>
 </html>
