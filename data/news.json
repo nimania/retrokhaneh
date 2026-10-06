@@ -1,6 +1,31 @@
 {
-  "updatedAt": "2026-10-05T17:12:56.573540+00:00",
+  "updatedAt": "2026-10-06T01:20:06.728877+00:00",
   "items": [
+    {
+      "title": "At 19, founder raises $11M for Ghost, maker of a $3,499 computer for personal AI",
+      "url": "https://techcrunch.com/2026/10/05/at-19-ghost-founder-raises-11-million-to-build-a-3499-computer-for-your-personal-ai/",
+      "published": "2026-10-05",
+      "excerpt": "Ghost's first product is Core, a personal computer designed specifically for AI agents that can take actions on a person's behalf.",
+      "source": "Hardware | Read the latest product reviews on TechCrunch",
+      "category": "products",
+      "country": "United States",
+      "lang": "en",
+      "id": "at-19-founder-raises-11m-for-ghost-maker-of-a-3-499-com-a0e8c92",
+      "page": true,
+      "image": "https://techcrunch.com/wp-content/uploads/2026/10/Ghost-team.png?resize=1200,803",
+      "images": [
+        "https://techcrunch.com/wp-content/uploads/2026/10/Ghost-team.png?resize=1200,803"
+      ],
+      "titleFa": "شرکت نوپای گوست از رایانه شخصی ۳۴۹۹ دلاری خود به نام «کور» رونمایی کرد",
+      "excerptFa": "استارتاپ گوست با جذب ۱۱ میلیون دلار سرمایه اولیه، رایانه شخصی جدیدی را برای اجرای ابزارهای هوش مصنوعی معرفی کرد که قیمت آن ۳۴۹۹ دلار تعیین شده است.",
+      "bodyFa": [
+        "شرکت نوپای گوست اعلام کرد که پس از یک سال فعالیت در سکوت خبری، توانسته ۱۱ میلیون دلار سرمایه در دور اول جذب کند. رهبری این سرمایه‌گذاری توسط شرکت «آندریسن هوروویتز» انجام شده و چند سرمایه‌گذار دیگر نیز در آن مشارکت داشته‌اند.",
+        "محصول نخست این شرکت، رایانه‌ای به نام «کور» است که به طور اختصاصی برای اجرای عامل‌های هوش مصنوعی طراحی شده است. این دستگاه به عنوان یک دستیار پردازشی عمل می‌کند و می‌تواند وظایف مختلفی را از سوی کاربر انجام دهد.",
+        "مدیرعامل این شرکت، زین جاوید، اعلام کرد که این دستگاه شامل یک واحد پردازش گرافیکی انویدیا است و قیمت کلی آن ۳۴۹۹ دلار تعیین شده است. پیش‌سفارش این محصول از روز دوشنبه آغاز شده و برنامه‌ریزی شده است که ارسال محموله‌های آن در اواخر ماه اکتبر انجام گیرد.",
+        "رایانه «کور» فاقد صفحه نمایش است و به شکل یک جعبه طراحی شده که کاربران می‌توانند از طریق تلفن همراه یا برنامه مربوطه به آن دسترسی داشته باشند. این دستگاه سه مدل هوش مصنوعی را به صورت پیش‌فرض نصب شده دارد و امکان بارگذاری مدل‌های دیگر نیز برای کاربران فراهم شده است."
+      ],
+      "ai": true
+    },
     {
       "title": "Retronauts Episode 798: Resident Evil (2026)",
       "url": "/article/2565/retronauts-episode-798-resident-evil-2026",
