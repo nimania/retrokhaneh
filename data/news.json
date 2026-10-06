@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-10-06T18:28:19.183989+00:00",
+  "updatedAt": "2026-10-06T23:52:58.269331+00:00",
   "items": [
+    {
+      "title": "Apple is reportedly partnering with LG to launch a smart lock, thermostat, and doorbell",
+      "url": "https://techcrunch.com/2026/10/06/apple-is-reportedly-partnering-with-lg-to-launch-a-smart-lock-thermostat-and-doorbell/",
+      "published": "2026-10-06",
+      "excerpt": "Apple appears poised to push into the smart home market with a slate of new devices and a key partner.",
+      "source": "Hardware | Read the latest product reviews on TechCrunch",
+      "category": "products",
+      "country": "United States",
+      "lang": "en",
+      "id": "apple-is-reportedly-partnering-with-lg-to-launch-a-smar-96c8a1a",
+      "page": true,
+      "image": "https://techcrunch.com/wp-content/uploads/2026/08/Screenshot-2026-08-26-at-12.45.18-PM.png?resize=1200,927",
+      "images": [
+        "https://techcrunch.com/wp-content/uploads/2026/08/Screenshot-2026-08-26-at-12.45.18-PM.png?resize=1200,927"
+      ],
+      "titleFa": "گزارش‌ها از همکاری اپل و ال‌جی برای عرضه تجهیزات خانه هوشمند حکایت دارند",
+      "excerptFa": "بر اساس گزارش‌های تازه، شرکت اپل با همکاری ال‌جی در تدارک ورود جدی به بازار تجهیزات خانه هوشمند است و احتمالاً محصولات جدیدی مانند قفل هوشمند، ترموستات و زنگ در را روانه بازار خواهد کرد.",
+      "bodyFa": [
+        "بر پایه گزارش‌های منتشرشده، اپل قصد دارد با مشارکت شرکت ال‌جی، اکوسیستم جدیدی از تجهیزات خانه هوشمند را توسعه دهد. این مجموعه شامل دستگاه‌هایی نظیر قفل هوشمند، ترموستات و زنگ در می‌شود که به گفته منابع آگاه، برای هماهنگی با هاب هوشمند آینده این شرکت طراحی شده‌اند.",
+        "انتظار می‌رود هاب مرکزی جدید اپل دارای یک نمایشگر مربع‌شکل ۶ اینچی باشد که کاربران می‌توانند آن را روی میز قرار دهند یا روی دیوار نصب کنند. رونمایی از این هاب طبق گزارش‌ها برای تاریخ سیزدهم برنامه‌ریزی شده است.",
+        "علاوه بر اقلام یادشده، این دو شرکت در حال کار روی مدل‌های گوناگون دوربین‌های امنیتی شامل نمونه‌های مخصوص فضای سرپوشیده، فضای باز و مجهز به چراغ پروژکتور هستند. این تجهیزات ال‌جی ممکن است طی هفته آینده به طور رسمی معرفی یا رونمایی شوند.",
+        "نکته جالب توجه این است که با وجود توسعه مشترک محصولات، این دستگاه‌ها ظاهراً با نام تجاری ال‌جی به بازار عرضه خواهند شد. این اقدام اپل می‌تواند پاسخ یا رقابتی جدی با محصولات مشابه شرکت آامازون از جمله دوربین‌های امنیتی خانگی Ring به شمار رود.",
+        "تلاش برای گسترش حضور در بازار خانه‌های هوشمند، بخشی از رویکرد اخیر اپل برای ورود به حوزه‌های سخت‌افزاری جدید محسوب می‌شود. با این حال، جزئیات دقیق و قطعی درباره زمان‌بندی نهایی عرضه تمامی این محصولات همچنان در هاله‌ای از ابهام قرار دارد."
+      ],
+      "ai": true
+    },
     {
       "title": "Glimpse wants to give hardware companies an X-ray view of every critical part",
       "url": "https://techcrunch.com/2026/10/06/glimpse-wants-to-give-hardware-companies-an-x-ray-view-of-every-critical-part/",
