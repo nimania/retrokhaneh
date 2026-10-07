@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-10-06T23:52:58.269331+00:00",
+  "updatedAt": "2026-10-07T15:37:36.069563+00:00",
   "items": [
+    {
+      "title": "Ring’s first smart lock can be hand-cranked when its battery dies",
+      "url": "https://techcrunch.com/2026/10/07/rings-first-smart-lock-can-be-hand-cranked-when-its-battery-dies/",
+      "published": "2026-10-07",
+      "excerpt": "Amazon-owned Ring is entering the smart lock market with a device designed to tackle a common concern: getting locked out when the battery dies.",
+      "source": "Hardware | Read the latest product reviews on TechCrunch",
+      "category": "products",
+      "country": "United States",
+      "lang": "en",
+      "id": "ring-s-first-smart-lock-can-be-hand-cranked-when-its-ba-674ec31",
+      "page": true,
+      "image": "https://techcrunch.com/wp-content/uploads/2026/10/Ring_SmartLock_1600x900.jpg?resize=1200,675",
+      "images": [
+        "https://techcrunch.com/wp-content/uploads/2026/10/Ring_SmartLock_1600x900.jpg?resize=1200,675"
+      ],
+      "titleFa": "ورود شرکت رینگ به بازار قفل‌های هوشمند با قابلیت هندمیل برای رفع مشکل تخلیه باتری",
+      "excerptFa": "شرکت رینگ از نخستین قفل هوشمند خود رونمایی کرد که مجهز به یک دندانه دستی برای تولید انرژی در زمان تخلیه باتری است. این محصول جدید قرار است در سه ماهه نخست سال ۲۰۲۷ در ایالات متحده عرضه شود.",
+      "bodyFa": [
+        "شرکت رینگ، سازنده زنگ‌های در ویدئویی که تحت مالکیت آمازون فعالیت می‌کند، تصمیم گرفته است وارد بازار قفل‌های هوشمند شود. این محصول جدید با هدف حل یکی از نگرانی‌های رایج کاربران یعنی ترس از تمام شدن باتری و پشت در ماندن طراحی شده است.",
+        "جیمی سیمینوف، بنیان‌گذار رینگ، ایده این دستگاه را زمانی مطرح کرد که برای اقامتگاه تفریحی خود به دنبال قفل مناسبی می‌گشت. او نگران بود که باتری دستگاه در آن خانه کم‌رفت‌وآمد خالی شود و مهمانان نتوانند وارد ساختمان شوند.",
+        "برای رفع این مشکل، قفل هوشمند جدید رینگ به یک صفحه چرخان قدرت مجهز شده است. در صورتی که باتری دستگاه تمام شود، کاربر می‌تواند با چند بار چرخش این صفحه، انرژی لازم برای باز کردن قفل را تامین کند و سپس بسته باتری قابل شارژ را خارج نماید.",
+        "علاوه بر قابلیت هندمیل، این قفل روش‌های گوناگونی برای ورود ارائه می‌دهد که شامل حسگر اثر انگشت، صفحه کلید لمسی با نور پس‌زمینه، اپلیکیشن رینگ و الکسا می‌شود. همچنین این دستگاه از یک باتری با طول عمر تقریبی یک سال بهره می‌برد.",
+        "این قفل هوشمند با توپی‌های استاندارد تک سیلندر سازگار است و پس از دریافت مجوزهای لازم از کمیسیون ارتباطات فدرال (FCC)، در سه ماهه اول سال ۲۰۲۷ در سه رنگ مشکی، نقره‌ای و برنجی در ایالات متحده به بازار عرضه خواهد شد."
+      ],
+      "ai": true
+    },
     {
       "title": "Apple is reportedly partnering with LG to launch a smart lock, thermostat, and doorbell",
       "url": "https://techcrunch.com/2026/10/06/apple-is-reportedly-partnering-with-lg-to-launch-a-smart-lock-thermostat-and-doorbell/",
