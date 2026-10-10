@@ -1,6 +1,39 @@
 {
-  "updatedAt": "2026-10-09T20:59:42.373058+00:00",
+  "updatedAt": "2026-10-10T06:01:55.947785+00:00",
   "items": [
+    {
+      "title": "Long live the mechanical keyboard",
+      "url": "https://techcrunch.com/2026/10/09/long-live-the-mechanical-keyboard/",
+      "published": "2026-10-09",
+      "excerpt": "Keychron made a name for itself after launching on Kickstarter in 2017. Today, it offers the value K2 model as well as a variety of other versions, including one with an all-wood body.",
+      "source": "Hardware | Read the latest product reviews on TechCrunch",
+      "category": "products",
+      "country": "United States",
+      "lang": "en",
+      "id": "long-live-the-mechanical-keyboard-6adbdd9",
+      "page": true,
+      "image": "https://techcrunch.com/wp-content/uploads/2026/10/IMG_4970.jpeg?resize=1200,900",
+      "images": [
+        "https://techcrunch.com/wp-content/uploads/2026/10/IMG_4970.jpeg?resize=1200,900"
+      ],
+      "videos": [
+        {
+          "provider": "youtube",
+          "id": "p0Ekt2CE2io",
+          "url": "https://www.youtube.com/watch?v=p0Ekt2CE2io"
+        }
+      ],
+      "titleFa": "بازگشت به دوران طلایی تایپ: نگاهی به کیبوردهای مکانیکی Keychron",
+      "excerptFa": "برند Keychron با الهام از طراحی‌های کلاسیک دهه ۹۰ میلادی، توانسته است جایگاه ویژه‌ای در میان علاقه‌مندان به سخت‌افزارهای رترو و کیبوردهای مکانیکی پیدا کند.",
+      "bodyFa": [
+        "شرکت Keychron که فعالیت خود را از سال ۲۰۱۷ با یک کمپین کیک‌استارتر آغاز کرد، امروزه به یکی از نام‌های برجسته در صنعت کیبوردهای مکانیکی تبدیل شده است. این برند با تولید ده‌ها مدل کیبورد و ماوس، توانسته است سلیقه‌های مختلف را پوشش دهد و به دلیل سادگی در استفاده و کیفیت ساخت، مورد توجه کاربران قرار گیرد.",
+        "یکی از دلایل اصلی محبوبیت محصولات این شرکت، حس نوستالژیکی است که طراحی‌های آن به کاربر منتقل می‌کند. بسیاری از مدل‌های این برند با الهام از سبک‌های قدیمی و صنعتی دوران گذشته طراحی شده‌اند که باعث می‌شود میز کار کاربر، حال و هوای دهه‌های پیشین را تداعی کند.",
+        "تنوع محصولات این شرکت بسیار گسترده است؛ از مدل اقتصادی K2 با قیمت ۶۰ دلار گرفته تا مدل‌های خاصی مانند K8 HE که با بدنه تمام چوبی و نورپردازی LED عرضه می‌شود و قیمتی در حدود ۲۰۰ دلار دارد. همچنین سری‌های K، Q و V نیز با ویژگی‌های فنی متنوع در بازه قیمتی ۱۰۰ تا ۲۰۰ دلار به‌روزرسانی شده‌اند.",
+        "علاوه بر ظاهر، تجربه شنیداری و لمسی تایپ با این کیبوردها برای بسیاری از کاربران جذاب است. صدای خاص کلیدها که در ویدیوهای ASMR نیز جایگاه ویژه‌ای پیدا کرده، در کنار قابلیت شخصی‌سازی کلیدها (Keycaps)، باعث شده تا این محصولات فراتر از یک ابزار ساده، به یک کالای کلکسیونی و کاربردی تبدیل شوند.",
+        "در حالی که مدل‌های جدید با قابلیت‌های مدرنی مانند اتصال بلوتوث برای داشتن یک میز کار مینیمال عرضه می‌شوند، همچنان روح کلاسیک در طراحی آن‌ها حفظ شده است. برای کسانی که به دنبال ترکیبی از تکنولوژی روز و زیبایی‌شناسی دوران طلایی کامپیوترهای شخصی هستند، این کیبوردها گزینه‌ای ایده‌آل محسوب می‌شوند."
+      ],
+      "ai": true
+    },
     {
       "title": "Danu Robotics’ fight to build a better recycling robot",
       "url": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/",
